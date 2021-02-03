@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+.top-buffer {
+    margin-top: 100px;
+}
+
+.vl {
+    border-left: 2px solid white;
+    height: 300px;
+    margin-top: 25px;
+}
+
+.logo {
+    font-size: 95px;
+    font-family: Garamond, serif;
+    margin-top: 75px;
+}
+
+.label-text {
+    font-size: 20px;
+}
