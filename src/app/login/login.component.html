@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row top-buffer">
+    <div class="col-md-6">
+      <h1>Login</h1>
+      <hr />
+      <div class="form-group">
+          <label for="username" class="label-text">Username</label>
+          <input type="text" name="username" class="form-control" placeholder="Username"/>
+      </div>
+      <div class="form-group">
+          <label for="password" class="label-text">Password</label>
+          <input type="password" name="password" class="form-control" placeholder="Password"/>
+      </div>
+      <div class="form-group">
+          <a [routerLink]="['/registration']" class="label-text">Register</a>
+          <button class="btn btn-primary pull-right">Login</button>
+      </div>
+    </div>
+    <div class="col-md-1">
+      <div class="vl"></div>
+    </div>
+    <div class="col-md-5 logo">
+      TrackTasks
+    </div>
+  </div>
+</div>

@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'tracktasks',
-  templateUrl: './tracktasks.component.html',
-  styleUrls: ['./tracktasks.component.css']
+  template: `<router-outlet></router-outlet>`
+  
 })
 export class TrackTasksComponent {
-  title = 'tracktasks';
+  constructor(private route:ActivatedRoute) {
+
+  }
 }
