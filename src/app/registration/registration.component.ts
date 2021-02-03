@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Component({
     selector: 'registration',
@@ -8,4 +8,10 @@ import { FormGroup } from '@angular/forms';
   })
   export class RegistrationComponent {
     title = 'tracktasks';
+
+    registerUser(form: NgForm) {
+      console.log(form.value.username)
+      console.log(form.value.password)
+      console.log(form.value.userTypes)
+    }
   }

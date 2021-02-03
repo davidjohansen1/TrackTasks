@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -13,4 +13,12 @@ export class LoginComponent {
     
   }
   title = 'tracktasks';
+  
+  loginUser(form: NgForm) {
+    if(form.value.username.toUpperCase() === 'daveeed'.toUpperCase() && form.value.password === '1') {
+      alert("You have successfully signed in")
+    } else {
+      alert("Incorrect username or password")
+    }
+  }
 }
