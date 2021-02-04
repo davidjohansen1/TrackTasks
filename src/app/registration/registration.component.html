@@ -14,11 +14,11 @@
                 </div>
                 <div class="form-group">
                     <label for="userTypes" class="label-text">User Account Type</label>
-                    <select class="form-control" id="userTypes" name="userTypes" ngModel>
-                    <option>Supervisor</option>
-                    <option>Subordinate</option>
-                    <option>Parent</option>
-                    <option>Child</option>
+                    <select class="form-control" id="userTypes" name="userTypes" [(ngModel)]="selectedItem">
+                        <option value="supervisor">Supervisor</option>
+                        <option value="employee">Employee</option>
+                        <option value="parent">Parent</option>
+                        <option value="child">Child</option>
                     </select>
             </div>
                 <div class="form-group">

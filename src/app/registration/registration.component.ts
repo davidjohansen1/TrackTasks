@@ -8,6 +8,7 @@ import { NgForm } from '@angular/forms';
   })
   export class RegistrationComponent {
     title = 'tracktasks';
+    selectedItem = 'supervisor';
 
     registerUser(form: NgForm) {
       console.log(form.value.username)
