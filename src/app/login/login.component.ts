@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'login',
@@ -9,14 +9,14 @@ import { ActivatedRoute } from '@angular/router';
   
 })
 export class LoginComponent {
-  constructor(private route:ActivatedRoute) {
+  constructor(private route:Router) {
     
   }
   title = 'tracktasks';
   
   loginUser(form: NgForm) {
     if(form.value.username.toUpperCase() === 'daveeed'.toUpperCase() && form.value.password === '1') {
-      alert("You have successfully signed in")
+      this.route.navigate(['/dashboard'])
     } else {
       alert("Incorrect username or password")
     }
