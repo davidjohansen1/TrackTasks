@@ -7,13 +7,15 @@ import { appRoutes } from './routes';
 import { RegistrationComponent } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CreateTaskComponent } from './createTask/create-task.component';
 
 @NgModule({
   declarations: [
     TrackTasksComponent,
     LoginComponent,
     RegistrationComponent,
-    DashboardComponent
+    DashboardComponent,
+    CreateTaskComponent
   ],
   imports: [
     BrowserModule,
