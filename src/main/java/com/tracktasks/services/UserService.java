@@ -1,0 +1,61 @@
+package com.tracktasks.services;
+
+import com.tracktasks.model.User;
+import com.tracktasks.model.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+
+@Service
+public class UserService {
+  @Autowired
+  private UserRepository userRepository;
+
+  int userId = 0;
+  String userEmail = "";
+  String userCreationResult = "";
+  User user = new User();
+  PasswordEncoderGenerator passwordEncoderGenerator = new PasswordEncoderGenerator();
+
+  public String createNewUser(User newUser) {
+    try {
+      userEmail = userRepository.findByUsername(newUser.getUsername()).getUsername();
+    } catch (NullPointerException n) { }
+
+    if( userEmail.equalsIgnoreCase(newUser.getUsername()) ) {
+      return userCreationResult = "User already exists";
+    }
+
+    try {
+      userId = userRepository.userIdMax();
+      userId+=1;
+    } catch(Exception e) {
+      userId+=1;
+    }
+
+    user.setId(userId);
+    user.setUsername(newUser.getUsername());
+    user.setPassword(passwordEncoderGenerator.hashPassword(newUser.getPassword()));
+    userRepository.save(user);
+    userCreationResult = "User Created Successfully";
+
+    return userCreationResult;
+  }
+
+  public Object authenticateUserCredentials(User userInfo) {
+    try {
+      user = userRepository.findByUsername(userInfo.getUsername());
+      if (passwordEncoderGenerator.authenticateUser(userInfo.getPassword(), user.getPassword())) {
+        HashMap mainUserInfo = new HashMap<>();
+        mainUserInfo.put("userEmail", user.getUsername());
+        return mainUserInfo;
+      } else {
+        return "Username or password is incorrect";
+      }
+    } catch (Exception e){
+      return "Username or password is incorrect";
+    }
+  }
+
+}

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ApiService } from '../services/api.service';
+import { Users } from '../tasks/user';
 
 @Component({
     selector: 'registration',
@@ -9,10 +11,16 @@ import { NgForm } from '@angular/forms';
   export class RegistrationComponent {
     title = 'tracktasks';
     selectedItem = 'supervisor';
+    user = new Users();
 
-    registerUser(form: NgForm) {
-      console.log(form.value.username)
-      console.log(form.value.password)
-      console.log(form.value.userTypes)
+    constructor(private apiService:ApiService) {}
+
+    registerUser() {
+      console.log(this.user.username)
+      console.log(this.user.password)
+      this.apiService.createUser(this.user)
+      .subscribe(data => {
+        console.log(data);
+      })
     }
   }

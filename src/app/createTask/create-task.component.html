@@ -2,17 +2,17 @@
     <h1>Create a task</h1>
     <hr>
     <div class="col-md-6">
-        <form autocomplete="off">
-            <div class="form-group" >
-                <label for="taskname" class="label-text">Task Name:</label>
-                <input id="taskname" name="taskname" type="text" class="form-control" placeholder="Task name..." ngModel/>
-            </div>
-            <div class="form-group" >
-                <label for="description" class="label-text">Task Description:</label>
-                <input id="description" name="description" type="description" class="form-control"placeholder="Description..." ngModel/>
-            </div>
-            <button type="submit" class="btn btn-primary">Create Task</button>
-            <button type="button" class="btn btn-default">Cancel</button>
-        </form>
+        <div class="form-group" >
+            <label for="taskname" class="label-text">Task Name:</label>
+            <input id="taskname" name="taskname" type="text" class="form-control" placeholder="Task name..." [(ngModel)]="task.name"/>
+        </div>
+        <div class="form-group" >
+            <label for="description" class="label-text">Task Description:</label>
+            <input id="description" name="description" type="description" class="form-control"placeholder="Description..." [(ngModel)]="task.description"/>
+        </div>
+        <div class="form-group" >
+            <button class="btn btn-primary" (click)="createTask()" style="margin-right: 5px;">Create Task</button>
+            <button class="btn btn-default" (click)="cancel()">Cancel</button>
+        </div>
     </div>
 </div>
