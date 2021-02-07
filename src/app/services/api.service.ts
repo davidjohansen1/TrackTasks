@@ -12,14 +12,14 @@ export class ApiService {
     constructor(private http: HttpClient) {}
 
     getTasks(): Observable<Tasks[]> {
-        return this.http.get<Tasks[]>(this.baseUrl + 'tasks')
+        return this.http.get<Tasks[]>(this.springUrl + 'task/tasks')
     }
 
     addTask(task:Tasks): Observable<any> {
         const headers = {'content-type': 'application/json'}
         const body=JSON.stringify(task)
         console.log(task)
-        return this.http.post(this.baseUrl + 'tasks', body, {'headers':headers})
+        return this.http.post(this.springUrl + 'task/createTask', body, {'headers':headers, responseType: 'text'})
     }
 
     createUser(user:Users): Observable<any> {

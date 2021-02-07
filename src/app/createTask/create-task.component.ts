@@ -9,17 +9,23 @@ import { Tasks } from "../tasks/task";
 export class CreateTaskComponent {
     allTasks:Tasks[];
     task = new Tasks();
+    errors;
 
     constructor(private apiService:ApiService, private router:Router) {}
 
-    createTask() {
+    async createTask() {
         console.log(this.task.name)
         console.log(this.task.description)
-        this.apiService.addTask(this.task)
+        await this.apiService.addTask(this.task)
         .subscribe(data => {
             console.log(data)
-        })
-        this.router.navigate(['/dashboard'])
+        },
+        error => {
+            this.errors = error;
+        },
+        () => {
+            this.router.navigate(['/dashboard'])
+        })        
     }
 
     cancel() {

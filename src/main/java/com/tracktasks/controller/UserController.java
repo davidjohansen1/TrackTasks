@@ -17,7 +17,7 @@ public class UserController {
   private UserService userService;
 
   @PostMapping(path="/create")
-  public@ResponseBody
+  public @ResponseBody
   String createUser(@RequestBody User newUser) {
     return userService.createNewUser(newUser);
   }
