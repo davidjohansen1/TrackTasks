@@ -16,11 +16,14 @@ import { Users } from '../tasks/user';
     constructor(private apiService:ApiService) {}
 
     registerUser() {
-      console.log(this.user.username)
-      console.log(this.user.password)
       this.apiService.createUser(this.user)
       .subscribe(data => {
         console.log(data);
+        if(data === 'User already exists') {
+          alert('Username is already taken')
+        } else {
+          alert('User created successfully')
+        }
       })
     }
   }

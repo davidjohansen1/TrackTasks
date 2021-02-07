@@ -22,7 +22,7 @@ public class UserController {
     return userService.createNewUser(newUser);
   }
 
-  @PostMapping(path="authenticate", produces = "application/json")
+  @PostMapping(path="/authenticate", produces = "application/json")
   @ResponseBody
   Object authenticateUser(@RequestBody User userInfo) {
     return userService.authenticateUserCredentials(userInfo);

@@ -44,17 +44,19 @@ public class UserService {
   }
 
   public Object authenticateUserCredentials(User userInfo) {
+    HashMap mainUserInfo = new HashMap<>();
     try {
       user = userRepository.findByUsername(userInfo.getUsername());
       if (passwordEncoderGenerator.authenticateUser(userInfo.getPassword(), user.getPassword())) {
-        HashMap mainUserInfo = new HashMap<>();
-        mainUserInfo.put("userEmail", user.getUsername());
+        mainUserInfo.put("credentials", user.getUsername());
         return mainUserInfo;
       } else {
-        return "Username or password is incorrect";
+        mainUserInfo.put("credentials", "bad username or password");
+        return mainUserInfo;
       }
     } catch (Exception e){
-      return "Username or password is incorrect";
+      mainUserInfo.put("credentials", "bad username or password");
+      return mainUserInfo;
     }
   }
 

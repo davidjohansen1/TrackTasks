@@ -11,10 +11,13 @@ import { Tasks } from "../tasks/task";
 export class DashboardComponent implements OnInit {
     allTasks:Tasks[];
     task = new Tasks();
+    userName:String = '';
 
     constructor(private apiService:ApiService, private router:Router) {}
 
     ngOnInit() {
+        this.userName = localStorage.getItem('userName')
+        console.log(this.userName)
         this.apiService.getTasks()
         .subscribe(data => {
             console.log(data)
@@ -24,5 +27,10 @@ export class DashboardComponent implements OnInit {
 
     createTask() {
         this.router.navigate(['/createtask'])
+    }
+
+    logOut() {
+        localStorage.removeItem('userName');
+        this.router.navigate(['/login'])
     }
 }

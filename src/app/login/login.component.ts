@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from '../services/api.service';
+import { Users } from '../tasks/user';
 
 @Component({
   selector: 'login',
@@ -8,17 +9,28 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html'
   
 })
-export class LoginComponent {
-  constructor(private route:Router) {
-    
-  }
+export class LoginComponent implements OnInit {
+  constructor(private route:Router, private apiService: ApiService) {}
+
   title = 'tracktasks';
-  
-  loginUser(form: NgForm) {
-    if(form.value.username.toUpperCase() === 'daveeed'.toUpperCase() && form.value.password === '1') {
+  user = new Users();
+
+  ngOnInit() {
+    if(localStorage.getItem('userName')) {
       this.route.navigate(['/dashboard'])
-    } else {
-      alert("Incorrect username or password")
     }
+  }
+
+  loginUser() {
+    this.apiService.authenticateUser(this.user)
+    .subscribe(data => {
+      console.log(data.credentials)
+      if(this.user.username === data.credentials) {
+        localStorage.setItem('userName', data.credentials)
+        this.route.navigate(['/dashboard'])
+      } else {
+        alert("Incorrect username or password")
+      }
+    })
   }
 }

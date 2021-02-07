@@ -16,7 +16,7 @@ export class ApiService {
     }
 
     addTask(task:Tasks): Observable<any> {
-        const headers = { 'content-type': 'application/json'}
+        const headers = {'content-type': 'application/json'}
         const body=JSON.stringify(task)
         console.log(task)
         return this.http.post(this.baseUrl + 'tasks', body, {'headers':headers})
@@ -25,6 +25,12 @@ export class ApiService {
     createUser(user:Users): Observable<any> {
         const headers = { 'content-type': 'application/json'}
         const body=JSON.stringify(user)
-        return this.http.post(this.springUrl + 'user/create', body, {'headers':headers})
+        return this.http.post(this.springUrl + 'user/create', body, {'headers':headers, responseType: 'text'})
+    }
+
+    authenticateUser(user:Users): Observable<any> {
+        const headers = { 'content-type': 'application/json'}
+        const body=JSON.stringify(user)
+        return this.http.post(this.springUrl + 'user/authenticate', body, {'headers':headers})
     }
 }
