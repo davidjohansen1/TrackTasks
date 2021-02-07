@@ -1,0 +1,12 @@
+.thumbnail {
+    min-height: 150px;
+    margin-top: 10px;
+}
+
+.well div {
+    color: #bbb;
+}
+
+.logOut {
+    margin-top: 25px;
+}

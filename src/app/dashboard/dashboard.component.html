@@ -1,3 +1,23 @@
-<div class="col-md-12">
-    <h1 style="margin-left: auto;">Welcome to the dashboard</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h1>Welcome to the Task Dashboard</h1>
+        </div>
+        <div class="col-md-2 logOut">
+            <h4>logged in as: <b>{{userName}}</b></h4>
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-info logOut" (click)="logOut()">Log Out</button>
+        </div>
+    </div>
+    <hr>
+    <button class="btn btn-primary" (click)="createTask()">Create Task</button>
+    <div class="row">
+        <div *ngFor="let task of allTasks;" class="col-md-5">
+            <div class="well hoverwell thumbnail">
+                <h2>Task Name: {{task.name}}</h2>
+                <div>Task Description: {{task.description}}</div>
+            </div>
+        </div>
+    </div>
 </div>
