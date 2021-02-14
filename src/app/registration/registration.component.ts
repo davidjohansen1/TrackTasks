@@ -1,29 +1,37 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { Users } from '../tasks/user';
 
 @Component({
-    selector: 'registration',
-    templateUrl: './registration.component.html',
-    styleUrls: ['./registration.component.css']
-  })
-  export class RegistrationComponent {
-    title = 'tracktasks';
-    selectedItem = 'supervisor';
-    user = new Users();
+  selector: 'registration',
+  templateUrl: './registration.component.html',
+  styleUrls: ['./registration.component.css']
+})
+export class RegistrationComponent {
+  title = 'tracktasks';
+  user = new Users();
 
-    constructor(private apiService:ApiService) {}
+  constructor(private apiService: ApiService) { }
 
-    registerUser() {
-      this.apiService.createUser(this.user)
+  registerUser() {
+    console.log(this.user.username)
+    if (this.user.username === undefined || this.user.password === undefined) {
+      alert('Username and Password are required')
+      return
+    }
+    this.apiService.createUser(this.user)
       .subscribe(data => {
-        console.log(data);
-        if(data === 'User already exists') {
+        if (data === 'User already exists') {
           alert('Username is already taken')
         } else {
           alert('User created successfully')
         }
       })
+  }
+
+  checkEnterPressed(event) {
+    if (event.keyCode == 13) {
+      this.registerUser()
     }
   }
+}

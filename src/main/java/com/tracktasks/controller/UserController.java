@@ -1,5 +1,6 @@
 package com.tracktasks.controller;
 
+import com.tracktasks.model.StudentChildren;
 import com.tracktasks.model.User;
 import com.tracktasks.model.UserRepository;
 import com.tracktasks.services.UserService;
@@ -26,5 +27,11 @@ public class UserController {
   @ResponseBody
   Object authenticateUser(@RequestBody User userInfo) {
     return userService.authenticateUserCredentials(userInfo);
+  }
+
+  @GetMapping(path="/studentchildusers")
+  public @ResponseBody
+  Iterable<StudentChildren> getTasks() {
+    return userRepository.studentsAndChildren();
   }
 }

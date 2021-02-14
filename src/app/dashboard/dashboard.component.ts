@@ -9,20 +9,18 @@ import { Tasks } from "../tasks/task";
     styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-    allTasks:Tasks[];
+    allTasks: Tasks[];
     task = new Tasks();
-    userName:String = '';
+    userName: String = '';
 
-    constructor(private apiService:ApiService, private router:Router) {}
+    constructor(private apiService: ApiService, private router: Router) { }
 
     ngOnInit() {
         this.userName = localStorage.getItem('userName')
-        console.log(this.userName)
         this.apiService.getTasks()
-        .subscribe(data => {
-            console.log(data)
-            this.allTasks=data
-        })
+            .subscribe(data => {
+                this.allTasks = data
+            })
     }
 
     createTask() {

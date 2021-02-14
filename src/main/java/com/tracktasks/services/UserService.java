@@ -37,6 +37,7 @@ public class UserService {
     user.setId(userId);
     user.setUsername(newUser.getUsername());
     user.setPassword(passwordEncoderGenerator.hashPassword(newUser.getPassword()));
+    user.setUserType(newUser.getUserType());
     userRepository.save(user);
     userCreationResult = "User Created Successfully";
 
@@ -49,6 +50,7 @@ public class UserService {
       user = userRepository.findByUsername(userInfo.getUsername());
       if (passwordEncoderGenerator.authenticateUser(userInfo.getPassword(), user.getPassword())) {
         mainUserInfo.put("credentials", user.getUsername());
+        mainUserInfo.put("userType", user.getUserType());
         return mainUserInfo;
       } else {
         mainUserInfo.put("credentials", "bad username or password");
