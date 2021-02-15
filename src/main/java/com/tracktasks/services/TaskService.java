@@ -23,6 +23,7 @@ public class TaskService {
     task.setId(taskId);
     task.setName(newTask.getName());
     task.setDescription(newTask.getDescription());
+    task.setAssignedUser(newTask.getAssignedUser());
     taskRepository.save(task);
   }
 }

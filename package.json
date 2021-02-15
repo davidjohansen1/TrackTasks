@@ -20,6 +20,7 @@
     "@angular/platform-browser": "7.1.2",
     "@angular/platform-browser-dynamic": "7.1.2",
     "@angular/router": "7.1.2",
+    "@syncfusion/ej2-angular-dropdowns": "^18.4.42",
     "core-js": "2.5.4",
     "ngf-bootstrap": "0.0.5",
     "rxjs": "6.3.3",

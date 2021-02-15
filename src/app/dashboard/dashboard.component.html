@@ -13,10 +13,13 @@
     <hr>
     <button class="btn btn-primary" (click)="createTask()">Create Task</button>
     <div class="row">
-        <div *ngFor="let task of allTasks;" class="col-md-5">
+        <div *ngFor="let task of allTasks;" class="col-md-3">
             <div class="well hoverwell thumbnail">
-                <h2>Task Name: {{task.name}}</h2>
-                <div>Task Description: {{task.description}}</div>
+                <p class="task-name-header"><strong>Name:</strong>&nbsp;{{task.name}}</p>
+                <p class="desc-header"><strong>Description:</strong>&nbsp;{{task.description}}</p>
+                <p class="desc-header" *ngIf="task.assignedUser > 0"><strong>Assigned
+                        User:</strong>&nbsp;{{task.assignedUser}}
+                </p>
             </div>
         </div>
     </div>

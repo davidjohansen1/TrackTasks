@@ -23,6 +23,7 @@ export class CreateTaskComponent implements OnInit {
     }
 
     async createTask() {
+        console.log(this.task.assignedUser)
         await this.apiService.addTask(this.task)
             .subscribe(data => {
                 console.log(data)
@@ -38,4 +39,6 @@ export class CreateTaskComponent implements OnInit {
     cancel() {
         this.router.navigate(['/dashboard'])
     }
+
+    public fields: Object = { text: 'username', value: 'id' };
 }

@@ -1,5 +1,6 @@
 export class Tasks {
-    id:number
-    name:string
-    description:string
+    id: number
+    name: string
+    description: string
+    assignedUser: string
 }

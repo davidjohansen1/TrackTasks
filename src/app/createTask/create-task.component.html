@@ -13,11 +13,10 @@
                 placeholder="Description..." [(ngModel)]="task.description" />
         </div>
         <div class="form-group">
-            <label for="assigned" class="label-text">Assign a user to this task:</label>
-            <select class="form-control" id="users" name="users" [(ngModel)]="users">
-                <option value="default"><em>Select a user...</em></option>
-                <option *ngFor="let user of studentchildusers;">{{user.username}}</option>
-            </select>
+            <label for="ddlelement" class="label-text">Assign a user to this task:</label>
+            <ejs-dropdownlist id='ddlelement' [dataSource]='studentchildusers' [fields]='fields'
+                placeholder='Select a user...' [(ngModel)]="task.assignedUser">
+            </ejs-dropdownlist>
         </div>
         <div class="form-group">
             <button class="btn btn-primary" (click)="createTask()" style="margin-right: 5px;">Create Task</button>

@@ -12,6 +12,7 @@ export class DashboardComponent implements OnInit {
     allTasks: Tasks[];
     task = new Tasks();
     userName: String = '';
+    errors;
 
     constructor(private apiService: ApiService, private router: Router) { }
 
@@ -20,8 +21,20 @@ export class DashboardComponent implements OnInit {
         this.apiService.getTasks()
             .subscribe(data => {
                 this.allTasks = data
-            })
+            },
+                error => {
+                    this.errors = error;
+                },
+                () => {
+                    for (var i = 0; i < this.allTasks.length; i++) {
+                        if (this.allTasks[i].description.length > 50) {
+                            this.allTasks[i].description = this.allTasks[i].description.substring(0, 50) + "..."
+                        }
+                    }
+                })
+
     }
+
 
     createTask() {
         this.router.navigate(['/createtask'])

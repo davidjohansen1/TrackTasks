@@ -1,6 +1,7 @@
 .thumbnail {
-    min-height: 150px;
+    min-height: 170px;
     margin-top: 10px;
+    max-height: 171px;
 }
 
 .well div {
@@ -9,4 +10,12 @@
 
 .logOut {
     margin-top: 25px;
+}
+
+.task-name-header {
+    font-size: 17px;
+}
+
+.desc-header {
+    font-size: 15px;
 }
