@@ -1,5 +1,6 @@
 package com.tracktasks.controller;
 
+import com.tracktasks.model.FullTaskInfo;
 import com.tracktasks.model.Task;
 import com.tracktasks.model.TaskRepository;
 import com.tracktasks.model.User;
@@ -18,8 +19,8 @@ public class TaskController {
   private TaskService taskService;
 
   @GetMapping(path="/tasks")
-  public @ResponseBody Iterable<Task> getTasks() {
-    return taskRepository.findAll();
+  public @ResponseBody Iterable<FullTaskInfo> getTasks() {
+    return taskRepository.getAllTasks();
   }
 
   @PostMapping(path="/createTask")

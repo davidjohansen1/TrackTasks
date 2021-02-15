@@ -1,7 +1,7 @@
 .thumbnail {
-    min-height: 170px;
+    min-height: 200px;
     margin-top: 10px;
-    max-height: 171px;
+    max-height: 201px;
 }
 
 .well div {
@@ -13,9 +13,15 @@
 }
 
 .task-name-header {
+    padding-top: 15px;
     font-size: 17px;
 }
 
 .desc-header {
     font-size: 15px;
+}
+
+.button-text {
+    font-size: 12px;
+    margin-right: 10px;
 }

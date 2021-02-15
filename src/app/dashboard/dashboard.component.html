@@ -11,14 +11,14 @@
         </div>
     </div>
     <hr>
-    <button class="btn btn-primary" (click)="createTask()">Create Task</button>
+    <button class="btn btn-primary" style="margin-bottom: 25px;" (click)="createTask()">Create Task</button>
     <div class="row">
         <div *ngFor="let task of allTasks;" class="col-md-3">
+            <button class="btn btn-warning pull-right button-text"><i class="fa fa-edit fa-lg"></i>&nbsp;Edit</button>
             <div class="well hoverwell thumbnail">
                 <p class="task-name-header"><strong>Name:</strong>&nbsp;{{task.name}}</p>
                 <p class="desc-header"><strong>Description:</strong>&nbsp;{{task.description}}</p>
-                <p class="desc-header" *ngIf="task.assignedUser > 0"><strong>Assigned
-                        User:</strong>&nbsp;{{task.assignedUser}}
+                <p class="desc-header" *ngIf="task.username"><strong>Assigned User:</strong>&nbsp;{{task.username}}
                 </p>
             </div>
         </div>

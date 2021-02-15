@@ -3,4 +3,5 @@ export class Tasks {
     name: string
     description: string
     assignedUser: string
+    username: string
 }

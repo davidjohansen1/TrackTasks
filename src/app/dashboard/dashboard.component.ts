@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { ApiService } from "../services/api.service";
 import { Tasks } from "../tasks/task";
+import { Users } from "../tasks/user";
 
 @Component({
     selector: 'dashboard',
@@ -11,6 +12,7 @@ import { Tasks } from "../tasks/task";
 export class DashboardComponent implements OnInit {
     allTasks: Tasks[];
     task = new Tasks();
+    user = new Users();
     userName: String = '';
     errors;
 
@@ -20,6 +22,7 @@ export class DashboardComponent implements OnInit {
         this.userName = localStorage.getItem('userName')
         this.apiService.getTasks()
             .subscribe(data => {
+                console.log(data)
                 this.allTasks = data
             },
                 error => {
@@ -27,8 +30,8 @@ export class DashboardComponent implements OnInit {
                 },
                 () => {
                     for (var i = 0; i < this.allTasks.length; i++) {
-                        if (this.allTasks[i].description.length > 50) {
-                            this.allTasks[i].description = this.allTasks[i].description.substring(0, 50) + "..."
+                        if (this.allTasks[i].description.length > 45) {
+                            this.allTasks[i].description = this.allTasks[i].description.substring(0, 45) + "..."
                         }
                     }
                 })
