@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output } from "@angular/core";
 import { Router } from "@angular/router";
 import { ApiService } from "../services/api.service";
 import { Tasks } from "../tasks/task";
@@ -17,6 +17,9 @@ export class DashboardComponent implements OnInit {
     errors;
     truncatedName = [];
     truncatedDescription = [];
+    @Output() currentTaskId;
+    @Output() currentTaskName;
+    @Output() currentTaskDesc;
 
     constructor(private apiService: ApiService, private router: Router) { }
 
@@ -53,5 +56,11 @@ export class DashboardComponent implements OnInit {
     logOut() {
         localStorage.removeItem('userName');
         this.router.navigate(['/login'])
+    }
+
+    editTask(id, name, description) {
+        this.currentTaskId = id;
+        this.currentTaskName = name;
+        this.currentTaskDesc = description;
     }
 }
