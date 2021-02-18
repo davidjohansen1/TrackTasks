@@ -1,26 +1,62 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-8">
-            <h1>Welcome to the Task Dashboard</h1>
-        </div>
-        <div class="col-md-2 logOut">
-            <h4>logged in as: <b>{{userName}}</b></h4>
+        <div class="col-md-10">
+            <h1><strong>Task Dashboard</strong></h1>
         </div>
         <div class="col-md-2">
             <button class="btn btn-info logOut" (click)="logOut()">Log Out</button>
+            <br />
+            <h4><b>{{userName}}</b></h4>
         </div>
     </div>
     <hr>
     <button class="btn btn-primary" style="margin-bottom: 25px;" (click)="createTask()">Create Task</button>
-    <div class="row">
-        <div *ngFor="let task of allTasks;" class="col-md-3">
-            <button class="btn btn-warning pull-right button-text"><i class="fa fa-edit fa-lg"></i>&nbsp;Edit</button>
-            <div class="well hoverwell thumbnail">
-                <p class="task-name-header"><strong>Name:</strong>&nbsp;{{task.name}}</p>
-                <p class="desc-header"><strong>Description:</strong>&nbsp;{{task.description}}</p>
-                <p class="desc-header" *ngIf="task.username"><strong>Assigned User:</strong>&nbsp;{{task.username}}
-                </p>
+</div>
+<div class="container">
+    <div *ngFor="let task of allTasks;" class="col-md-4">
+        <div class="card card-background shadow">
+            <div class="card-header">
+                <strong>Name:</strong>&nbsp;{{truncatedName[task.id] ? truncatedName[task.id] : task.name}}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"><strong>Description:</strong>&nbsp;{{truncatedDescription[task.id] ? truncatedDescription[task.id] : task.description}}</h5>
+                <div *ngIf="task.username"><strong>Assigned User:</strong>&nbsp;{{task.username}}</div>
+                <div *ngIf="!task.username"><strong>Assigned User:</strong>&nbsp;<em>Unassigned</em></div>
+                <button class="btn btn-warning button-text button-shadow"><i class="fa fa-edit fa-lg"></i>&nbsp;Edit</button>
             </div>
         </div>
     </div>
+    
+
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Launch demo modal
+      </button>
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding-right: 10px; padding-top: 10px;">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            </div>
+            <div class="modal-body">
+                This is a modal
+                This is a modal
+                This is a modal
+                This is a modal
+                This is a modal
+                This is a modal
+                This is a modal
+                This is a modal
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-info">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
 </div>

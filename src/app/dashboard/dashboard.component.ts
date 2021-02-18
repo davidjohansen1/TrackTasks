@@ -15,6 +15,8 @@ export class DashboardComponent implements OnInit {
     user = new Users();
     userName: String = '';
     errors;
+    truncatedName = [];
+    truncatedDescription = [];
 
     constructor(private apiService: ApiService, private router: Router) { }
 
@@ -30,10 +32,15 @@ export class DashboardComponent implements OnInit {
                 },
                 () => {
                     for (var i = 0; i < this.allTasks.length; i++) {
-                        if (this.allTasks[i].description.length > 45) {
-                            this.allTasks[i].description = this.allTasks[i].description.substring(0, 45) + "..."
+                        if (this.allTasks[i].description.length > 75) {
+                            this.truncatedDescription[this.allTasks[i].id] = this.allTasks[i].description.substring(0, 75) + "..."
+                        }
+
+                        if (this.allTasks[i].name.length > 40) {
+                            this.truncatedName[this.allTasks[i].id] = this.allTasks[i].name.substring(0, 40) + "..."
                         }
                     }
+                    console.log(this.truncatedDescription)
                 })
 
     }
