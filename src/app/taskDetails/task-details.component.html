@@ -1,3 +1,22 @@
-<p>The current ID is {{currentTaskId}}</p>
-<p>The current Name is {{currentTaskName}}</p>
-<p>The current Description is {{currentTaskDesc}}</p>
+<div class="container">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="taskname" class="label-text">Task Name:</label>
+            <input id="taskname" name="taskname" type="text" class="form-control fields" value="{{currentTaskName}}" />
+        </div>
+        <div class="form-group">
+            <label for="description" class="label-text">Task Description:</label>
+            <textarea id="description" name="description" type="description" class="form-control fields" value="{{currentTaskDesc}}"></textarea>
+        </div>
+        <!-- <div class="form-group">
+            <label for="ddlelement" class="label-text">Assign a user to this task:</label>
+            <ejs-dropdownlist id='ddlelement' [dataSource]='studentchildusers' [fields]='fields'
+                placeholder='Select a user...' [(ngModel)]="task.assignedUser">
+            </ejs-dropdownlist>
+        </div> -->
+        <div class="form-group">
+            <button class="btn btn-primary" (click)="createTask()" style="margin-right: 5px;">Save Changes</button>
+            <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+    </div>
+</div>

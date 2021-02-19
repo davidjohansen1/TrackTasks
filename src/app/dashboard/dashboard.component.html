@@ -22,7 +22,7 @@
                 <h5 class="card-title"><strong>Description:</strong>&nbsp;{{truncatedDescription[task.id] ? truncatedDescription[task.id] : task.description}}</h5>
                 <div *ngIf="task.username"><strong>Assigned User:</strong>&nbsp;{{task.username}}</div>
                 <div *ngIf="!task.username"><strong>Assigned User:</strong>&nbsp;<em>Unassigned</em></div>
-                <button class="btn btn-warning button-text button-shadow" data-toggle="modal" data-target="#taskDetails" (click)="editTask(task.id, task.name, task.description)">
+                <button class="btn btn-info button-text" data-toggle="modal" data-target="#taskDetails" (click)="editTask(task.id, task.name, task.description)">
                   <i class="fa fa-edit fa-lg"></i>&nbsp;Edit
                 </button>
             </div>
@@ -36,7 +36,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           <div class="modal-header">
-            <h4 class="modal-title" id="taskDetailsLabel"><strong>Task Details</strong></h4>
+            <h4 class="modal-title" id="taskDetailsLabel"><strong>Edit Task Details</strong></h4>
           </div>
           <div class="modal-body">
               <task-details
@@ -45,10 +45,10 @@
                 [currentTaskDesc]="currentTaskDesc">
               </task-details>
           </div>
-          <div class="modal-footer">
+          <!-- <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button type="button" class="btn btn-info">Save changes</button>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

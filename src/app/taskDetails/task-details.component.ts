@@ -2,7 +2,8 @@ import { Component, Input } from "@angular/core";
 
 @Component({
     templateUrl: './task-details.component.html',
-    selector: 'task-details'
+    selector: 'task-details',
+    styleUrls: ['./task-details.component.css']
 })
 export class TaskDetailsComponent {
     @Input() currentTaskId
