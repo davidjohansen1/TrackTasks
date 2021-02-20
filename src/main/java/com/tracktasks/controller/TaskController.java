@@ -1,9 +1,6 @@
 package com.tracktasks.controller;
 
-import com.tracktasks.model.FullTaskInfo;
-import com.tracktasks.model.Task;
-import com.tracktasks.model.TaskRepository;
-import com.tracktasks.model.User;
+import com.tracktasks.model.*;
 import com.tracktasks.services.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +25,13 @@ public class TaskController {
   String createTask(@RequestBody Task newTask) {
     taskService.createNewTask(newTask);
     return "task created successfully";
+  }
+
+  @PostMapping(path="/editTask")
+  public @ResponseBody
+  String editTask(@RequestBody Task currentTaskUser) {
+    taskService.updateExistingTask(currentTaskUser);
+    return "task updated successfully";
   }
 
 }

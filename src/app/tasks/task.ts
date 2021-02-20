@@ -2,6 +2,7 @@ export class Tasks {
     id: number
     name: string
     description: string
-    assignedUser: string
+    assignedUser: number
+    assigned_user: number
     username: string
 }

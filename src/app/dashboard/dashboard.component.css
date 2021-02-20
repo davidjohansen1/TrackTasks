@@ -24,11 +24,6 @@
     border-radius: 6%;
 }
 
-.modal-body, .modal-footer {
-    background-color: rgba(255, 255, 255, 0.877);
-    color: black;
-}
-
 .card-background {
     background-color: #4e5d6c;
     margin-top: 25px;
@@ -37,16 +32,6 @@
     padding-top: 10px;
     padding-right: 10px;
     margin-bottom: 25px;
-}
-
-.collapse-background {
-    background-color: white;
-    padding-left: 10px;
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-    color: rgb(112, 112, 112);
-    margin-bottom: 5px;
 }
 
 .card-title {

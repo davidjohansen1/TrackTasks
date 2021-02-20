@@ -17,9 +17,12 @@ export class DashboardComponent implements OnInit {
     errors;
     truncatedName = [];
     truncatedDescription = [];
+    userId;
     @Output() currentTaskId;
     @Output() currentTaskName;
     @Output() currentTaskDesc;
+    @Output() currentAssignedUserId;
+    @Output() currentUsername;
 
     constructor(private apiService: ApiService, private router: Router) { }
 
@@ -27,8 +30,8 @@ export class DashboardComponent implements OnInit {
         this.userName = localStorage.getItem('userName')
         this.apiService.getTasks()
             .subscribe(data => {
-                console.log(data)
                 this.allTasks = data
+                console.log(this.allTasks)
             },
                 error => {
                     this.errors = error;
@@ -43,11 +46,8 @@ export class DashboardComponent implements OnInit {
                             this.truncatedName[this.allTasks[i].id] = this.allTasks[i].name.substring(0, 40) + "..."
                         }
                     }
-                    console.log(this.truncatedDescription)
                 })
-
     }
-
 
     createTask() {
         this.router.navigate(['/createtask'])
@@ -58,9 +58,11 @@ export class DashboardComponent implements OnInit {
         this.router.navigate(['/login'])
     }
 
-    editTask(id, name, description) {
+    editTask(id, name, description, assignedUserId, username) {
         this.currentTaskId = id;
         this.currentTaskName = name;
         this.currentTaskDesc = description;
+        this.currentAssignedUserId = assignedUserId
+        this.currentUsername = username;
     }
 }

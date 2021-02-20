@@ -7,7 +7,6 @@ import { Users } from "../tasks/user";
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {
-    baseUrl: string = "http://localhost:3000/";
     springUrl: string = "http://localhost:8080/";
 
     constructor(private http: HttpClient) { }
@@ -19,14 +18,12 @@ export class ApiService {
     addTask(task: Tasks): Observable<any> {
         const headers = { 'content-type': 'application/json' }
         const body = JSON.stringify(task)
-        console.log(task)
         return this.http.post(this.springUrl + 'task/createTask', body, { 'headers': headers, responseType: 'text' })
     }
 
     createUser(user: Users): Observable<any> {
         const headers = { 'content-type': 'application/json' }
         const body = JSON.stringify(user)
-        console.log(body);
         return this.http.post(this.springUrl + 'user/create', body, { 'headers': headers, responseType: 'text' })
     }
 
@@ -39,4 +36,10 @@ export class ApiService {
     getStudentChildUsers(): Observable<StudentChildren[]> {
         return this.http.get<StudentChildren[]>(this.springUrl + 'user/studentchildusers')
     }
+
+    editTask(task: Tasks): Observable<any> {
+        const headers = { 'content-type': 'application/json' }
+        const body = JSON.stringify(task)
+        return this.http.post(this.springUrl + 'task/editTask', body, { 'headers': headers, responseType: 'text' })
+    } 
 }

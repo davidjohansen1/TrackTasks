@@ -15,6 +15,7 @@
 .e-control > .e-input-group {
     background-color: white;
     height: 39px;
+    width: 90%;
 }
 
 .e-control > .e-input-group > .e-input::placeholder{

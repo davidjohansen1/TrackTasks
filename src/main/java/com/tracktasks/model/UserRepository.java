@@ -12,5 +12,5 @@ public interface UserRepository extends CrudRepository<User, Integer> {
   @Query(value = "SELECT * FROM user WHERE user_type = 'child' OR user_type = 'employee'", nativeQuery = true)
   public List<StudentChildren> studentsAndChildren();
 
-  public User findByUsername(String email);
+  public User findByUsername(String username);
 }

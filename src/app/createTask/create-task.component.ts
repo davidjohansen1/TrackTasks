@@ -18,22 +18,19 @@ export class CreateTaskComponent implements OnInit {
         this.apiService.getStudentChildUsers()
             .subscribe(data => {
                 this.studentchildusers = data
-                console.log(this.studentchildusers)
             })
     }
 
     async createTask() {
-        console.log(this.task.assignedUser)
         await this.apiService.addTask(this.task)
             .subscribe(data => {
-                console.log(data)
             },
-                error => {
-                    this.errors = error;
-                },
-                () => {
-                    this.router.navigate(['/dashboard'])
-                })
+            error => {
+                this.errors = error;
+            },
+            () => {
+                this.router.navigate(['/dashboard'])
+            })
     }
 
     cancel() {

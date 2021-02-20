@@ -14,7 +14,6 @@ export class RegistrationComponent {
   constructor(private apiService: ApiService) { }
 
   registerUser() {
-    console.log(this.user.username)
     if (this.user.username === undefined || this.user.password === undefined) {
       alert('Username and Password are required')
       return

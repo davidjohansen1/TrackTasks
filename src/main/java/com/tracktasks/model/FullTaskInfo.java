@@ -4,6 +4,6 @@ public interface FullTaskInfo {
   int getid();
   String getname();
   String getdescription();
-  String getassignedUser();
+  int getassigned_user();
   String getusername();
 }

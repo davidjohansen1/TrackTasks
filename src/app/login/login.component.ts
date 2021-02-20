@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
   loginUser() {
     this.apiService.authenticateUser(this.user)
       .subscribe(data => {
-        console.log(data)
         if (this.user.username.toLocaleLowerCase() === data.credentials.toLocaleLowerCase()) {
           localStorage.setItem('userName', data.credentials)
           this.route.navigate(['/dashboard'])
