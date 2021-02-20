@@ -7,30 +7,35 @@ import { Users } from '../tasks/user';
   selector: 'login',
   styleUrls: ['./login.component.css'],
   templateUrl: './login.component.html'
-  
+
 })
 export class LoginComponent implements OnInit {
-  constructor(private route:Router, private apiService: ApiService) {}
+  constructor(private route: Router, private apiService: ApiService) { }
 
   title = 'tracktasks';
   user = new Users();
 
   ngOnInit() {
-    if(localStorage.getItem('userName')) {
+    if (localStorage.getItem('userName')) {
       this.route.navigate(['/dashboard'])
     }
   }
 
   loginUser() {
     this.apiService.authenticateUser(this.user)
-    .subscribe(data => {
-      console.log(data.credentials)
-      if(this.user.username === data.credentials) {
-        localStorage.setItem('userName', data.credentials)
-        this.route.navigate(['/dashboard'])
-      } else {
-        alert("Incorrect username or password")
-      }
-    })
+      .subscribe(data => {
+        if (this.user.username.toLocaleLowerCase() === data.credentials.toLocaleLowerCase()) {
+          localStorage.setItem('userName', data.credentials)
+          this.route.navigate(['/dashboard'])
+        } else {
+          alert("Incorrect username or password")
+        }
+      })
+  }
+
+  checkEnterPressed(event) {
+    if (event.keyCode == 13) {
+      this.loginUser()
+    }
   }
 }

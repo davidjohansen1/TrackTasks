@@ -11,3 +11,18 @@
 .label-text {
     font-size: 20px;
 }
+
+.e-control > .e-input-group {
+    background-color: white;
+    height: 39px;
+    width: 90%;
+}
+
+.e-control > .e-input-group > .e-input::placeholder{
+    padding-left: 8px;
+    font-size: 15px;
+}
+
+.e-control > .e-input-group > .e-ddl-hidden{
+    padding-left: 10px;
+}

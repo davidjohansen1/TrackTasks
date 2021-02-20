@@ -1,9 +1,10 @@
 package com.tracktasks.services;
 
-import com.tracktasks.model.Task;
-import com.tracktasks.model.TaskRepository;
+import com.tracktasks.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class TaskService {
@@ -23,6 +24,15 @@ public class TaskService {
     task.setId(taskId);
     task.setName(newTask.getName());
     task.setDescription(newTask.getDescription());
+    task.setAssignedUser(newTask.getAssignedUser());
     taskRepository.save(task);
+  }
+
+  public void updateExistingTask(Task currentTaskUser) {
+      task.setId(currentTaskUser.getId());
+      task.setName(currentTaskUser.getName());
+      task.setDescription(currentTaskUser.getDescription());
+      task.setAssignedUser(currentTaskUser.getAssignedUser());
+      taskRepository.save(task);
   }
 }

@@ -5,21 +5,24 @@
             <hr />
             <div class="form-group">
                 <label for="username" class="label-text">Username</label>
-                <input type="text" name="username" class="form-control" placeholder="Username" [(ngModel)]="user.username"/>
+                <input type="text" name="username" class="form-control" placeholder="Username"
+                    (keydown)="checkEnterPressed($event)" [(ngModel)]="user.username" />
             </div>
             <div class="form-group">
                 <label for="password" class="label-text">Password</label>
-                <input type="password" name="password" class="form-control" placeholder="Password" [(ngModel)]="user.password"/>
+                <input type="password" name="password" class="form-control" placeholder="Password"
+                    (keydown)="checkEnterPressed($event)" [(ngModel)]="user.password" />
             </div>
             <div class="form-group">
                 <label for="userTypes" class="label-text">User Account Type</label>
-                <select class="form-control" id="userTypes" name="userTypes" [(ngModel)]="selectedItem">
+                <select class="form-control" id="userTypes" name="userTypes" (keydown)="checkEnterPressed($event)"
+                    [(ngModel)]="user.userType">
                     <option value="supervisor">Supervisor</option>
                     <option value="employee">Employee</option>
                     <option value="parent">Parent</option>
                     <option value="child">Child</option>
                 </select>
-        </div>
+            </div>
             <div class="form-group">
                 <a [routerLink]="['/login']" class="label-text">Login</a>
                 <button class="btn btn-primary pull-right" (click)="registerUser()">Create User</button>

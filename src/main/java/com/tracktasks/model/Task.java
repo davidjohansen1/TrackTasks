@@ -9,6 +9,7 @@ public class Task {
   private int id;
   private String name;
   private String description;
+  private int assignedUser;
 
   public int getId() {
     return id;
@@ -32,5 +33,13 @@ public class Task {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  public int getAssignedUser() {
+    return assignedUser;
+  }
+
+  public void setAssignedUser(int assignedUser) {
+    this.assignedUser = assignedUser;
   }
 }

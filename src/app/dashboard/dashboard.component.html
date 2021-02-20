@@ -1,23 +1,38 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md-8">
-            <h1>Welcome to the Task Dashboard</h1>
-        </div>
-        <div class="col-md-2 logOut">
-            <h4>logged in as: <b>{{userName}}</b></h4>
-        </div>
-        <div class="col-md-2">
-            <button class="btn btn-info logOut" (click)="logOut()">Log Out</button>
-        </div>
+  <div class="row">
+    <div class="col-md-10">
+        <h1><strong>Task Dashboard</strong></h1>
     </div>
-    <hr>
-    <button class="btn btn-primary" (click)="createTask()">Create Task</button>
-    <div class="row">
-        <div *ngFor="let task of allTasks;" class="col-md-5">
-            <div class="well hoverwell thumbnail">
-                <h2>Task Name: {{task.name}}</h2>
-                <div>Task Description: {{task.description}}</div>
-            </div>
-        </div>
+    <div class="col-md-2">
+        <button class="btn btn-info logOut" (click)="logOut()">Log Out</button>
+        <br />
+        <h4><b>{{userName}}</b></h4>
+    </div>
+  </div>
+  <hr>
+  <button class="btn btn-primary" style="margin-bottom: 25px;" (click)="createTask()">Create Task</button>
+</div>
+<div class="container">
+  <div *ngFor="let task of allTasks;" class="col-md-4">
+    <div class="card card-background shadow">
+      <div class="card-header">
+          <strong>Name:</strong>&nbsp;{{truncatedName[task.id] ? truncatedName[task.id] : task.name}}
+      </div>
+      <div class="card-body">
+          <h5 class="card-title"><strong>Description:</strong>&nbsp;{{truncatedDescription[task.id] ? truncatedDescription[task.id] : task.description}}</h5>
+          <div *ngIf="task.username"><strong>Assigned User:</strong>&nbsp;{{task.username}}</div>
+          <div *ngIf="!task.username"><strong>Assigned User:</strong>&nbsp;<em>Unassigned</em></div>
+          <button class="btn btn-info button-text" data-toggle="modal" data-target="#taskDetails"
+                  (click)="editTask(task.id, task.name, task.description, task.assigned_user, task.username)">
+            <i class="fa fa-edit fa-lg"></i>&nbsp;Edit
+          </button>
+      </div>
     </div>
 </div>
+<task-details
+  [currentTaskId]="currentTaskId"
+  [currentTaskName]="currentTaskName"
+  [currentTaskDesc]="currentTaskDesc"
+  [currentUsername]="currentUsername"
+  [currentAssignedUserId]="currentAssignedUserId">
+</task-details>

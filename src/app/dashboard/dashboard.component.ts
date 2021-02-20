@@ -1,7 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output } from "@angular/core";
 import { Router } from "@angular/router";
 import { ApiService } from "../services/api.service";
 import { Tasks } from "../tasks/task";
+import { Users } from "../tasks/user";
 
 @Component({
     selector: 'dashboard',
@@ -9,20 +10,43 @@ import { Tasks } from "../tasks/task";
     styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-    allTasks:Tasks[];
+    allTasks: Tasks[];
     task = new Tasks();
-    userName:String = '';
+    user = new Users();
+    userName: String = '';
+    errors;
+    truncatedName = [];
+    truncatedDescription = [];
+    userId;
+    @Output() currentTaskId;
+    @Output() currentTaskName;
+    @Output() currentTaskDesc;
+    @Output() currentAssignedUserId;
+    @Output() currentUsername;
 
-    constructor(private apiService:ApiService, private router:Router) {}
+    constructor(private apiService: ApiService, private router: Router) { }
 
     ngOnInit() {
         this.userName = localStorage.getItem('userName')
-        console.log(this.userName)
         this.apiService.getTasks()
-        .subscribe(data => {
-            console.log(data)
-            this.allTasks=data
-        })
+            .subscribe(data => {
+                this.allTasks = data
+                console.log(this.allTasks)
+            },
+                error => {
+                    this.errors = error;
+                },
+                () => {
+                    for (var i = 0; i < this.allTasks.length; i++) {
+                        if (this.allTasks[i].description.length > 75) {
+                            this.truncatedDescription[this.allTasks[i].id] = this.allTasks[i].description.substring(0, 75) + "..."
+                        }
+
+                        if (this.allTasks[i].name.length > 40) {
+                            this.truncatedName[this.allTasks[i].id] = this.allTasks[i].name.substring(0, 40) + "..."
+                        }
+                    }
+                })
     }
 
     createTask() {
@@ -32,5 +56,13 @@ export class DashboardComponent implements OnInit {
     logOut() {
         localStorage.removeItem('userName');
         this.router.navigate(['/login'])
+    }
+
+    editTask(id, name, description, assignedUserId, username) {
+        this.currentTaskId = id;
+        this.currentTaskName = name;
+        this.currentTaskDesc = description;
+        this.currentAssignedUserId = assignedUserId
+        this.currentUsername = username;
     }
 }
