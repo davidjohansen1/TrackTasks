@@ -5,7 +5,8 @@ import { StudentChildren } from "../tasks/studentchildren";
 import { Tasks } from "../tasks/task";
 
 @Component({
-    templateUrl: './create-task.component.html'
+    templateUrl: './create-task.component.html',
+    selector: 'create-task'
 })
 export class CreateTaskComponent implements OnInit {
     studentchildusers: StudentChildren[];

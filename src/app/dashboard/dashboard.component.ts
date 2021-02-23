@@ -9,7 +9,7 @@ import { Users } from "../tasks/user";
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
     allTasks: Tasks[];
     task = new Tasks();
     user = new Users();
@@ -18,6 +18,9 @@ export class DashboardComponent implements OnInit {
     truncatedName = [];
     truncatedDescription = [];
     userId;
+    showCreateTaskComponent = false
+    showAvailableTasksComponent = false
+    pageName = 'Home';
     @Output() currentTaskId;
     @Output() currentTaskName;
     @Output() currentTaskDesc;
@@ -28,30 +31,31 @@ export class DashboardComponent implements OnInit {
 
     ngOnInit() {
         this.userName = localStorage.getItem('userName')
-        this.apiService.getTasks()
-            .subscribe(data => {
-                this.allTasks = data
-                console.log(this.allTasks)
-            },
-                error => {
-                    this.errors = error;
-                },
-                () => {
-                    for (var i = 0; i < this.allTasks.length; i++) {
-                        if (this.allTasks[i].description.length > 75) {
-                            this.truncatedDescription[this.allTasks[i].id] = this.allTasks[i].description.substring(0, 75) + "..."
-                        }
-
-                        if (this.allTasks[i].name.length > 40) {
-                            this.truncatedName[this.allTasks[i].id] = this.allTasks[i].name.substring(0, 40) + "..."
-                        }
-                    }
-                })
     }
+    //     this.apiService.getTasks()
+    //         .subscribe(data => {
+    //             this.allTasks = data
+    //             console.log(this.allTasks)
+    //         },
+    //         error => {
+    //             this.errors = error;
+    //         },
+    //         () => {
+    //             for (var i = 0; i < this.allTasks.length; i++) {
+    //                 if (this.allTasks[i].description.length > 75) {
+    //                     this.truncatedDescription[this.allTasks[i].id] = this.allTasks[i].description.substring(0, 75) + "..."
+    //                 }
 
-    createTask() {
-        this.router.navigate(['/createtask'])
-    }
+    //                 if (this.allTasks[i].name.length > 40) {
+    //                     this.truncatedName[this.allTasks[i].id] = this.allTasks[i].name.substring(0, 40) + "..."
+    //                 }
+    //             }
+    //         })
+    // }
+
+    // createTask() {
+    //     this.router.navigate(['/createtask'])
+    // }
 
     logOut() {
         localStorage.removeItem('userName');
@@ -65,4 +69,17 @@ export class DashboardComponent implements OnInit {
         this.currentAssignedUserId = assignedUserId
         this.currentUsername = username;
     }
+
+    loadCreateTaskComponent() {
+        this.showAvailableTasksComponent = false
+        this.showCreateTaskComponent = true
+        this.pageName = 'Create Task'
+    }
+
+    loadAvailableTasksComponent() {
+        this.showCreateTaskComponent = false
+        this.showAvailableTasksComponent = true
+        this.pageName = 'Available Tasks'
+    }
+
 }

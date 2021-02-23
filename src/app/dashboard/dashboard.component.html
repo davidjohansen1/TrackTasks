@@ -1,38 +1,38 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-10">
-        <h1><strong>Task Dashboard</strong></h1>
-    </div>
-    <div class="col-md-2">
-        <button class="btn btn-info logOut" (click)="logOut()">Log Out</button>
-        <br />
-        <h4><b>{{userName}}</b></h4>
+<div class="row">
+  <div class="col-md-10">
+    <div class="title">
+      <h1><strong>TrackTasks - {{pageName}}</strong></h1>
     </div>
   </div>
-  <hr>
-  <button class="btn btn-primary" style="margin-bottom: 25px;" (click)="createTask()">Create Task</button>
+  <div class="col-md-2">
+      <button class="btn btn-info logOut" (click)="logOut()">Log Out</button>
+      <br />
+      <h4><b>{{userName}}</b></h4>
+  </div>
 </div>
-<div class="container">
-  <div *ngFor="let task of allTasks;" class="col-md-4">
-    <div class="card card-background shadow">
-      <div class="card-header">
-          <strong>Name:</strong>&nbsp;{{truncatedName[task.id] ? truncatedName[task.id] : task.name}}
-      </div>
-      <div class="card-body">
-          <h5 class="card-title"><strong>Description:</strong>&nbsp;{{truncatedDescription[task.id] ? truncatedDescription[task.id] : task.description}}</h5>
-          <div *ngIf="task.username"><strong>Assigned User:</strong>&nbsp;{{task.username}}</div>
-          <div *ngIf="!task.username"><strong>Assigned User:</strong>&nbsp;<em>Unassigned</em></div>
-          <button class="btn btn-info button-text" data-toggle="modal" data-target="#taskDetails"
-                  (click)="editTask(task.id, task.name, task.description, task.assigned_user, task.username)">
-            <i class="fa fa-edit fa-lg"></i>&nbsp;Edit
-          </button>
-      </div>
-    </div>
+<hr>
+<div class="row">
+  <div class="col-md-2">
+    <nav class ="navbar bg-dark">
+      <ul class ="nav nav-background">
+        <li class ="nav-item item-text">
+          <a class ="nav-link text-color" href="javascript:void(0)"><i class="fa fa-home"></i>&nbsp;&nbsp;&nbsp;&nbsp;Home</a>
+        </li>
+        <li class ="nav-item item-text">
+          <a class ="nav-link text-color" href="javascript:void(0)"><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Profile</a>
+        </li>
+        <li class ="nav-item item-text">
+          <a class ="nav-link text-color" href="javascript:void(0)" (click)="loadCreateTaskComponent();"><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;&nbsp;Create a task</a>
+        </li>
+        <li class ="nav-item item-text">
+          <a class ="nav-link text-color" href="javascript:void(0)" (click)="loadAvailableTasksComponent();"><i class="fa fa-exclamation"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Unassigned Tasks</a>
+        </li>
+        <li class ="nav-item item-text">
+          <a class ="nav-link text-color" href="javascript:void(0)"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;&nbsp;Assigned Tasks</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <create-task *ngIf="showCreateTaskComponent"></create-task>
+  <available-tasks *ngIf="showAvailableTasksComponent"></available-tasks>
 </div>
-<task-details
-  [currentTaskId]="currentTaskId"
-  [currentTaskName]="currentTaskName"
-  [currentTaskDesc]="currentTaskDesc"
-  [currentUsername]="currentUsername"
-  [currentAssignedUserId]="currentAssignedUserId">
-</task-details>

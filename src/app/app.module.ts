@@ -11,6 +11,7 @@ import { CreateTaskComponent } from './createTask/create-task.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
 import { TaskDetailsComponent } from './taskDetails/task-details.component';
+import { AvailableTasks } from './avaiableTasks/available-tasks.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { TaskDetailsComponent } from './taskDetails/task-details.component';
     RegistrationComponent,
     DashboardComponent,
     CreateTaskComponent,
-    TaskDetailsComponent
+    TaskDetailsComponent,
+    AvailableTasks
   ],
   imports: [
     BrowserModule,
