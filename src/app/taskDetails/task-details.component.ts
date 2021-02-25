@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { ApiService } from "../services/api.service";
 import { StudentChildren } from "../tasks/studentchildren";
 import { Tasks } from "../tasks/task";
@@ -19,6 +19,7 @@ export class TaskDetailsComponent {
     @Input() currentTaskDesc;
     @Input() currentUsername;
     @Input() currentAssignedUserId;
+    @Output("reloadComponent") reloadComponent: EventEmitter<any> = new EventEmitter();
 
     ngOnInit() {
         this.apiService.getStudentChildUsers()
@@ -26,7 +27,6 @@ export class TaskDetailsComponent {
                 this.studentchildusers = data
             })
     }
-
 
     editTask() {
         this.task.id = this.currentTaskId;
@@ -48,7 +48,7 @@ export class TaskDetailsComponent {
         this.apiService.editTask(this.task)
             .subscribe(data => {
                 if(data === 'task updated successfully') {
-                    setTimeout(() => {  window.location.reload(); }, 1000);
+                    this.reloadComponent.emit();
                 } else {
                     alert('There was a problem updating the task');
                 }

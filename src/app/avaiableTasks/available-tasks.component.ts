@@ -39,6 +39,9 @@ export class AvailableTasks implements OnInit {
             },
             () => {
                 for (var i = 0; i < this.allTasks.length; i++) {
+                    if(this.allTasks[i].description === null ) {
+                        continue;
+                    }
                     if (this.allTasks[i].description.length > 75) {
                         this.truncatedDescription[this.allTasks[i].id] = this.allTasks[i].description.substring(0, 75) + "..."
                     }
@@ -50,20 +53,15 @@ export class AvailableTasks implements OnInit {
             })
     }
 
-    createTask() {
-        this.router.navigate(['/createtask'])
-    }
-
-    logOut() {
-        localStorage.removeItem('userName');
-        this.router.navigate(['/login'])
-    }
-
     editTask(id, name, description, assignedUserId, username) {
         this.currentTaskId = id;
         this.currentTaskName = name;
         this.currentTaskDesc = description;
         this.currentAssignedUserId = assignedUserId
         this.currentUsername = username;
+    }
+
+    reloadComponent() {
+        this.ngOnInit();
     }
 }

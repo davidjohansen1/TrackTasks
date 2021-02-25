@@ -33,6 +33,6 @@
       </ul>
     </nav>
   </div>
-  <create-task *ngIf="showCreateTaskComponent"></create-task>
-  <available-tasks *ngIf="showAvailableTasksComponent"></available-tasks>
+  <create-task *ngIf="showCreateTaskComponent" (loadAvailableTasksComponent)="loadAvailableTasksComponent()"></create-task>
+  <available-tasks *ngIf="showAvailableTasksComponent" (loadAvailableTasksComponent)="loadAvailableTasksComponent()"></available-tasks>
 </div>
