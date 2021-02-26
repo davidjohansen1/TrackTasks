@@ -26,3 +26,7 @@
 .e-control > .e-input-group > .e-ddl-hidden{
     padding-left: 10px;
 }
+
+body {
+    overflow-x: hidden;
+}

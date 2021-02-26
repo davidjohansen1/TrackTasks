@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
 import { Users } from '../tasks/user';
@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
       .subscribe(data => {
         if (this.user.username.toLocaleLowerCase() === data.credentials.toLocaleLowerCase()) {
           localStorage.setItem('userName', data.credentials)
+          localStorage.setItem('userId', data.userId)
           this.route.navigate(['/dashboard'])
         } else {
           alert("Incorrect username or password")

@@ -1,16 +1,18 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { Router } from "@angular/router";
 import { ApiService } from "../services/api.service";
 import { StudentChildren } from "../tasks/studentchildren";
 import { Tasks } from "../tasks/task";
 
 @Component({
-    templateUrl: './create-task.component.html'
+    templateUrl: './create-task.component.html',
+    selector: 'create-task'
 })
 export class CreateTaskComponent implements OnInit {
     studentchildusers: StudentChildren[];
     task = new Tasks();
     errors;
+    @Output("loadAvailableTasksComponent") loadAvailableTasksComponent: EventEmitter<any> = new EventEmitter();
 
     constructor(private apiService: ApiService, private router: Router) { }
 
@@ -29,12 +31,12 @@ export class CreateTaskComponent implements OnInit {
                 this.errors = error;
             },
             () => {
-                this.router.navigate(['/dashboard'])
+                this.loadAvailableTasksComponent.emit();
             })
     }
 
     cancel() {
-        this.router.navigate(['/dashboard'])
+        this.loadAvailableTasksComponent.emit();
     }
 
     public fields: Object = { text: 'username', value: 'id' };

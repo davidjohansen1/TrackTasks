@@ -1,43 +1,25 @@
-.thumbnail {
-    min-height: 200px;
-    margin-top: 10px;
-    max-height: 201px;
-}
-
-.well div {
-    color: #bbb;
-}
-
 .logOut {
     margin-top: 25px;
 }
 
-.task-name-header {
-    padding-top: 15px;
-    font-size: 17px;
+.nav-background {
+    margin-left: 10px;
 }
 
-.button-text {
-    font-size: 14px;
-    margin-right: 10px;
-    margin-top: 10%;
-    border-radius: 6%;
+.body-margin {
+    padding-right: 100px;
 }
 
-.card-background {
-    background-color: #4e5d6c;
-    margin-top: 25px;
-    min-height: 200px;
-    padding-left: 10px;
-    padding-top: 10px;
-    padding-right: 10px;
-    margin-bottom: 25px;
+.item-text {
+    background-color: #ebebebe3;
+    font-size: 25px;
+    margin-top: 10px;
 }
 
-.card-title {
-    min-height: 35px;
+.title {
+    padding-left: 25px;
 }
 
-.shadow {
-    box-shadow: 1px 1px 5px 2px rgba(204, 204, 204, 0.671);
+.text-color {
+    color: rgb(49, 48, 48);
 }
