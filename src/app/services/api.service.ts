@@ -41,5 +41,11 @@ export class ApiService {
         const headers = { 'content-type': 'application/json' }
         const body = JSON.stringify(task)
         return this.http.post(this.springUrl + 'task/editTask', body, { 'headers': headers, responseType: 'text' })
-    } 
+    }
+
+    getUserTasks(userId: Number): Observable<Tasks[]>{
+        const headers = { 'content-type': 'application/json' }
+        console.log(userId)
+        return this.http.post<Tasks[]>(this.springUrl + 'task/getUserTasks', userId, { 'headers': headers })
+    }
 }

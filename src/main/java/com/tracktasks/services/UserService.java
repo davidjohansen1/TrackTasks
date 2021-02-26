@@ -51,6 +51,7 @@ public class UserService {
       if (passwordEncoderGenerator.authenticateUser(userInfo.getPassword(), user.getPassword())) {
         mainUserInfo.put("credentials", user.getUsername());
         mainUserInfo.put("userType", user.getUserType());
+        mainUserInfo.put("userId", user.getId());
         return mainUserInfo;
       } else {
         mainUserInfo.put("credentials", "bad username or password");

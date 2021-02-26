@@ -17,10 +17,10 @@ export class DashboardComponent {
     errors;
     truncatedName = [];
     truncatedDescription = [];
-    userId;
     showCreateTaskComponent = false
     showAvailableTasksComponent = false
-    pageName = 'Home';
+    showMyTasks = true
+    pageName = 'Tasks assigned to me';
     @Output() currentTaskId;
     @Output() currentTaskName;
     @Output() currentTaskDesc;
@@ -40,14 +40,23 @@ export class DashboardComponent {
 
     loadCreateTaskComponent() {
         this.showAvailableTasksComponent = false
+        this.showMyTasks = false
         this.showCreateTaskComponent = true
         this.pageName = 'Create Task'
     }
 
     loadAvailableTasksComponent() {
         this.showCreateTaskComponent = false
+        this.showMyTasks = false
         this.showAvailableTasksComponent = true
         this.pageName = 'Available Tasks'
+    }
+
+    loadMyTasks() {
+        this.showCreateTaskComponent = false
+        this.showAvailableTasksComponent = false
+        this.showMyTasks = true
+        this.pageName = 'Tasks assigned to me'
     }
 
 }

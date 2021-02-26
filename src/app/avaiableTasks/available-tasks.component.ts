@@ -32,7 +32,6 @@ export class AvailableTasks implements OnInit {
         this.apiService.getTasks()
             .subscribe(data => {
                 this.allTasks = data
-                console.log(this.allTasks)
             },
             error => {
                 this.errors = error;

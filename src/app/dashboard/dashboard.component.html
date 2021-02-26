@@ -16,7 +16,7 @@
     <nav class ="navbar bg-dark">
       <ul class ="nav nav-background">
         <li class ="nav-item item-text">
-          <a class ="nav-link text-color" href="javascript:void(0)"><i class="fa fa-home"></i>&nbsp;&nbsp;&nbsp;&nbsp;Home</a>
+          <a class ="nav-link text-color" href="javascript:void(0)" (click)="loadMyTasks();"><i class="fa fa-home"></i>&nbsp;&nbsp;&nbsp;&nbsp;My Tasks</a>
         </li>
         <li class ="nav-item item-text">
           <a class ="nav-link text-color" href="javascript:void(0)"><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Profile</a>
@@ -35,4 +35,5 @@
   </div>
   <create-task *ngIf="showCreateTaskComponent" (loadAvailableTasksComponent)="loadAvailableTasksComponent()"></create-task>
   <available-tasks *ngIf="showAvailableTasksComponent" (loadAvailableTasksComponent)="loadAvailableTasksComponent()"></available-tasks>
+  <mytasks *ngIf="showMyTasks"></mytasks>
 </div>
