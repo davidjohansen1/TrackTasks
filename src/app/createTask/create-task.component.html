@@ -1,24 +1,41 @@
 <div class="container">
     <div class="col-md-6">
-        <div class="form-group">
-            <label for="taskname" class="label-text">Task Name:</label>
-            <input id="taskname" name="taskname" type="text" class="form-control" placeholder="Task name..."
-                [(ngModel)]="task.name" />
-        </div>
-        <div class="form-group">
-            <label for="description" class="label-text">Task Description:</label>
-            <input id="description" name="description" type="description" class="form-control"
-                placeholder="Description..." [(ngModel)]="task.description" />
-        </div>
-        <div class="form-group">
-            <label for="ddlelement" class="label-text">Assign a user to this task:</label>
-            <ejs-dropdownlist id='ddlelement' [dataSource]='studentchildusers' [fields]='fields'
-                placeholder='Select a user...' [(ngModel)]="task.assignedUser">
-            </ejs-dropdownlist>
-        </div>
-        <div class="form-group">
-            <button class="btn btn-primary" (click)="createTask()" style="margin-right: 5px;">Create Task</button>
-            <button class="btn btn-default" (click)="cancel()">Cancel</button>
+        <div class="modal-dialog" role="document">
+            <div class="modal-header">
+                <h4 class="modal-title" id="taskDetailsLabel"><strong>Create a new task</strong></h4>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="col-md-6">
+                        <div class="form-group margin">
+                            <label for="taskname" class="label-text">Task Name:</label>
+                            <input id="taskname" name="taskname" type="text" class="form-control" placeholder="Task name..."
+                                [(ngModel)]="task.name" />
+                        </div>
+                        <div class="form-group margin">
+                            <label for="description" class="label-text">Task Description:</label>
+                            <textarea id="description" name="description" type="description" class="form-control"
+                                placeholder="Description..." [(ngModel)]="task.description"></textarea>
+                        </div>
+                        <div class="form-group margin">
+                            <label for="ddlelement" class="label-text">Assign a user to this task:</label>
+                            <ejs-dropdownlist id='ddlelement' [dataSource]='studentchildusers' [fields]='fields'
+                                placeholder='Select a user...' [(ngModel)]="task.assignedUser">
+                            </ejs-dropdownlist>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="available" [checked]="taskAvailable" [(ngModel)]="task.available">
+                            <label class="form-check-label available-text" for="available">
+                              Make this task available
+                            </label>
+                          </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary" (click)="createTask()" style="margin-right: 5px;">Create Task</button>
+                            <button class="btn btn-default" (click)="cancel()">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

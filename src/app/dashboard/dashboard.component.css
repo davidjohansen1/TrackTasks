@@ -16,10 +16,29 @@
     margin-top: 10px;
 }
 
+.item-text2 {
+    background-color: #ebebebe3;
+    font-size: 20px;
+    padding-left: 10px;
+    padding-top: 5px;
+    border-top: black solid 1px;
+}
+
 .title {
     padding-left: 25px;
 }
 
 .text-color {
     color: rgb(49, 48, 48);
+}
+
+.item-collapse {
+    background-color: #ebebebe3;
+    font-size: 25px;
+}
+
+.caret {
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #000000;
 }

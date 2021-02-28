@@ -11,8 +11,12 @@ export class ApiService {
 
     constructor(private http: HttpClient) { }
 
-    getTasks(): Observable<Tasks[]> {
-        return this.http.get<Tasks[]>(this.springUrl + 'task/tasks')
+    getAvailableTasks(): Observable<Tasks[]> {
+        return this.http.get<Tasks[]>(this.springUrl + 'task/availableTasks')
+    }
+
+    getUnAvailableTasks(): Observable<Tasks[]> {
+        return this.http.get<Tasks[]>(this.springUrl + 'task/unAvailableTasks')
     }
 
     addTask(task: Tasks): Observable<any> {

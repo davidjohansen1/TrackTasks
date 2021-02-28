@@ -19,6 +19,7 @@ export class TaskDetailsComponent {
     @Input() currentTaskDesc;
     @Input() currentUsername;
     @Input() currentAssignedUserId;
+    @Input() currentTaskAvailability;
     @Output("reloadComponent") reloadComponent: EventEmitter<any> = new EventEmitter();
 
     ngOnInit() {
@@ -40,10 +41,9 @@ export class TaskDetailsComponent {
         if(this.task.assignedUser === undefined) {
             this.task.assignedUser = this.currentAssignedUserId
         }
-
-        console.log(this.task.name)
-        console.log(this.task.description)
-        console.log(this.task.assignedUser)
+        if(this.task.available === undefined) {
+            this.task.available = this.currentTaskAvailability
+        }
 
         this.apiService.editTask(this.task)
             .subscribe(data => {

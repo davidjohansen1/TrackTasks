@@ -6,12 +6,15 @@ import { Tasks } from "../tasks/task";
 
 @Component({
     templateUrl: './create-task.component.html',
-    selector: 'create-task'
+    selector: 'create-task',
+    styleUrls: ['./create-task.component.css']
 })
 export class CreateTaskComponent implements OnInit {
     studentchildusers: StudentChildren[];
     task = new Tasks();
     errors;
+    taskAvailable = false;
+
     @Output("loadAvailableTasksComponent") loadAvailableTasksComponent: EventEmitter<any> = new EventEmitter();
 
     constructor(private apiService: ApiService, private router: Router) { }
@@ -24,6 +27,7 @@ export class CreateTaskComponent implements OnInit {
     }
 
     async createTask() {
+        console.log(this.task)
         await this.apiService.addTask(this.task)
             .subscribe(data => {
             },

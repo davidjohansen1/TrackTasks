@@ -10,6 +10,7 @@ public class Task {
   private String name;
   private String description;
   private int assignedUser;
+  private boolean available;
 
   public int getId() {
     return id;
@@ -41,5 +42,13 @@ public class Task {
 
   public void setAssignedUser(int assignedUser) {
     this.assignedUser = assignedUser;
+  }
+
+  public boolean getAvailable() {
+    return this.available;
+  }
+
+  public void setAvailable(boolean available) {
+    this.available = available;
   }
 }

@@ -17,9 +17,14 @@ public class TaskController {
   @Autowired
   private TaskService taskService;
 
-  @GetMapping(path="/tasks")
-  public @ResponseBody Iterable<FullTaskInfo> getTasks() {
-    return taskRepository.getAllTasks();
+  @GetMapping(path="/availableTasks")
+  public @ResponseBody Iterable<FullTaskInfo> getAvailableTasks() {
+    return taskRepository.getAvailableTasks();
+  }
+
+  @GetMapping(path="/unAvailableTasks")
+  public @ResponseBody Iterable<FullTaskInfo> getUnAvailableTasks() {
+    return taskRepository.getUnAvailableTasks();
   }
 
   @PostMapping(path="/getUserTasks")

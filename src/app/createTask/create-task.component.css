@@ -1,0 +1,21 @@
+textarea {
+    resize: none;
+    min-height: 85px;
+  }
+  
+  .fields {
+    width: 90%;
+  }
+  
+  .modal-body {
+    background-color: rgba(255, 255, 255, 0.877);
+    color: black;
+  }
+
+  .margin {
+      padding-right: 20px;
+  }
+
+  .modal-dialog {
+      margin: 0px;
+  }

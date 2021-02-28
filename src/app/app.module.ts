@@ -13,6 +13,7 @@ import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
 import { TaskDetailsComponent } from './taskDetails/task-details.component';
 import { AvailableTasks } from './avaiableTasks/available-tasks.component';
 import { MyTasks } from './myTasks/mytasks.component';
+import { UnavailableTasksComponent } from './unavailable-tasks/unavailable-tasks.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { MyTasks } from './myTasks/mytasks.component';
     CreateTaskComponent,
     TaskDetailsComponent,
     AvailableTasks,
-    MyTasks
+    MyTasks,
+    UnavailableTasksComponent
   ],
   imports: [
     BrowserModule,

@@ -5,11 +5,11 @@ import { Tasks } from "../tasks/task";
 import { Users } from "../tasks/user";
 
 @Component({
-    templateUrl: './available-tasks.component.html',
-    selector: 'available-tasks',
-    styleUrls: ['available-tasks.component.css']
+    templateUrl: './unavailable-tasks.component.html',
+    selector: 'unavailable-tasks',
+    styleUrls: ['unavailable-tasks.component.css']
 })
-export class AvailableTasks implements OnInit {
+export class UnavailableTasksComponent implements OnInit {
     allTasks: Tasks[];
     task = new Tasks();
     user = new Users();
@@ -33,9 +33,10 @@ export class AvailableTasks implements OnInit {
     ngOnInit() {
         this.userName = localStorage.getItem('userName')
         this.userType = localStorage.getItem('userType')
-        this.apiService.getAvailableTasks()
+        this.apiService.getUnAvailableTasks()
             .subscribe(data => {
-                this.allTasks = data
+              console.log(data)
+              this.allTasks = data
             },
             error => {
                 this.errors = error;

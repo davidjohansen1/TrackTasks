@@ -22,18 +22,29 @@
           <a class ="nav-link text-color" href="javascript:void(0)"><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Profile</a>
         </li>
         <li class ="nav-item item-text">
-          <a class ="nav-link text-color" href="javascript:void(0)" (click)="loadCreateTaskComponent();"><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;&nbsp;Create a task</a>
+          <a class ="nav-link text-color" href="javascript:void(0)" (click)="loadCreateTaskComponent();"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;&nbsp;Create a task</a>
         </li>
         <li class ="nav-item item-text">
-          <a class ="nav-link text-color" href="javascript:void(0)" (click)="loadAvailableTasksComponent();"><i class="fa fa-exclamation"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Unassigned Tasks</a>
+          <a class ="nav-link text-color" href="javascript:void(0)" data-toggle="collapse" data-target="#collapseExample">
+            <i class="fa fa-exclamation"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tasks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="caret"></span></a>
         </li>
-        <li class ="nav-item item-text">
-          <a class ="nav-link text-color" href="javascript:void(0)"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;&nbsp;Assigned Tasks</a>
-        </li>
+        <div class="collapse" id="collapseExample">
+          <li class ="nav-item item-text2" *ngIf="(userType === 'supervisor') || (userType === 'parent')" (click)="loadUnavailableTasksComponent();">
+            <a class ="nav-link text-color" href="javascript:void(0)"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;&nbsp;Not Yet Made Available</a>
+          </li>
+          <li class ="nav-item item-text2" *ngIf="(userType === 'supervisor') || (userType === 'parent')" (click)="loadAvailableTasksComponent();">
+            <a class ="nav-link text-color" href="javascript:void(0)"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;&nbsp;Available But Not Assigned</a>
+          </li>
+          <li class ="nav-item item-text2" *ngIf="(userType === 'supervisor') || (userType === 'parent')">
+            <a class ="nav-link text-color" href="javascript:void(0)"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;&nbsp;Assigned Tasks</a>
+          </li>
+        </div>
       </ul>
     </nav>
   </div>
   <create-task *ngIf="showCreateTaskComponent" (loadAvailableTasksComponent)="loadAvailableTasksComponent()"></create-task>
   <available-tasks *ngIf="showAvailableTasksComponent" (loadAvailableTasksComponent)="loadAvailableTasksComponent()"></available-tasks>
+  <unavailable-tasks *ngIf="showUnavailableTasksComponent"></unavailable-tasks>
   <mytasks *ngIf="showMyTasks"></mytasks>
 </div>

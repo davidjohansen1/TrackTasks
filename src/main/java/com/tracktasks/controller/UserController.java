@@ -31,7 +31,7 @@ public class UserController {
 
   @GetMapping(path="/studentchildusers")
   public @ResponseBody
-  Iterable<StudentChildren> getTasks() {
+  Iterable<StudentChildren> getStudebtChildren() {
     return userRepository.studentsAndChildren();
   }
 }
