@@ -11,12 +11,8 @@ export class ApiService {
 
     constructor(private http: HttpClient) { }
 
-    getAvailableTasks(): Observable<Tasks[]> {
-        return this.http.get<Tasks[]>(this.springUrl + 'task/availableTasks')
-    }
-
-    getUnAvailableTasks(): Observable<Tasks[]> {
-        return this.http.get<Tasks[]>(this.springUrl + 'task/unAvailableTasks')
+    getAllTasks(): Observable<Tasks[]> {
+        return this.http.get<Tasks[]>(this.springUrl + 'task/getTasks')
     }
 
     addTask(task: Tasks): Observable<any> {
@@ -49,7 +45,6 @@ export class ApiService {
 
     getUserTasks(userId: Number): Observable<Tasks[]>{
         const headers = { 'content-type': 'application/json' }
-        console.log(userId)
         return this.http.post<Tasks[]>(this.springUrl + 'task/getUserTasks', userId, { 'headers': headers })
     }
 }

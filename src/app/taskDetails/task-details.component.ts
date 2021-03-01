@@ -40,7 +40,10 @@ export class TaskDetailsComponent {
         }
         if(this.task.assignedUser === undefined) {
             this.task.assignedUser = this.currentAssignedUserId
+        } else {
+            this.task.available = false;
         }
+
         if(this.task.available === undefined) {
             this.task.available = this.currentTaskAvailability
         }

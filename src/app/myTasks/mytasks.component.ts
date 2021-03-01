@@ -20,7 +20,6 @@ export class MyTasks implements OnInit {
         this.currentUserId = localStorage.getItem('userId')
         this.apiService.getUserTasks(+this.currentUserId)
         .subscribe(data => {
-            console.log(data)
             this.allTasks = data
         },
         error => {
@@ -44,8 +43,4 @@ export class MyTasks implements OnInit {
             }
         })
     }
-
-    
-
-
 }

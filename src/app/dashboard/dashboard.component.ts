@@ -20,9 +20,8 @@ export class DashboardComponent {
     truncatedDescription = [];
     showCreateTaskComponent = false;
     showAvailableTasksComponent = false;
-    showUnavailableTasksComponent = false;
     showMyTasks = true
-    pageName = 'Tasks assigned to me';
+    pageName = 'My Tasks';
     tasks = 'Available Tasks';
     @Output() currentTaskId;
     @Output() currentTaskName;
@@ -34,10 +33,6 @@ export class DashboardComponent {
 
     ngOnInit() {
         this.userName = localStorage.getItem('userName')
-        this.userType = localStorage.getItem('userType')
-        if ((this.userType === 'supervisor') || (this.userType === 'parent')) {
-            this.tasks = 'Unassigned Tasks'
-        }
     }
 
     logOut() {
@@ -50,7 +45,6 @@ export class DashboardComponent {
     loadCreateTaskComponent() {
         this.showAvailableTasksComponent = false
         this.showMyTasks = false
-        this.showUnavailableTasksComponent = false
         this.showCreateTaskComponent = true
         this.pageName = 'Create Task'
     }
@@ -58,25 +52,15 @@ export class DashboardComponent {
     loadAvailableTasksComponent() {
         this.showCreateTaskComponent = false
         this.showMyTasks = false
-        this.showUnavailableTasksComponent = false
         this.showAvailableTasksComponent = true
-        this.pageName = 'Available Tasks'
-    }
-
-    loadUnavailableTasksComponent() {
-        this.showCreateTaskComponent = false
-        this.showMyTasks = false
-        this.showAvailableTasksComponent = false
-        this.showUnavailableTasksComponent = true
-        this.pageName = 'Tasks Not Yet Made Available'
+        this.pageName = 'Tasks'
     }
 
     loadMyTasks() {
         this.showCreateTaskComponent = false
         this.showAvailableTasksComponent = false
-        this.showUnavailableTasksComponent = false
         this.showMyTasks = true
-        this.pageName = 'Tasks assigned to me'
+        this.pageName = 'My Tasks'
     }
 
 }

@@ -27,7 +27,9 @@ export class CreateTaskComponent implements OnInit {
     }
 
     async createTask() {
-        console.log(this.task)
+        if(this.task.assignedUser) {
+            this.task.available = true;
+        }
         await this.apiService.addTask(this.task)
             .subscribe(data => {
             },

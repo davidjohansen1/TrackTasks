@@ -35,3 +35,20 @@
 .shadow {
     box-shadow: 1px 1px 5px 2px rgba(204, 204, 204, 0.671);
 }
+
+.btn-toolbar {
+    margin-bottom: 20px;
+}
+
+.button-spacing {
+    margin-left: 25px;
+}
+
+.task-status {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.card-spacing {
+    margin-top: 20px;
+}

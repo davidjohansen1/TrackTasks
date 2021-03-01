@@ -21,6 +21,12 @@ export class AvailableTasks implements OnInit {
     userType;
     showCreateTaskComponent = false;
     currentTask = 0;
+    currentTaskSet = [];
+    currentTaskSetName;
+    counter;
+    noTasksExistMessage: String;
+    noTasksExistMessage2: String;
+
     @Output() currentTaskId;
     @Output() currentTaskName;
     @Output() currentTaskDesc;
@@ -33,7 +39,7 @@ export class AvailableTasks implements OnInit {
     ngOnInit() {
         this.userName = localStorage.getItem('userName')
         this.userType = localStorage.getItem('userType')
-        this.apiService.getAvailableTasks()
+        this.apiService.getAllTasks()
             .subscribe(data => {
                 this.allTasks = data
             },
@@ -53,7 +59,66 @@ export class AvailableTasks implements OnInit {
                         this.truncatedName[this.allTasks[i].id] = this.allTasks[i].name.substring(0, 40) + "..."
                     }
                 }
+
+                if((this.userType === 'child') || (this.userType === 'employee')) {
+                    this.showAvailable();
+                } else {
+                    this.showNotYetAvailable();
+                }
             })
+    }
+
+    showNotYetAvailable() {
+        this.currentTaskSet = [];
+        this.counter = 0;
+        this.currentTaskSetName = 'Showing Unavailable Tasks';
+        for(var i = 0; i < this.allTasks.length; i++) {
+            if((this.allTasks[i].assigned_user === 0) && (this.allTasks[i].available === false)) {
+                this.currentTaskSet[this.counter] = this.allTasks[i]
+                this.counter++;
+            }
+        }
+        if(this.currentTaskSet.length <= 0) {
+            this.setNoTaskMessage('There aren\'t any unavailable tasks at this time.',
+                                    'Either there haven\'t been any tasks created yet, or they\'re all currently marked available or assigned.')
+        } else {
+            this.setNoTaskMessage('', '');
+        }
+    }
+
+    showAvailable() {
+        this.currentTaskSet = [];
+        this.counter = 0;
+        this.currentTaskSetName = 'Showing Available Tasks';
+        for(var i = 0; i < this.allTasks.length; i++) {
+            if((this.allTasks[i].assigned_user === 0) && (this.allTasks[i].available === true)) {
+                this.currentTaskSet[this.counter] = this.allTasks[i]
+                this.counter++;
+            }
+        }
+        if(this.currentTaskSet.length <= 0) {
+            this.setNoTaskMessage('There aren\'t any available tasks at this time.',
+                                    'Either there haven\'t been any tasks created yet, or they\'re all currently unavailable or assigned.');
+        } else {
+            this.setNoTaskMessage('', '');
+        }
+    }
+
+    showAssigned() {
+        this.currentTaskSet = [];
+        this.counter = 0;
+        this.currentTaskSetName = 'Showing Assigned Tasks';
+        for(var i = 0; i < this.allTasks.length; i++) {
+            if((this.allTasks[i].assigned_user != 0)) {
+                this.currentTaskSet[this.counter] = this.allTasks[i]
+                this.counter++;
+            }
+        }
+        if(this.currentTaskSet.length <= 0) {
+            this.setNoTaskMessage('There are no assigned tasks at this time.', '')
+        } else {
+            this.setNoTaskMessage('', '');
+        }
     }
 
     editTask(id, name, description, assignedUserId, username, available) {
@@ -67,5 +132,10 @@ export class AvailableTasks implements OnInit {
 
     reloadComponent() {
         this.ngOnInit();
+    }
+
+    setNoTaskMessage(string1, string2) {
+        this.noTasksExistMessage = string1;
+        this.noTasksExistMessage2 = string2;
     }
 }
