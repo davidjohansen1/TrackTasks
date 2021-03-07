@@ -1,8 +1,16 @@
 <div class="col-md-10 body-margin">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-4">
+      <button class="btn btn-success" data-toggle="modal" data-target="#taskDetails"
+              (click)="createTask()">
+              <i class="fa fa-check fa-lg"></i>&nbsp;&nbsp;&nbsp;Create New Task
+            </button>
+    </div>
+    <div class="col-md-8">
       <strong><em>{{currentTaskSetName}}</em></strong>
     </div>
+  </div>  
+  <div class="row">
     <div class="col-md-8 col-md-offset-3" *ngIf="(userType === 'supervisor') || (userType === 'parent')">
       <div class="btn-toolbar">
         <div class="btn-group button-spacing" role="group" aria-label="First group">
@@ -16,8 +24,8 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="row">
+  </div>  
+  <div class="row" style="margin-right: 10px;">
     <div class="col-md-10 col-md-offset-2 task-status" *ngIf="this.noTasksExistMessage">
       {{this.noTasksExistMessage}}
       <br />
@@ -32,7 +40,8 @@
             <h5 class="card-title"><strong>Description:</strong>&nbsp;{{truncatedDescription[task.id] ? truncatedDescription[task.id] : task.description}}</h5>
             <div *ngIf="task.username"><strong>Assigned User:</strong>&nbsp;{{task.username}}</div>
             <div *ngIf="!task.username"><strong>Assigned User:</strong>&nbsp;<em>Unassigned</em></div>
-            <button class="btn btn-info button-text" data-toggle="modal" data-target="#taskDetails" (click)="editTask(task.id, task.name, task.description, task.assigned_user, task.username, task.available)">
+            <button class="btn btn-info button-text" data-toggle="modal" data-target="#taskDetails"
+              (click)="editTask(task.id, task.name, task.description, task.assigned_user, task.username, task.available)">
               <i class="fa fa-edit fa-lg"></i>&nbsp;Edit
             </button>
         </div>
@@ -47,5 +56,8 @@
   [currentUsername]="currentUsername"
   [currentAssignedUserId]="currentAssignedUserId"
   [currentTaskAvailability]="currentTaskAvailability"
+  [newTask]="newTask"
+  [modalName]="modalName"
+  [currentTaskSetName]="currentTaskSetName"
   (reloadComponent)="reloadComponent()">
 </task-details>

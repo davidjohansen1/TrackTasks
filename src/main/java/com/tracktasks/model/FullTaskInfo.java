@@ -7,4 +7,5 @@ public interface FullTaskInfo {
   int getassigned_user();
   String getusername();
   Boolean getavailable();
+  String getstatus();
 }

@@ -33,6 +33,7 @@ public class TaskService {
       task.setDescription(currentTaskUser.getDescription());
       task.setAssignedUser(currentTaskUser.getAssignedUser());
       task.setAvailable(currentTaskUser.getAvailable());
+      task.setStatus(currentTaskUser.getStatus());
       taskRepository.save(task);
   }
 }

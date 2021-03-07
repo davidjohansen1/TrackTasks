@@ -6,4 +6,5 @@ export class Tasks {
     assigned_user: number
     username: string
     available: boolean
+    status: string
 }

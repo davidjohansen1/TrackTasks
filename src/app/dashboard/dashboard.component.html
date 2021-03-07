@@ -22,12 +22,8 @@
           <a class ="nav-link text-color" href="javascript:void(0)"><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Profile</a>
         </li>
         <li class ="nav-item item-text">
-          <a class ="nav-link text-color" href="javascript:void(0)" (click)="loadCreateTaskComponent();">
-            <i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;&nbsp;Create a task</a>
-        </li>
-        <li class ="nav-item item-text">
           <a class ="nav-link text-color" href="javascript:void(0)" (click)="loadAvailableTasksComponent();">
-            <i class="fa fa-exclamation"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tasks</a>
+            <i class="fa fa-check"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tasks</a>
         </li>
         <li class ="nav-item item-text">
           <a class ="nav-link text-color" href="javascript:void(0)">
@@ -36,7 +32,6 @@
       </ul>
     </nav>
   </div>
-  <create-task *ngIf="showCreateTaskComponent" (loadAvailableTasksComponent)="loadAvailableTasksComponent()"></create-task>
-  <available-tasks *ngIf="showAvailableTasksComponent" (loadAvailableTasksComponent)="loadAvailableTasksComponent()"></available-tasks>
+  <available-tasks *ngIf="showAvailableTasksComponent"></available-tasks>
   <mytasks *ngIf="showMyTasks"></mytasks>
 </div>

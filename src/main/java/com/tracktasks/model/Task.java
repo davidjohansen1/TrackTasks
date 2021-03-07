@@ -11,6 +11,7 @@ public class Task {
   private String description;
   private int assignedUser;
   private boolean available;
+  private String status;
 
   public int getId() {
     return id;
@@ -51,4 +52,13 @@ public class Task {
   public void setAvailable(boolean available) {
     this.available = available;
   }
+
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
+  }
+
 }

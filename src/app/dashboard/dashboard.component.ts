@@ -18,7 +18,6 @@ export class DashboardComponent {
     errors;
     truncatedName = [];
     truncatedDescription = [];
-    showCreateTaskComponent = false;
     showAvailableTasksComponent = false;
     showMyTasks = true
     pageName = 'My Tasks';
@@ -42,22 +41,13 @@ export class DashboardComponent {
         this.router.navigate(['/login'])
     }
 
-    loadCreateTaskComponent() {
-        this.showAvailableTasksComponent = false
-        this.showMyTasks = false
-        this.showCreateTaskComponent = true
-        this.pageName = 'Create Task'
-    }
-
     loadAvailableTasksComponent() {
-        this.showCreateTaskComponent = false
         this.showMyTasks = false
         this.showAvailableTasksComponent = true
         this.pageName = 'Tasks'
     }
 
     loadMyTasks() {
-        this.showCreateTaskComponent = false
         this.showAvailableTasksComponent = false
         this.showMyTasks = true
         this.pageName = 'My Tasks'

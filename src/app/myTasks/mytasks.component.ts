@@ -1,20 +1,29 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output } from "@angular/core";
 import { ApiService } from "../services/api.service";
 import { Tasks } from "../tasks/task";
 
 @Component({
     selector: 'mytasks',
-    templateUrl: 'mytasks.component.html',
+    templateUrl: './mytasks.component.html',
     styleUrls: ['mytasks.component.css']
 })
 export class MyTasks implements OnInit {
     constructor(private apiService: ApiService) { }
+
     currentUserId;
     allTasks: Tasks[];
     errors;
     truncatedName = [];
     truncatedDescription = [];
     hasTasks = true;
+    @Output() currentTaskId;
+    @Output() currentTaskName;
+    @Output() currentTaskDesc;
+    @Output() currentAssignedUserId;
+    @Output() currentUsername;
+    @Output() currentTaskAvailability;
+    @Output() currentStatus;
+    @Output() fromMyTasks:boolean = true;
 
     ngOnInit() {
         this.currentUserId = localStorage.getItem('userId')
@@ -42,5 +51,19 @@ export class MyTasks implements OnInit {
                 }
             }
         })
+    }
+
+    editTask(id, name, description, assignedUserId, username, available, status) {
+        this.currentTaskId = id;
+        this.currentTaskName = name;
+        this.currentTaskDesc = description;
+        this.currentAssignedUserId = assignedUserId
+        this.currentUsername = username;
+        this.currentTaskAvailability = available;
+        this.currentStatus = status;
+    }
+
+    reloadComponent() {
+        this.ngOnInit();
     }
 }

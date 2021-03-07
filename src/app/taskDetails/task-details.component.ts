@@ -11,8 +11,7 @@ import { Tasks } from "../tasks/task";
 export class TaskDetailsComponent {
     constructor(private apiService: ApiService){}
 
-    studentchildusers: StudentChildren[];
-    public fields: Object = { text: 'username', value: 'id' };
+    errors;
     task = new Tasks();
     @Input() currentTaskId
     @Input() currentTaskName;
@@ -20,42 +19,80 @@ export class TaskDetailsComponent {
     @Input() currentUsername;
     @Input() currentAssignedUserId;
     @Input() currentTaskAvailability;
+    @Input() currentStatus;
+    @Input() fromMyTasks;
+    @Input() newTask;
+    @Input() modalName;
     @Output("reloadComponent") reloadComponent: EventEmitter<any> = new EventEmitter();
+    studentchildusers: StudentChildren[];
+
+    public selectUserfields: Object = { text: 'username', value: 'id' };
+    dropdownitems = ['Not Started', 'In Progress', 'Completed'];
+    public selectStatusfields: Object = { text: 'status', value: 'status' };
 
     ngOnInit() {
         this.apiService.getStudentChildUsers()
             .subscribe(data => {
+                console.log(data)
                 this.studentchildusers = data
             })
     }
 
-    editTask() {
+    checkValues() {
         this.task.id = this.currentTaskId;
+        this.task.name = this.currentTaskName
+        this.task.description = this.currentTaskDesc
+        this.task.assignedUser = this.currentAssignedUserId
+        this.task.available = this.currentTaskAvailability
+        this.task.username = this.currentUsername
+    }
 
-        if(this.task.name === undefined) {
-            this.task.name = this.currentTaskName
-        }
-        if(this.task.description === undefined) {
-            this.task.description = this.currentTaskDesc
-        }
-        if(this.task.assignedUser === undefined) {
-            this.task.assignedUser = this.currentAssignedUserId
+    cancel() {
+        this.currentAssignedUserId = this.task.assignedUser;
+        this.reloadComponent.emit();
+    }
+
+    saveTaskChanges() {
+        this.checkValues();
+
+        if(this.newTask) {
+                if(this.task.assignedUser) {
+                    this.task.available = true;
+                }
+                this.apiService.addTask(this.task)
+                    .subscribe(data => {
+                    },
+                    error => {
+                        this.errors = error;
+                    },
+                    () => {
+                        this.currentTaskName = null;
+                        this.currentAssignedUserId = null;
+                        this.currentTaskDesc = null;
+                        this.currentTaskAvailability= null;
+                        this.reloadComponent.emit();
+                    });
         } else {
-            this.task.available = false;
-        }
-
-        if(this.task.available === undefined) {
-            this.task.available = this.currentTaskAvailability
-        }
-
-        this.apiService.editTask(this.task)
+            this.apiService.editTask(this.task)
             .subscribe(data => {
                 if(data === 'task updated successfully') {
                     this.reloadComponent.emit();
                 } else {
                     alert('There was a problem updating the task');
+                    this.reloadComponent.emit();
                 }
+            },
+            error => {
+                this.errors = error;
+            },
+            () => {
+                this.currentAssignedUserId = null;
+                this.task.name = null;
+                this.task.assignedUser = null;
+                this.task.description = null;
+                this.task.available = null;
+                this.reloadComponent.emit();
             })
-        
+        }
     }
 }

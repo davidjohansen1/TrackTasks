@@ -10,10 +10,11 @@ public interface TaskRepository extends CrudRepository<Task, Integer> {
   @Query(value = "SELECT max(id) FROM Task")
   public int taskIdMax();
 
-  @Query(value = "SELECT t.id, t.name, t.description, t.assigned_user, t.available, u.username FROM task t LEFT JOIN user u ON u.id = t.assigned_user;", nativeQuery = true)
+  @Query(value = "SELECT t.id, t.name, t.description, t.assigned_user, t.available, u.username " +
+    "FROM task t LEFT JOIN user u ON u.id = t.assigned_user;", nativeQuery = true)
   public List<FullTaskInfo> getTasks();
 
-  @Query(value = "SELECT t.id, t.name, t.description, t.assigned_user, u.username FROM task t\n" +
+  @Query(value = "SELECT t.id, t.name, t.description, t.assigned_user, t.status, u.username FROM task t\n" +
     "LEFT JOIN user u ON u.id = t.assigned_user\n"+
     "WHERE t.assigned_user = :userId", nativeQuery = true)
   public List<FullTaskInfo> getUserTasks(@Param("userId") int userId);

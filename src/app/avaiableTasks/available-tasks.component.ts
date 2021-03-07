@@ -1,5 +1,4 @@
 import { Component, OnInit, Output } from "@angular/core";
-import { Router } from "@angular/router";
 import { ApiService } from "../services/api.service";
 import { Tasks } from "../tasks/task";
 import { Users } from "../tasks/user";
@@ -22,10 +21,10 @@ export class AvailableTasks implements OnInit {
     showCreateTaskComponent = false;
     currentTask = 0;
     currentTaskSet = [];
-    currentTaskSetName;
     counter;
     noTasksExistMessage: String;
     noTasksExistMessage2: String;
+    currentTaskSetName;
 
     @Output() currentTaskId;
     @Output() currentTaskName;
@@ -33,8 +32,10 @@ export class AvailableTasks implements OnInit {
     @Output() currentAssignedUserId;
     @Output() currentUsername;
     @Output() currentTaskAvailability;
+    @Output() newTask: boolean = false;
+    @Output() modalName: string;
 
-    constructor(private apiService: ApiService, private router: Router) { }
+    constructor(private apiService: ApiService) { }
 
     ngOnInit() {
         this.userName = localStorage.getItem('userName')
@@ -72,6 +73,7 @@ export class AvailableTasks implements OnInit {
         this.currentTaskSet = [];
         this.counter = 0;
         this.currentTaskSetName = 'Showing Unavailable Tasks';
+        this.currentAssignedUserId = null;
         for(var i = 0; i < this.allTasks.length; i++) {
             if((this.allTasks[i].assigned_user === 0) && (this.allTasks[i].available === false)) {
                 this.currentTaskSet[this.counter] = this.allTasks[i]
@@ -90,6 +92,7 @@ export class AvailableTasks implements OnInit {
         this.currentTaskSet = [];
         this.counter = 0;
         this.currentTaskSetName = 'Showing Available Tasks';
+        this.currentAssignedUserId = null;
         for(var i = 0; i < this.allTasks.length; i++) {
             if((this.allTasks[i].assigned_user === 0) && (this.allTasks[i].available === true)) {
                 this.currentTaskSet[this.counter] = this.allTasks[i]
@@ -121,7 +124,19 @@ export class AvailableTasks implements OnInit {
         }
     }
 
+    createTask() {
+        this.newTask = true;
+        this.modalName = 'New Task';
+        this.currentTaskId = null;
+        this.currentTaskName = null;
+        this.currentTaskDesc = null;
+        this.currentAssignedUserId = null;
+        this.currentUsername = null;
+        this.currentTaskAvailability = null;
+    }
+
     editTask(id, name, description, assignedUserId, username, available) {
+        this.modalName = 'Edit Task'
         this.currentTaskId = id;
         this.currentTaskName = name;
         this.currentTaskDesc = description;
@@ -131,6 +146,7 @@ export class AvailableTasks implements OnInit {
     }
 
     reloadComponent() {
+        this.newTask = false;
         this.ngOnInit();
     }
 
