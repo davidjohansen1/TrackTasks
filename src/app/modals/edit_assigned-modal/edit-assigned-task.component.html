@@ -1,11 +1,11 @@
-<div class="modal fade" id="taskDetails" tabindex="-1" role="dialog" aria-labelledby="taskDetailsLabel" aria-hidden="true">
+<div class="modal fade" id="editAssignedTask" tabindex="-1" role="dialog" aria-labelledby="editAssignedTaskLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding-right: 10px; padding-top: 10px;">
                 <span aria-hidden="true">&times;</span>
             </button>
         <div class="modal-header">
-            <h4 class="modal-title" id="taskDetailsLabel"><strong>New Task</strong></h4>
+            <h4 class="modal-title" id="editAssignedTaskLabel"><strong>Edit Available Task</strong></h4>
         </div>
         <div class="modal-body">
             <div class="container">
@@ -25,6 +25,7 @@
                             placeholder='Select a User' [(ngModel)]="currentAssignedUserId">
                         </ejs-dropdownlist>
                     </div>
+
                     <div class="form-check" *ngIf="!currentAssignedUserId">
                         <input class="form-check-input" type="checkbox" value="" id="available" [checked]="currentTaskAvailability" [(ngModel)]="currentTaskAvailability">
                         <label class="form-check-label available-text" for="available">

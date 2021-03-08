@@ -1,14 +1,14 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { ApiService } from "../services/api.service";
-import { StudentChildren } from "../tasks/studentchildren";
-import { Tasks } from "../tasks/task";
+import { ApiService } from "../../services/api.service";
+import { StudentChildren } from "../../tasks/studentchildren";
+import { Tasks } from "../../tasks/task";
 
 @Component({
-    templateUrl: './task-details.component.html',
-    selector: 'task-details',
-    styleUrls: ['./task-details.component.css']
+    templateUrl: './edit-unavailable-task.component.html',
+    selector: 'edit-unavailable-task',
+    styleUrls: ['./edit-unavailable-task.component.css']
 })
-export class TaskDetailsComponent {
+export class EditUnavailableTask {
     constructor(private apiService: ApiService){}
 
     errors;
@@ -21,6 +21,8 @@ export class TaskDetailsComponent {
     @Input() currentTaskAvailability;
     @Input() currentStatus;
     @Input() fromMyTasks;
+    @Input() newTask;
+    @Input() modalName;
     @Output("reloadComponent") reloadComponent: EventEmitter<any> = new EventEmitter();
     studentchildusers: StudentChildren[];
 
@@ -53,28 +55,44 @@ export class TaskDetailsComponent {
     saveTaskChanges() {
         this.checkValues();
 
-        if(this.task.assignedUser) {
-            this.task.available = true;
-        }
-        this.apiService.addTask(this.task)
+        if(this.newTask) {
+                if(this.task.assignedUser) {
+                    this.task.available = true;
+                }
+                this.apiService.addTask(this.task)
+                    .subscribe(data => {
+                    },
+                    error => {
+                        this.errors = error;
+                    },
+                    () => {
+                        this.currentTaskName = null;
+                        this.currentAssignedUserId = null;
+                        this.currentTaskDesc = null;
+                        this.currentTaskAvailability= null;
+                        this.reloadComponent.emit();
+                    });
+        } else {
+            this.apiService.editTask(this.task)
             .subscribe(data => {
+                if(data === 'task updated successfully') {
+                    this.reloadComponent.emit();
+                } else {
+                    alert('There was a problem updating the task');
+                    this.reloadComponent.emit();
+                }
             },
             error => {
                 this.errors = error;
             },
             () => {
-                this.currentTaskName = null;
                 this.currentAssignedUserId = null;
-                this.currentTaskDesc = null;
-                this.currentTaskAvailability= null;
-                this.task.id = null;
                 this.task.name = null;
-                this.task.description = null;
                 this.task.assignedUser = null;
+                this.task.description = null;
                 this.task.available = null;
-                this.task.username = null;
                 this.reloadComponent.emit();
-            });
-
+            })
+        }
     }
 }

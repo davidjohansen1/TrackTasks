@@ -22,6 +22,21 @@ public class TaskController {
     return taskRepository.getTasks();
   }
 
+  @GetMapping(path="/getUnavailableTasks")
+  public @ResponseBody Iterable<FullTaskInfo> getUnavailableTasks() {
+    return taskRepository.getUnavailableTasks();
+  }
+
+  @GetMapping(path="/getAvailableTasks")
+  public @ResponseBody Iterable<FullTaskInfo> getAvailableTasks() {
+    return taskRepository.getAvailableTasks();
+  }
+
+  @GetMapping(path="/getAssignedTasks")
+  public @ResponseBody Iterable<FullTaskInfo> getAssignedTasks() {
+    return taskRepository.getAssignedTasks();
+  }
+
   @PostMapping(path="/getUserTasks")
   public @ResponseBody
   List<FullTaskInfo> getUserTasks(@RequestBody int userId) {

@@ -52,3 +52,23 @@
 .card-spacing {
     margin-top: 20px;
 }
+
+.inactive {
+    background-color: #5bc0de;
+}
+
+.active {
+    background-color: #5cb85c;
+}
+
+button:hover {
+    background-color: #5cb85c;
+}
+
+button:active {
+    background-color: #5cb85c;
+}
+
+.btn-info.active:focus {
+    background-color: #5cb85c;
+}

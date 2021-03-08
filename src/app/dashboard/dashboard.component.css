@@ -42,3 +42,11 @@
     border-right: 8px solid transparent;
     border-top: 8px solid #000000;
 }
+
+.inactive {
+    background-color: #d9e6eb;
+}
+
+.active {
+    background-color: #5c8cb8;
+}

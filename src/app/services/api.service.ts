@@ -15,6 +15,18 @@ export class ApiService {
         return this.http.get<Tasks[]>(this.springUrl + 'task/getTasks')
     }
 
+    getUnavailableTasks(): Observable<Tasks[]> {
+        return this.http.get<Tasks[]>(this.springUrl + 'task/getUnavailableTasks')
+    }
+
+    getAvailableTasks(): Observable<Tasks[]> {
+        return this.http.get<Tasks[]>(this.springUrl + 'task/getAvailableTasks')
+    }
+
+    getAssignedTasks(): Observable<Tasks[]> {
+        return this.http.get<Tasks[]>(this.springUrl + 'task/getAssignedTasks')
+    }
+
     addTask(task: Tasks): Observable<any> {
         const headers = { 'content-type': 'application/json' }
         const body = JSON.stringify(task)
