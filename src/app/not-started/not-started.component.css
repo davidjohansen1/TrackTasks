@@ -1,0 +1,17 @@
+.button-text {
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.card-background {
+    background-color: #4e5d6c;
+    min-height: 150px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-right: 10px;
+    margin-bottom: 25px;
+}
+
+.card-title {
+    min-height: 35px;
+}

@@ -33,7 +33,6 @@ export class EditUnavailableTask {
     ngOnInit() {
         this.apiService.getStudentChildUsers()
             .subscribe(data => {
-                console.log(data)
                 this.studentchildusers = data
             })
     }

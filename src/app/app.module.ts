@@ -18,7 +18,10 @@ import { AvailableTasksComponent } from './available-tasks/available-tasks.compo
 import { EditAvailableTask } from './modals/edit-available-modal/edit-available-task.component';
 import { AssignedTasksComponent } from './assigned-tasks/assigned-tasks.component';
 import { EditAssignedTask } from './modals/edit_assigned-modal/edit-assigned-task.component';
-
+import { NotStartedComponent } from './not-started/not-started.component';
+import { EditMyTask } from './modals/edit-my-task-modal/edit-my-task';
+import { InProgress } from './in-progress/in-progress.component';
+import { Completed } from './completed/completed.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,11 @@ import { EditAssignedTask } from './modals/edit_assigned-modal/edit-assigned-tas
     AvailableTasksComponent,
     EditAvailableTask,
     AssignedTasksComponent,
-    EditAssignedTask
+    EditAssignedTask,
+    NotStartedComponent,
+    EditMyTask,
+    InProgress,
+    Completed
   ],
   imports: [
     BrowserModule,

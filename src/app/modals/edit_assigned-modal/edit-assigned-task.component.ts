@@ -31,10 +31,8 @@ export class EditAssignedTask {
     public selectStatusfields: Object = { text: 'status', value: 'status' };
 
     ngOnInit() {
-        console.log(this.currentAssignedUserId)
         this.apiService.getStudentChildUsers()
             .subscribe(data => {
-                console.log(data)
                 this.studentchildusers = data
             })
     }

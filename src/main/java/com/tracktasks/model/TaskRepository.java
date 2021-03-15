@@ -31,6 +31,25 @@ public interface TaskRepository extends CrudRepository<Task, Integer> {
 
   @Query(value = "SELECT t.id, t.name, t.description, t.assigned_user, t.status, u.username FROM task t\n" +
     "LEFT JOIN user u ON u.id = t.assigned_user\n"+
-    "WHERE t.assigned_user = :userId", nativeQuery = true)
-  public List<FullTaskInfo> getUserTasks(@Param("userId") int userId);
+    "WHERE t.assigned_user = :userId\n" +
+    "AND t.status = 'Not Started'", nativeQuery = true)
+  public List<FullTaskInfo> getUserNotStartTasks(@Param("userId") int userId);
+
+  @Query(value = "SELECT t.id, t.name, t.description, t.assigned_user, t.status, u.username FROM task t\n" +
+    "LEFT JOIN user u ON u.id = t.assigned_user\n"+
+    "WHERE t.assigned_user = :userId\n" +
+    "AND t.status = 'In Progress'", nativeQuery = true)
+  public List<FullTaskInfo> getUserInProgressTasks(@Param("userId") int userId);
+
+  @Query(value = "SELECT t.id, t.name, t.description, t.assigned_user, t.status, u.username FROM task t\n" +
+    "LEFT JOIN user u ON u.id = t.assigned_user\n"+
+    "WHERE t.assigned_user = :userId\n" +
+    "AND t.status = 'Completed'", nativeQuery = true)
+  public List<FullTaskInfo> getUserCompletedTasks(@Param("userId") int userId);
+
+  @Query(value = "SELECT t.id, t.name, t.description, t.assigned_user, t.status, u.username FROM task t\n" +
+    "LEFT JOIN user u ON u.id = t.assigned_user\n" +
+    "WHERE t.id = :taskId", nativeQuery = true)
+  public FullTaskInfo getTask(@Param("taskId") int taskId);
+
 }

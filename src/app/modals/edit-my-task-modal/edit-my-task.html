@@ -1,0 +1,36 @@
+<div class="modal fade" id="editMyTask" tabindex="-1" role="dialog" aria-labelledby="editMyTaskLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding-right: 10px; padding-top: 10px;" (click)="closeCurrentModal()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        <div class="modal-header">
+            <h4 class="modal-title" id="editMyTaskLabel"><strong>Task</strong></h4>
+        </div>
+        <div class="modal-body">
+            <div class="container">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="taskname" class="label-text">Task Name:</label>
+                        <input id="taskname" name="taskname" type="text" class="form-control fields disabled" value="{{task.name}}" [(ngModel)]="task.name" readonly/>
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="label-text">Task Description:</label>
+                        <textarea id="description" name="description" type="description" class="form-control fields disabled" 
+                            value="{{task.description}}" [(ngModel)]="task.description" readonly></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="ddlelement" class="label-text">Status:</label>
+                        <ejs-dropdownlist id='ddlelement' [value]="task.status" [dataSource]='dropdownitems' [fields]='selectStatusfields' width="90%"
+                            [(ngModel)]="task.status">
+                        </ejs-dropdownlist>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" (click)="saveTaskChanges()" style="margin-right: 5px;" data-dismiss="modal" [disabled]="task.name === ''">Save</button>
+                        <button class="btn btn-default" data-dismiss="modal" (click)="closeCurrentModal()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -27,13 +27,10 @@ export class EditAvailableTask {
     studentchildusers: StudentChildren[];
 
     public selectUserfields: Object = { text: 'username', value: 'id' };
-    dropdownitems = ['Not Started', 'In Progress', 'Completed'];
-    public selectStatusfields: Object = { text: 'status', value: 'status' };
 
     ngOnInit() {
         this.apiService.getStudentChildUsers()
             .subscribe(data => {
-                console.log(data)
                 this.studentchildusers = data
             })
     }
