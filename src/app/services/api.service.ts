@@ -11,8 +11,20 @@ export class ApiService {
 
     constructor(private http: HttpClient) { }
 
-    getTasks(): Observable<Tasks[]> {
-        return this.http.get<Tasks[]>(this.springUrl + 'task/tasks')
+    getAllTasks(): Observable<Tasks[]> {
+        return this.http.get<Tasks[]>(this.springUrl + 'task/getTasks')
+    }
+
+    getUnavailableTasks(): Observable<Tasks[]> {
+        return this.http.get<Tasks[]>(this.springUrl + 'task/getUnavailableTasks')
+    }
+
+    getAvailableTasks(): Observable<Tasks[]> {
+        return this.http.get<Tasks[]>(this.springUrl + 'task/getAvailableTasks')
+    }
+
+    getAssignedTasks(): Observable<Tasks[]> {
+        return this.http.get<Tasks[]>(this.springUrl + 'task/getAssignedTasks')
     }
 
     addTask(task: Tasks): Observable<any> {
@@ -43,9 +55,23 @@ export class ApiService {
         return this.http.post(this.springUrl + 'task/editTask', body, { 'headers': headers, responseType: 'text' })
     }
 
-    getUserTasks(userId: Number): Observable<Tasks[]>{
+    getUserNotStartTasks(userId: Number): Observable<Tasks[]>{
         const headers = { 'content-type': 'application/json' }
-        console.log(userId)
-        return this.http.post<Tasks[]>(this.springUrl + 'task/getUserTasks', userId, { 'headers': headers })
+        return this.http.post<Tasks[]>(this.springUrl + 'task/getUserNotStartTasks', userId, { 'headers': headers })
+    }
+
+    getUserInProgressTasks(userId: Number): Observable<Tasks[]>{
+        const headers = { 'content-type': 'application/json' }
+        return this.http.post<Tasks[]>(this.springUrl + 'task/getUserInProgressTasks', userId, { 'headers': headers })
+    }
+
+    getUserCompletedTasks(userId: Number): Observable<Tasks[]>{
+        const headers = { 'content-type': 'application/json' }
+        return this.http.post<Tasks[]>(this.springUrl + 'task/getUserCompletedTasks', userId, { 'headers': headers })
+    }
+
+    getTask(taskId: Number): Observable<Tasks>{
+        const headers = { 'content-type': 'application/json' }
+        return this.http.post<Tasks>(this.springUrl + 'task/getTask', taskId, { 'headers': headers })
     }
 }

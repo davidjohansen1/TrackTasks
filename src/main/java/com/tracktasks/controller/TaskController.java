@@ -17,15 +17,48 @@ public class TaskController {
   @Autowired
   private TaskService taskService;
 
-  @GetMapping(path="/tasks")
+  @GetMapping(path="/getTasks")
   public @ResponseBody Iterable<FullTaskInfo> getTasks() {
-    return taskRepository.getAllTasks();
+    return taskRepository.getTasks();
   }
 
-  @PostMapping(path="/getUserTasks")
+  @GetMapping(path="/getUnavailableTasks")
+  public @ResponseBody Iterable<FullTaskInfo> getUnavailableTasks() {
+    return taskRepository.getUnavailableTasks();
+  }
+
+  @GetMapping(path="/getAvailableTasks")
+  public @ResponseBody Iterable<FullTaskInfo> getAvailableTasks() {
+    return taskRepository.getAvailableTasks();
+  }
+
+  @GetMapping(path="/getAssignedTasks")
+  public @ResponseBody Iterable<FullTaskInfo> getAssignedTasks() {
+    return taskRepository.getAssignedTasks();
+  }
+
+  @PostMapping(path="/getUserNotStartTasks")
   public @ResponseBody
-  List<FullTaskInfo> getUserTasks(@RequestBody int userId) {
-    return taskRepository.getUserTasks(userId);
+  List<FullTaskInfo> getUserNotStartTasks(@RequestBody int userId) {
+    return taskRepository.getUserNotStartTasks(userId);
+  }
+
+  @PostMapping(path="/getUserInProgressTasks")
+  public @ResponseBody
+  List<FullTaskInfo> getUserInProgressTasks(@RequestBody int userId) {
+    return taskRepository.getUserInProgressTasks(userId);
+  }
+
+  @PostMapping(path="/getUserCompletedTasks")
+  public @ResponseBody
+  List<FullTaskInfo> getUserCompletedTasks(@RequestBody int userId) {
+    return taskRepository.getUserCompletedTasks(userId);
+  }
+
+  @PostMapping(path="/getTask")
+  public @ResponseBody
+  FullTaskInfo getTask(@RequestBody int taskId) {
+    return taskRepository.getTask(taskId);
   }
 
   @PostMapping(path="/createTask")

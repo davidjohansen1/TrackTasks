@@ -5,4 +5,7 @@ export class Tasks {
     assignedUser: number
     assigned_user: number
     username: string
+    available: boolean
+    status: string
+    notes: string
 }

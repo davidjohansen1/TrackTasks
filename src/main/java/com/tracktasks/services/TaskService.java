@@ -4,8 +4,6 @@ import com.tracktasks.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class TaskService {
   @Autowired
@@ -25,6 +23,8 @@ public class TaskService {
     task.setName(newTask.getName());
     task.setDescription(newTask.getDescription());
     task.setAssignedUser(newTask.getAssignedUser());
+    task.setAvailable(newTask.getAvailable());
+    task.setStatus("Not Started");
     taskRepository.save(task);
   }
 
@@ -33,6 +33,9 @@ public class TaskService {
       task.setName(currentTaskUser.getName());
       task.setDescription(currentTaskUser.getDescription());
       task.setAssignedUser(currentTaskUser.getAssignedUser());
+      task.setAvailable(currentTaskUser.getAvailable());
+      task.setStatus(currentTaskUser.getStatus());
+      task.setNotes(currentTaskUser.getNotes());
       taskRepository.save(task);
   }
 }

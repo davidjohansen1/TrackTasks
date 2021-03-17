@@ -10,6 +10,9 @@ public class Task {
   private String name;
   private String description;
   private int assignedUser;
+  private boolean available;
+  private String status;
+  private String notes;
 
   public int getId() {
     return id;
@@ -41,5 +44,29 @@ public class Task {
 
   public void setAssignedUser(int assignedUser) {
     this.assignedUser = assignedUser;
+  }
+
+  public boolean getAvailable() {
+    return this.available;
+  }
+
+  public void setAvailable(boolean available) {
+    this.available = available;
+  }
+
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
+  }
+
+  public String getNotes() {
+    return notes;
+  }
+
+  public void setNotes(String notes) {
+    this.notes = notes;
   }
 }

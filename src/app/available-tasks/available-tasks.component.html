@@ -1,0 +1,32 @@
+<div class="row" style="margin-right: 10px;">
+  <div class="col-md-10 col-md-offset-2 task-status" *ngIf="this.noTasksExistMessage">
+    {{this.noTasksExistMessage}}
+    <br />
+    {{this.noTasksExistMessage2}}
+  </div>
+  <div *ngFor="let task of availableTasks;" class="col-md-3 card-spacing">
+    <div class="card card-background shadow">
+      <div class="card-header">
+          <strong>Name:</strong>&nbsp;{{task.name}}
+      </div>
+      <div class="card-body">
+          <h5 class="card-title"><strong>Description:</strong>&nbsp;{{task.description}}</h5>
+          <div *ngIf="task.username"><strong>Assigned User:</strong>&nbsp;{{task.username}}</div>
+          <div *ngIf="!task.username"><strong>Assigned User:</strong>&nbsp;<em>Unassigned</em></div>
+          <button class="btn btn-info button-text" data-toggle="modal" data-target="#editAvailableTask"
+            (click)="editTask(task.id, task.name, task.description, task.assigned_user, task.username, task.available)">
+            <i class="fa fa-edit fa-lg"></i>&nbsp;Edit
+          </button>
+      </div>
+    </div>
+  </div>
+</div>
+<edit-available-task
+  [currentTaskId]="currentTaskId"
+  [currentTaskName]="currentTaskName"
+  [currentTaskDesc]="currentTaskDesc"
+  [currentUsername]="currentUsername"
+  [currentAssignedUserId]="currentAssignedUserId"
+  [currentTaskAvailability]="currentTaskAvailability"
+  (reloadComponent)="reloadComponent()">
+</edit-available-task>

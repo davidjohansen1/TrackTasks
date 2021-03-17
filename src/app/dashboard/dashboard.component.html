@@ -16,24 +16,26 @@
     <nav class ="navbar bg-dark">
       <ul class ="nav nav-background">
         <li class ="nav-item item-text">
-          <a class ="nav-link text-color" href="javascript:void(0)" (click)="loadMyTasks();"><i class="fa fa-home"></i>&nbsp;&nbsp;&nbsp;&nbsp;My Tasks</a>
+          <a class ="nav-link text-color" href="javascript:void(0)" (click)="loadMyTasks();"
+          [ngClass]="{'active' : showMyTasksToggle, 'inactive': !showMyTasksToggle}">
+          <i class="fa fa-home"></i>&nbsp;&nbsp;&nbsp;&nbsp;My Tasks</a>
         </li>
         <li class ="nav-item item-text">
-          <a class ="nav-link text-color" href="javascript:void(0)"><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Profile</a>
+          <a class ="nav-link text-color" href="javascript:void(0)"
+          [ngClass]="{'active' : showProfileToggle, 'inactive': !showProfileToggle}"><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Profile</a>
         </li>
         <li class ="nav-item item-text">
-          <a class ="nav-link text-color" href="javascript:void(0)" (click)="loadCreateTaskComponent();"><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;&nbsp;Create a task</a>
+          <a class ="nav-link text-color" href="javascript:void(0)" (click)="loadAllTasksComponent();"
+          [ngClass]="{'active' : showTasksToggle, 'inactive': !showTasksToggle}">
+            <i class="fa fa-check"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tasks</a>
         </li>
         <li class ="nav-item item-text">
-          <a class ="nav-link text-color" href="javascript:void(0)" (click)="loadAvailableTasksComponent();"><i class="fa fa-exclamation"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Unassigned Tasks</a>
-        </li>
-        <li class ="nav-item item-text">
-          <a class ="nav-link text-color" href="javascript:void(0)"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;&nbsp;Assigned Tasks</a>
+          <a class ="nav-link text-color" href="javascript:void(0)" [ngClass]="{'active' : showAboutToggle, 'inactive': !showAboutToggle}">
+            <i class="fa fa-question"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;About</a>
         </li>
       </ul>
     </nav>
   </div>
-  <create-task *ngIf="showCreateTaskComponent" (loadAvailableTasksComponent)="loadAvailableTasksComponent()"></create-task>
-  <available-tasks *ngIf="showAvailableTasksComponent" (loadAvailableTasksComponent)="loadAvailableTasksComponent()"></available-tasks>
+  <alltasks *ngIf="showAllTasks"></alltasks>
   <mytasks *ngIf="showMyTasks"></mytasks>
 </div>

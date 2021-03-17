@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from "@angular/core";
+import { Component, Output } from "@angular/core";
 import { Router } from "@angular/router";
 import { ApiService } from "../services/api.service";
 import { Tasks } from "../tasks/task";
@@ -14,13 +14,20 @@ export class DashboardComponent {
     task = new Tasks();
     user = new Users();
     userName: String = '';
+    userType;
     errors;
     truncatedName = [];
     truncatedDescription = [];
-    showCreateTaskComponent = false
-    showAvailableTasksComponent = false
+    showAllTasks = false;
     showMyTasks = true
-    pageName = 'Tasks assigned to me';
+    pageName = 'My Tasks';
+    tasks = 'Available Tasks';
+
+    showMyTasksToggle = false;
+    showProfileToggle = false;
+    showTasksToggle = false;
+    showAboutToggle = false;
+
     @Output() currentTaskId;
     @Output() currentTaskName;
     @Output() currentTaskDesc;
@@ -31,32 +38,30 @@ export class DashboardComponent {
 
     ngOnInit() {
         this.userName = localStorage.getItem('userName')
+        this.showMyTasksToggle = true;
     }
 
     logOut() {
         localStorage.removeItem('userName');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('userType');
         this.router.navigate(['/login'])
     }
 
-    loadCreateTaskComponent() {
-        this.showAvailableTasksComponent = false
+    loadAllTasksComponent() {
+        this.showMyTasksToggle = false;
+        this.showTasksToggle = true;
         this.showMyTasks = false
-        this.showCreateTaskComponent = true
-        this.pageName = 'Create Task'
-    }
-
-    loadAvailableTasksComponent() {
-        this.showCreateTaskComponent = false
-        this.showMyTasks = false
-        this.showAvailableTasksComponent = true
-        this.pageName = 'Available Tasks'
+        this.showAllTasks = true
+        this.pageName = 'Tasks'
     }
 
     loadMyTasks() {
-        this.showCreateTaskComponent = false
-        this.showAvailableTasksComponent = false
+        this.showTasksToggle = false;
+        this.showMyTasksToggle = true;
+        this.showAllTasks = false
         this.showMyTasks = true
-        this.pageName = 'Tasks assigned to me'
+        this.pageName = 'My Tasks'
     }
 
 }

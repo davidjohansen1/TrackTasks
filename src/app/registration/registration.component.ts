@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
 import { Users } from '../tasks/user';
 
@@ -11,7 +12,7 @@ export class RegistrationComponent {
   title = 'tracktasks';
   user = new Users();
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private router: Router) { }
 
   registerUser() {
     if (this.user.username === undefined || this.user.password === undefined) {
@@ -24,6 +25,7 @@ export class RegistrationComponent {
           alert('Username is already taken')
         } else {
           alert('User created successfully')
+          this.router.navigate(['/login'])
         }
       })
   }
