@@ -16,7 +16,8 @@ public interface TaskRepository extends CrudRepository<Task, Integer> {
 
   @Query(value = "SELECT t.id, t.name, t.description, t.assigned_user, t.available, u.username " +
     "FROM task t LEFT JOIN user u ON u.id = t.assigned_user " +
-    "WHERE t.available = 0;", nativeQuery = true)
+    "WHERE t.available = 0;" +
+    "AND t.assigned_user = 0", nativeQuery = true)
   public List<FullTaskInfo> getUnavailableTasks();
 
   @Query(value = "SELECT t.id, t.name, t.description, t.assigned_user, t.available, u.username " +
