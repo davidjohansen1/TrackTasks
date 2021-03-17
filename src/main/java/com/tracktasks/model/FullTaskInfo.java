@@ -8,4 +8,5 @@ public interface FullTaskInfo {
   String getusername();
   Boolean getavailable();
   String getstatus();
+  String getNotes();
 }

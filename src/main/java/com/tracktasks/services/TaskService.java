@@ -35,6 +35,7 @@ public class TaskService {
       task.setAssignedUser(currentTaskUser.getAssignedUser());
       task.setAvailable(currentTaskUser.getAvailable());
       task.setStatus(currentTaskUser.getStatus());
+      task.setNotes(currentTaskUser.getNotes());
       taskRepository.save(task);
   }
 }

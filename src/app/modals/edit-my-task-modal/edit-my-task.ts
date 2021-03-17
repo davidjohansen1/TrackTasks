@@ -34,6 +34,7 @@ export class EditMyTask {
             this.task.status = data.status;
             this.task.assigned_user = data.assigned_user;
             this.task.assignedUser = data.assigned_user;
+            this.task.notes = data.notes;
         })
     }
 

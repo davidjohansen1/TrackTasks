@@ -12,6 +12,7 @@ public class Task {
   private int assignedUser;
   private boolean available;
   private String status;
+  private String notes;
 
   public int getId() {
     return id;
@@ -61,4 +62,11 @@ public class Task {
     this.status = status;
   }
 
+  public String getNotes() {
+    return notes;
+  }
+
+  public void setNotes(String notes) {
+    this.notes = notes;
+  }
 }

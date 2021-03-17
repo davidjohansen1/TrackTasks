@@ -7,4 +7,5 @@ export class Tasks {
     username: string
     available: boolean
     status: string
+    notes: string
 }

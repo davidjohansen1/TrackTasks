@@ -5,6 +5,9 @@ textarea {
 
 .fields {
   width: 90%;
+}
+
+.fields-disabled {
   background-color: #c0c0c06b;
 }
 
@@ -13,6 +16,6 @@ textarea {
   color: black;
 }
 
-.disabled:hover {
+.cursor-disabled:hover {
   cursor: not-allowed;
 }
