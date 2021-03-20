@@ -13,7 +13,7 @@ import { TaskDetailsComponent } from './taskDetails/task-details.component';
 import { AllTasks } from './allTasks/alltasks.component';
 import { MyTasks } from './myTasks/mytasks.component';
 import { UnavailableTasksComponent } from './unavailable-tasks/unavailable-tasks.component';
-import { EditUnavailableTask } from './modals/edit-unavailable-modal/edit-unavailable-task.component';
+import { EditTask } from './modals/edit-task-modal/edit-task.component';
 import { AvailableTasksComponent } from './available-tasks/available-tasks.component';
 import { EditAvailableTask } from './modals/edit-available-modal/edit-available-task.component';
 import { AssignedTasksComponent } from './assigned-tasks/assigned-tasks.component';
@@ -33,7 +33,7 @@ import { Completed } from './completed/completed.component';
     AllTasks,
     MyTasks,
     UnavailableTasksComponent,
-    EditUnavailableTask,
+    EditTask,
     AvailableTasksComponent,
     EditAvailableTask,
     AssignedTasksComponent,

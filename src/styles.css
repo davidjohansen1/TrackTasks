@@ -54,9 +54,13 @@ body {
     padding-top: 20px;
 }
 
-.my-tasks-column {
+.tasks-column {
     background-color: #ffffff;
     padding-bottom: 20px;
     margin-bottom: 30px;
     margin-right: 15px;
+}
+
+.all-tasks-column {
+    margin-top: 20px;    
 }

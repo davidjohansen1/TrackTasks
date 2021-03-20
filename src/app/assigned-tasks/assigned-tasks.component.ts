@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { Tasks } from '../tasks/task';
 
@@ -10,11 +10,9 @@ import { Tasks } from '../tasks/task';
 export class AssignedTasksComponent implements OnInit {
   assignedTasks: Tasks[];
   @Output() currentTaskId;
-  @Output() currentTaskName;
-  @Output() currentTaskDesc;
-  @Output() currentAssignedUserId;
-  @Output() currentUsername;
-  @Output() currentTaskAvailability;
+  @Input() studentChildren;
+
+  showEditModal = false;
 
   constructor(private apiService: ApiService) { }
 
@@ -25,13 +23,13 @@ export class AssignedTasksComponent implements OnInit {
       })
   }
 
-  editTask(id, name, description, assignedUserId, username, available) {
+  editTask(id) {
     this.currentTaskId = id;
-    this.currentTaskName = name;
-    this.currentTaskDesc = description;
-    this.currentAssignedUserId = assignedUserId
-    this.currentUsername = username;
-    this.currentTaskAvailability = available;
+    this.showEditModal = true;
+  }
+
+  closeModal() {
+    this.showEditModal = false;
   }
 
   reloadComponent() {

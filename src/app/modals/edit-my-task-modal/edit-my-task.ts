@@ -25,7 +25,6 @@ export class EditMyTask {
     ngOnInit() {
         this.apiService.getTask(+this.currentTaskId)
         .subscribe(data => {
-            console.log(data);
             this.reload = 'noReload';
             this.originalStatus = this.task.status
             this.task.id = data.id;

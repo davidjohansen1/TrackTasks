@@ -1,0 +1,42 @@
+<div class="modal fade" id="editTask" tabindex="-1" role="dialog" aria-labelledby="editTaskLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding-right: 10px; padding-top: 10px;" (click)="closeCurrentModal()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        <div class="modal-header">
+            <h4 class="modal-title" id="editTaskLabel"><strong>Edit Task</strong></h4>
+        </div>
+        <div class="modal-body">
+            <div class="container">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="taskname" class="label-text">Task Name:</label>
+                        <input id="taskname" name="taskname" type="text" class="form-control fields" value="{{task.name}}" [(ngModel)]="task.name"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="label-text">Task Description:</label>
+                        <textarea id="description" name="description" type="description" class="form-control fields" 
+                            value="{{task.description}}" [(ngModel)]="task.description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="currentAssignedUserId" class="label-text">Assign a user to this task:</label>
+                        <ejs-dropdownlist id='currentAssignedUserId' [value]="task.assigned_user" [dataSource]='studentChildren' [fields]='selectUserfields' width="90%"
+                            placeholder='Select a User' [(ngModel)]="task.assignedUser">
+                        </ejs-dropdownlist>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="available" [checked]="task.available" [(ngModel)]="task.available">
+                        <label class="form-check-label available-text" for="available">
+                          Make this task available
+                        </label>
+                      </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" (click)="saveTaskChanges()" style="margin-right: 5px;" data-dismiss="modal" [disabled]="task.name === ''">Save</button>
+                        <button class="btn btn-default" data-dismiss="modal" (click)="closeCurrentModal()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
