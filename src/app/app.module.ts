@@ -15,9 +15,7 @@ import { MyTasks } from './myTasks/mytasks.component';
 import { UnavailableTasksComponent } from './unavailable-tasks/unavailable-tasks.component';
 import { EditTask } from './modals/edit-task-modal/edit-task.component';
 import { AvailableTasksComponent } from './available-tasks/available-tasks.component';
-import { EditAvailableTask } from './modals/edit-available-modal/edit-available-task.component';
 import { AssignedTasksComponent } from './assigned-tasks/assigned-tasks.component';
-import { EditAssignedTask } from './modals/edit_assigned-modal/edit-assigned-task.component';
 import { NotStartedComponent } from './not-started/not-started.component';
 import { EditMyTask } from './modals/edit-my-task-modal/edit-my-task';
 import { InProgress } from './in-progress/in-progress.component';
@@ -35,9 +33,7 @@ import { Completed } from './completed/completed.component';
     UnavailableTasksComponent,
     EditTask,
     AvailableTasksComponent,
-    EditAvailableTask,
     AssignedTasksComponent,
-    EditAssignedTask,
     NotStartedComponent,
     EditMyTask,
     InProgress,
