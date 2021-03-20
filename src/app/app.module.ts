@@ -9,15 +9,13 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
-import { TaskDetailsComponent } from './taskDetails/task-details.component';
+import { NewTask } from './modals/newTask/newTask.component';
 import { AllTasks } from './allTasks/alltasks.component';
 import { MyTasks } from './myTasks/mytasks.component';
 import { UnavailableTasksComponent } from './unavailable-tasks/unavailable-tasks.component';
-import { EditUnavailableTask } from './modals/edit-unavailable-modal/edit-unavailable-task.component';
+import { EditTask } from './modals/edit-task-modal/edit-task.component';
 import { AvailableTasksComponent } from './available-tasks/available-tasks.component';
-import { EditAvailableTask } from './modals/edit-available-modal/edit-available-task.component';
 import { AssignedTasksComponent } from './assigned-tasks/assigned-tasks.component';
-import { EditAssignedTask } from './modals/edit_assigned-modal/edit-assigned-task.component';
 import { NotStartedComponent } from './not-started/not-started.component';
 import { EditMyTask } from './modals/edit-my-task-modal/edit-my-task';
 import { InProgress } from './in-progress/in-progress.component';
@@ -29,15 +27,13 @@ import { Completed } from './completed/completed.component';
     LoginComponent,
     RegistrationComponent,
     DashboardComponent,
-    TaskDetailsComponent,
+    NewTask,
     AllTasks,
     MyTasks,
     UnavailableTasksComponent,
-    EditUnavailableTask,
+    EditTask,
     AvailableTasksComponent,
-    EditAvailableTask,
     AssignedTasksComponent,
-    EditAssignedTask,
     NotStartedComponent,
     EditMyTask,
     InProgress,
