@@ -14,6 +14,7 @@ export class AllTasks implements OnInit {
     user = new Users();
     errors;
     userType;
+    showNewModal = false;
     @Output() studentChildren = [];
     @Output() unavailableRefresh;
     @Output() availableRefresh;
@@ -31,6 +32,11 @@ export class AllTasks implements OnInit {
     }   
 
     createTask() {
+        this.showNewModal = true;
+    }
+
+    closeModal() {
+        this.showNewModal = false;
     }
 
     reloadComponent() {

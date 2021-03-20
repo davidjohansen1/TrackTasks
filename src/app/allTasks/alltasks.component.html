@@ -1,13 +1,18 @@
 <div class="col-md-10 body-margin">
   <div class="row">
     <div class="col-md-4">
-      <button class="btn btn-success" data-toggle="modal" data-target="#taskDetails"
-              (click)="createTask()">
-              <i class="fa fa-check fa-lg"></i>&nbsp;&nbsp;&nbsp;Create New Task
-            </button>
+      <button
+        class="btn btn-success"
+        data-toggle="modal"
+        data-target="#newTask"
+        data-backdrop="static"
+        data-keyboard="false"
+        (click)="createTask()">
+        <i class="fa fa-check fa-lg"></i>&nbsp;&nbsp;&nbsp;Create New Task
+      </button>
     </div>
   </div>
-  <unavailable-tasks
+  <unavailable-tasks *ngIf="userType === 'supervisor' || userType === 'parent'"
     [studentChildren]="studentChildren"
     [unavailableRefresh]="unavailableRefresh"
     (reloadAvailable)="reloadAvailable()"
@@ -17,21 +22,17 @@
     [studentChildren]="studentChildren"
     [availableRefresh]="availableRefresh"
     (reloadUnavailable)="reloadUnavailable()"
-    (reloadAssigned)="reloadAssigned()"></available-tasks>
-  <assigned-tasks
+    (reloadAssigned)="reloadAssigned()">
+  </available-tasks>
+  <assigned-tasks *ngIf="userType === 'supervisor' || userType === 'parent'"
     [studentChildren]="studentChildren"
     [assignedRefresh]="assignedRefresh"
     (reloadUnavailable)="reloadUnavailable()"
     (reloadAvailable)="reloadAvailable()">
   </assigned-tasks>
 </div>
-<!-- <task-details
-  [currentTaskId]="currentTaskId"
-  [currentTaskName]="currentTaskName"
-  [currentTaskDesc]="currentTaskDesc"
-  [currentUsername]="currentUsername"
-  [currentAssignedUserId]="currentAssignedUserId"
-  [currentTaskAvailability]="currentTaskAvailability"
+<newTask *ngIf="showNewModal"
   [studentChildren]="studentChildren"
-  (reloadComponent)="reloadComponent()">
-</task-details> -->
+  (reloadComponent)="reloadComponent()"
+  (closeModal)="closeModal()">
+</newTask>

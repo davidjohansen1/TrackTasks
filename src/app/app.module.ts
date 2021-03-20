@@ -9,7 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
-import { TaskDetailsComponent } from './taskDetails/task-details.component';
+import { NewTask } from './modals/newTask/newTask.component';
 import { AllTasks } from './allTasks/alltasks.component';
 import { MyTasks } from './myTasks/mytasks.component';
 import { UnavailableTasksComponent } from './unavailable-tasks/unavailable-tasks.component';
@@ -27,7 +27,7 @@ import { Completed } from './completed/completed.component';
     LoginComponent,
     RegistrationComponent,
     DashboardComponent,
-    TaskDetailsComponent,
+    NewTask,
     AllTasks,
     MyTasks,
     UnavailableTasksComponent,
