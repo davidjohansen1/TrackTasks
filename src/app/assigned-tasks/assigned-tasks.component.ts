@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { Tasks } from '../tasks/task';
 
@@ -10,7 +10,10 @@ import { Tasks } from '../tasks/task';
 export class AssignedTasksComponent implements OnInit {
   assignedTasks: Tasks[];
   @Output() currentTaskId;
+  @Output("reloadUnavailable") reloadUnavailable: EventEmitter<any> = new EventEmitter();
+  @Output("reloadAvailable") reloadAvailable: EventEmitter<any> = new EventEmitter();
   @Input() studentChildren;
+  @Input() assignedRefresh;
 
   showEditModal = false;
 
@@ -32,7 +35,18 @@ export class AssignedTasksComponent implements OnInit {
     this.showEditModal = false;
   }
 
-  reloadComponent() {
+  reloadComponent(reloadSibling) {
+    this.ngOnInit();
+    if(reloadSibling === 'reloadUnavailable') {
+      this.reloadUnavailable.emit();
+    }
+
+    if(reloadSibling === 'reloadAvailable') {
+      this.reloadAvailable.emit();
+    }
+  }
+
+  ngOnChanges() {
     this.ngOnInit();
   }
 

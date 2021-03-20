@@ -19,7 +19,10 @@
     (reloadUnavailable)="reloadUnavailable()"
     (reloadAssigned)="reloadAssigned()"></available-tasks>
   <assigned-tasks
-    [studentChildren]="studentChildren">
+    [studentChildren]="studentChildren"
+    [assignedRefresh]="assignedRefresh"
+    (reloadUnavailable)="reloadUnavailable()"
+    (reloadAvailable)="reloadAvailable()">
   </assigned-tasks>
 </div>
 <!-- <task-details

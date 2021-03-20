@@ -47,13 +47,17 @@ export class EditTask {
     }
 
     saveTaskChanges() {
+        // Available is checked so it moves to available. Need to reload the available column
+        if(!this.originalAvailable && this.task.available) {
+            this.readloadSibling = 'reloadAvailable'
+        }
         // User is assgined to a task. Need to reload assigned column
         if(this.originalUser === 0 && this.task.assignedUser != 0) {
             this.task.available = true;
             this.readloadSibling = 'reloadAssigned'
         }
         // User is changed to unassigned. Need to reload available column
-        if(this.originalUser != undefined && this.task.assignedUser === 0) {
+        if(this.originalUser != 0 && this.task.assignedUser === 0) {
             this.readloadSibling = 'reloadAvailable'
         }
         // Available is unchecked so it moves to unavailable. Need to reload the unavailable column
@@ -61,13 +65,7 @@ export class EditTask {
             this.task.assignedUser = 0;
             this.readloadSibling = 'reloadUnavailable'
         }
-        // Available is checked so it moves to available. Need to reload the available column
-        if(!this.originalAvailable && this.task.available === true) {
-            this.readloadSibling = 'reloadAvailable'
-        }
 
-        console.log(this.task);
-        
         this.apiService.editTask(this.task)
             .subscribe(data => {
             },
