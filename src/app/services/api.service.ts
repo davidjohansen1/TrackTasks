@@ -74,4 +74,9 @@ export class ApiService {
         const headers = { 'content-type': 'application/json' }
         return this.http.post<Tasks>(this.springUrl + 'task/getTask', taskId, { 'headers': headers })
     }
+
+    deleteTask(taskId: Number): Observable<any> {
+        const headers = { 'content-type': 'application/json' }
+        return this.http.delete(this.springUrl + 'task/deleteTask?id=' + taskId, { 'headers': headers, responseType: 'text' })
+    }
 }

@@ -38,4 +38,9 @@ public class TaskService {
       task.setNotes(currentTaskUser.getNotes());
       taskRepository.save(task);
   }
+
+  public void deleteTask(int currentTaskId) {
+    task.setId(currentTaskId);
+    taskRepository.delete(task);
+  }
 }

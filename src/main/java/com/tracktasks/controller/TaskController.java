@@ -75,4 +75,11 @@ public class TaskController {
     return "task updated successfully";
   }
 
+  @DeleteMapping(path="/deleteTask")
+  public @ResponseBody
+  String deleteTask(@RequestParam int id) {
+    taskService.deleteTask(id);
+    return "task successfully deleted";
+  }
+
 }

@@ -20,6 +20,7 @@ import { NotStartedComponent } from './not-started/not-started.component';
 import { EditMyTask } from './modals/edit-my-task-modal/edit-my-task';
 import { InProgress } from './in-progress/in-progress.component';
 import { Completed } from './completed/completed.component';
+import { DeleteTaskComponent } from './modals/delete-task/delete-task.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { Completed } from './completed/completed.component';
     NotStartedComponent,
     EditMyTask,
     InProgress,
-    Completed
+    Completed,
+    DeleteTaskComponent
   ],
   imports: [
     BrowserModule,

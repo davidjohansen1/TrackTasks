@@ -29,3 +29,7 @@
 .shadow {
     box-shadow: 1px 1px 5px 2px rgba(204, 204, 204, 0.671);
 }
+
+.delete-button {
+    margin-left: 100px;
+}

@@ -72,3 +72,9 @@ button:active {
 .btn-info.active:focus {
     background-color: #5cb85c;
 }
+
+.delete-message {
+    background-color: #c55e5b;
+    padding: 10px;
+    text-align: center;
+}

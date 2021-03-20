@@ -15,6 +15,7 @@ export class AllTasks implements OnInit {
     errors;
     userType;
     showNewModal = false;
+    showDeletedMessage = false;
     @Output() studentChildren = [];
     @Output() unavailableRefresh;
     @Output() availableRefresh;
@@ -53,5 +54,12 @@ export class AllTasks implements OnInit {
 
     reloadAssigned() { 
         this.assignedRefresh = !this.assignedRefresh;
+    }
+
+    deleteMessage() {
+        this.showDeletedMessage = true;
+        setTimeout(function() { 
+            this.showDeletedMessage = false;
+        }.bind(this), 5000)
     }
 }
