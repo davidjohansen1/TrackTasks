@@ -74,7 +74,9 @@ button:active {
 }
 
 .delete-message {
-    background-color: #c55e5b;
+    background-color: #5bc590;
     padding: 10px;
     text-align: center;
+    color: black;
+    font-size: medium;
 }

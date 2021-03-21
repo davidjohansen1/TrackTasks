@@ -9,12 +9,17 @@ import { Tasks } from '../tasks/task';
 })
 export class AvailableTasksComponent implements OnInit {
   availableTasks: Tasks[];
+  showEditModal = false;
+  showDeleteModal = false;
   @Output() currentTaskId;
-  @Input() studentChildren;
-  @Input() availableRefresh;
+  @Output() deleteTaskId;
+  @Output() deleteTaskName;
+  @Output() deleteTaskDesc;
   @Output("reloadUnavailable") reloadUnavailable: EventEmitter<any> = new EventEmitter();
   @Output("reloadAssigned") reloadAssigned: EventEmitter<any> = new EventEmitter();
-  showEditModal = false;
+  @Output("deleteMessage") deleteMessage: EventEmitter<any> = new EventEmitter();
+  @Input() studentChildren;
+  @Input() availableRefresh;
 
   constructor(private apiService: ApiService) { }
 
@@ -34,8 +39,24 @@ export class AvailableTasksComponent implements OnInit {
     this.showEditModal = false;
   }
 
+  deleteConfirmation(id, taskName, taskDesc) {
+    this.deleteTaskId = id
+    this.deleteTaskName = taskName;
+    this.deleteTaskDesc = taskDesc;
+    this.showDeleteModal = true;
+  }
+
+  closeDeleteModal() {
+    this.showDeleteModal = false;
+  }
+
   reloadComponent(reloadSibling) {
     this.ngOnInit();
+
+    if(reloadSibling === 'deleted task') {
+      this.deleteMessage.emit();
+    }
+
     if(reloadSibling === 'reloadUnavailable') {
       this.reloadUnavailable.emit();
     }

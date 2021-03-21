@@ -13,7 +13,7 @@
     </div>
     <div class="col-md-4">
       <div id="delete message" *ngIf="showDeletedMessage" class="delete-message">
-        <strong>The task has been successfully deleted</strong>
+        <i class="fa fa-check fa-lg"></i><strong>The task has been successfully deleted</strong>
       </div>
     </div>
   </div>
@@ -28,13 +28,15 @@
     [studentChildren]="studentChildren"
     [availableRefresh]="availableRefresh"
     (reloadUnavailable)="reloadUnavailable()"
-    (reloadAssigned)="reloadAssigned()">
+    (reloadAssigned)="reloadAssigned()"
+    (deleteMessage)="deleteMessage()">
   </available-tasks>
   <assigned-tasks *ngIf="userType === 'supervisor' || userType === 'parent'"
     [studentChildren]="studentChildren"
     [assignedRefresh]="assignedRefresh"
     (reloadUnavailable)="reloadUnavailable()"
-    (reloadAvailable)="reloadAvailable()">
+    (reloadAvailable)="reloadAvailable()"
+    (deleteMessage)="deleteMessage()">
   </assigned-tasks>
 </div>
 <newTask *ngIf="showNewModal"

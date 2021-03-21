@@ -5,10 +5,10 @@
   <div *ngFor="let task of allTasks;" class="col-md-12 status-first-card">
     <div class="card card-background status-column-shadow">
       <div class="card-header">
-          <strong>Name:</strong>&nbsp;{{task.name}}
+          <strong>Name:</strong>&nbsp;<s>{{task.name}}</s>
       </div>
       <div class="card-body">
-          <h5 class="card-title"><strong>Description:</strong>&nbsp;{{task.description}}</h5>
+          <h5 class="card-title"><strong>Description:</strong>&nbsp;<s>{{task.description}}</s></h5>
           <button class="btn btn-info button-text"
             data-toggle="modal"
             data-target="#editMyTask"

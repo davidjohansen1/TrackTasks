@@ -25,6 +25,7 @@ public class TaskService {
     task.setAssignedUser(newTask.getAssignedUser());
     task.setAvailable(newTask.getAvailable());
     task.setStatus("Not Started");
+    task.setNotes(newTask.getNotes());
     taskRepository.save(task);
   }
 
