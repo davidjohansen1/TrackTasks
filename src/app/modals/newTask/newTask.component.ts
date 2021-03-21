@@ -25,6 +25,7 @@ export class NewTask {
     }
 
     saveTask() {
+        this.task.notes = null;
         if(this.task.assignedUser) {
             this.task.available = true;
         }

@@ -19,6 +19,14 @@
             (click)="editTask(task.id)">
             <i class="fa fa-edit fa-lg"></i>&nbsp;Edit
           </button>
+          <button class="btn btn-danger button-text" 
+            data-toggle="modal"
+            data-target="#deleteTask"
+            data-backdrop="static"
+            data-keyboard="false"
+            (click)="deleteConfirmation(task.id, task.name, task.description)">
+            Delete
+          </button>
       </div>
     </div>
   </div>
@@ -29,3 +37,10 @@
   (reloadComponent)="reloadComponent($event)"
   (closeModal)="closeModal()">
 </edit-task>
+<delete-task *ngIf="showDeleteModal"
+  [deleteTaskId]="deleteTaskId"
+  [deleteTaskName]="deleteTaskName"
+  [deleteTaskDesc]="deleteTaskDesc"
+  (closeDeleteModal)="closeDeleteModal()"
+  (reloadComponent)="reloadComponent($event)">
+</delete-task>

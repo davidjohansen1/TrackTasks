@@ -1,6 +1,6 @@
 <div class="col-md-10 body-margin">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-2">
       <button
         class="btn btn-success"
         data-toggle="modal"
@@ -11,24 +11,32 @@
         <i class="fa fa-check fa-lg"></i>&nbsp;&nbsp;&nbsp;Create New Task
       </button>
     </div>
+    <div class="col-md-4">
+      <div id="delete message" *ngIf="showDeletedMessage" class="delete-message">
+        <i class="fa fa-check fa-lg"></i><strong>The task has been successfully deleted</strong>
+      </div>
+    </div>
   </div>
   <unavailable-tasks *ngIf="userType === 'supervisor' || userType === 'parent'"
     [studentChildren]="studentChildren"
     [unavailableRefresh]="unavailableRefresh"
     (reloadAvailable)="reloadAvailable()"
-    (reloadAssigned)="reloadAssigned()">
+    (reloadAssigned)="reloadAssigned()"
+    (deleteMessage)="deleteMessage()">
   </unavailable-tasks>
   <available-tasks
     [studentChildren]="studentChildren"
     [availableRefresh]="availableRefresh"
     (reloadUnavailable)="reloadUnavailable()"
-    (reloadAssigned)="reloadAssigned()">
+    (reloadAssigned)="reloadAssigned()"
+    (deleteMessage)="deleteMessage()">
   </available-tasks>
   <assigned-tasks *ngIf="userType === 'supervisor' || userType === 'parent'"
     [studentChildren]="studentChildren"
     [assignedRefresh]="assignedRefresh"
     (reloadUnavailable)="reloadUnavailable()"
-    (reloadAvailable)="reloadAvailable()">
+    (reloadAvailable)="reloadAvailable()"
+    (deleteMessage)="deleteMessage()">
   </assigned-tasks>
 </div>
 <newTask *ngIf="showNewModal"

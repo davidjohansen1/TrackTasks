@@ -25,6 +25,7 @@ public class TaskService {
     task.setAssignedUser(newTask.getAssignedUser());
     task.setAvailable(newTask.getAvailable());
     task.setStatus("Not Started");
+    task.setNotes(newTask.getNotes());
     taskRepository.save(task);
   }
 
@@ -37,5 +38,10 @@ public class TaskService {
       task.setStatus(currentTaskUser.getStatus());
       task.setNotes(currentTaskUser.getNotes());
       taskRepository.save(task);
+  }
+
+  public void deleteTask(int currentTaskId) {
+    task.setId(currentTaskId);
+    taskRepository.delete(task);
   }
 }
