@@ -17,7 +17,7 @@
       </div>
     </div>
   </div>
-  <unavailable-tasks *ngIf="userType === 'supervisor' || userType === 'parent'"
+  <unavailable-tasks
     [studentChildren]="studentChildren"
     [unavailableRefresh]="unavailableRefresh"
     (reloadAvailable)="reloadAvailable()"
@@ -31,7 +31,7 @@
     (reloadAssigned)="reloadAssigned()"
     (deleteMessage)="deleteMessage()">
   </available-tasks>
-  <assigned-tasks *ngIf="userType === 'supervisor' || userType === 'parent'"
+  <assigned-tasks
     [studentChildren]="studentChildren"
     [assignedRefresh]="assignedRefresh"
     (reloadUnavailable)="reloadUnavailable()"

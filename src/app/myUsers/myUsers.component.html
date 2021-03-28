@@ -1,0 +1,57 @@
+<div class="col-md-9">
+  <div class="row user-area-content">
+    <button class="btn btn-primary"
+      data-toggle="modal"
+      data-target="#findUsers"
+      data-backdrop="static"
+      data-keyboard="false"
+      (click)="findUsers()">Invite User(s)</button>
+  </div>
+  <div class="row user-area-content" *ngIf="hasUsers == false">
+    <h4>You are not adminstrating any users yet.
+      <br /><br />Use the 'Invite User(s)' button to search for users and send an invitation for them to accept to be administered by you.
+      <br /><br />Once a user accepts, you will be able to make tasks available to them, assign them to tasks, as well as view their progress on each task.</h4>
+  </div>
+  <div class="row user-area-content" *ngIf="hasUsers == true">
+    <table class="table table-striped">
+      <thead class="table-header">
+        <tr>
+          <th scope="col"><h4><strong>Name</strong></h4></th>
+          <th scope="col"><h4><strong>Status</strong></h4></th>
+          <th scope="col"><h4><strong>Actions</strong></h4></th>
+        </tr>
+      </thead>
+      <tbody class="table-body">
+        <tr *ngFor="let myUser of myUsersArray">
+          <td style="width: 45%;">{{myUser.name}}</td>
+          <td style="width: 40%;">{{myUser.status}}</td>
+          <td>
+            <div class="dropdown show">
+              <button class="btn btn-info dropdown-toggle"
+                      type="button" id="dropdownMenuButton"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                      *ngIf="myUser.status != 'Pending'">
+                      Options&nbsp;&nbsp;<i class="fa fa-caret-down" aria-hidden="true"></i>
+              </button>
+              <ul class="dropdown-menu">
+                <li *ngIf="myUser.status == 'Accepted'">
+                  <a class="dropdown-item" href="javascript:void(0)">View User Details</a>
+                </li>
+                <li *ngIf="myUser.status == 'Rejected'">
+                  <a class="dropdown-item" href="javascript:void(0)">Resend Invitation</a>
+                </li>
+                <li *ngIf="myUser.status == 'Accepted'">
+                  <a class="dropdown-item" href="javascript:void(0)" >Remove User</a>
+                </li>
+              </ul>
+            </div>
+            <div *ngIf="myUser.status == 'Pending'">
+              <em>*Waiting on user to accept</em>
+            </div>
+          </td>
+        </tr>
+    </table>
+  </div>
+</div>

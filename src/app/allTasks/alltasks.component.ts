@@ -13,7 +13,6 @@ export class AllTasks implements OnInit {
     task = new Tasks();
     user = new Users();
     errors;
-    userType;
     showNewModal = false;
     showDeletedMessage = false;
     @Output() studentChildren = [];
@@ -24,12 +23,13 @@ export class AllTasks implements OnInit {
     constructor(private apiService: ApiService) { }
 
     ngOnInit() {
-        this.userType = localStorage.getItem('userType')
+        
         this.apiService.getStudentChildUsers()
             .subscribe(data => {
                 this.studentChildren = data
+                this.studentChildren.unshift({"id": 0, "username": ""})
+                console.log(this.studentChildren)
             })
-        
     }   
 
     createTask() {

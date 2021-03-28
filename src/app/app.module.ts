@@ -21,6 +21,7 @@ import { EditMyTask } from './modals/edit-my-task-modal/edit-my-task';
 import { InProgress } from './in-progress/in-progress.component';
 import { Completed } from './completed/completed.component';
 import { DeleteTaskComponent } from './modals/delete-task/delete-task.component';
+import { MyUsers } from './myUsers/myUsers.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { DeleteTaskComponent } from './modals/delete-task/delete-task.component'
     EditMyTask,
     InProgress,
     Completed,
-    DeleteTaskComponent
+    DeleteTaskComponent,
+    MyUsers
   ],
   imports: [
     BrowserModule,

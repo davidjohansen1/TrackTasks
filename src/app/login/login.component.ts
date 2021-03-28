@@ -27,7 +27,6 @@ export class LoginComponent implements OnInit {
         if (this.user.username.toLocaleLowerCase() === data.credentials.toLocaleLowerCase()) {
           localStorage.setItem('userName', data.credentials)
           localStorage.setItem('userId', data.userId)
-          localStorage.setItem('userType', data.userType)
           this.route.navigate(['/dashboard'])
         } else {
           alert("Incorrect username or password")

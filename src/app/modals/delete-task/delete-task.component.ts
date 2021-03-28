@@ -7,7 +7,7 @@ import { ApiService } from '../../services/api.service';
   templateUrl: './delete-task.component.html',
   styleUrls: ['./delete-task.component.css']
 })
-export class DeleteTaskComponent implements OnInit {
+export class DeleteTaskComponent {
   @Input() deleteTaskId;
   @Input() deleteTaskName;
   @Input() deleteTaskDesc;
@@ -18,16 +18,11 @@ export class DeleteTaskComponent implements OnInit {
 
   constructor(private apiService: ApiService) { }
 
-  ngOnInit() {
-    console.log('deleting task', this.deleteTaskId)
-  }
-
   closeCurrentModal() {
     this.closeDeleteModal.emit();
   }
 
   deleteTask() {
-    console.log("task with id will be deleted:", this.deleteTaskId)
     this.apiService.deleteTask(this.deleteTaskId)
     .subscribe(data => {
       if(data != 'task successfully deleted') {

@@ -14,19 +14,16 @@ export class DashboardComponent {
     task = new Tasks();
     user = new Users();
     userName: String = '';
-    userType;
     errors;
     truncatedName = [];
     truncatedDescription = [];
+    showMyTasks = true;
+    showProfile = false;
     showAllTasks = false;
-    showMyTasks = true
+    myUsers = false;
+    showAbout = false;
     pageName = 'My Tasks';
     tasks = 'Available Tasks';
-
-    showMyTasksToggle = false;
-    showProfileToggle = false;
-    showTasksToggle = false;
-    showAboutToggle = false;
 
     @Output() currentTaskId;
     @Output() currentTaskName;
@@ -38,30 +35,34 @@ export class DashboardComponent {
 
     ngOnInit() {
         this.userName = localStorage.getItem('userName')
-        this.showMyTasksToggle = true;
+        this.showMyTasks = true;
     }
 
     logOut() {
         localStorage.removeItem('userName');
         localStorage.removeItem('userId');
-        localStorage.removeItem('userType');
         this.router.navigate(['/login'])
     }
 
     loadAllTasksComponent() {
-        this.showMyTasksToggle = false;
-        this.showTasksToggle = true;
         this.showMyTasks = false
+        this.myUsers = false;
         this.showAllTasks = true
-        this.pageName = 'Tasks'
+        this.pageName = 'Manage Tasks'
     }
 
     loadMyTasks() {
-        this.showTasksToggle = false;
-        this.showMyTasksToggle = true;
         this.showAllTasks = false
+        this.myUsers = false;
         this.showMyTasks = true
         this.pageName = 'My Tasks'
+    }
+
+    loadMyUsers() {
+        this.showAllTasks = false;
+        this.showMyTasks = false;
+        this.myUsers = true;
+        this.pageName = 'My Users'
     }
 
 }

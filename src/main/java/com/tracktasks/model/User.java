@@ -8,8 +8,10 @@ public class User {
   @Id
   private int id;
   private String username;
+  private String first;
+  private String last;
   private String password;
-  private String userType;
+  private String invite;
 
   public int getId() {
     return id;
@@ -27,6 +29,22 @@ public class User {
     this.username = username;
   }
 
+  public String getFirst() {
+    return first;
+  }
+
+  public void setFirst(String first) {
+    this.first = first;
+  }
+
+  public String getLast() {
+    return last;
+  }
+
+  public void setLast(String last) {
+    this.last = last;
+  }
+
   public String getPassword() {
     return password;
   }
@@ -35,11 +53,11 @@ public class User {
     this.password = password;
   }
 
-  public String getUserType() {
-    return userType;
+  public String getInvite() {
+    return invite;
   }
 
-  public void setUserType(String userType) {
-    this.userType = userType;
+  public void setInvite(String invite) {
+    this.invite = invite;
   }
 }

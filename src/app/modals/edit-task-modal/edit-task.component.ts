@@ -26,7 +26,6 @@ export class EditTask {
     ngOnInit() {
         this.apiService.getTask(+this.currentTaskId)
         .subscribe(data => {
-            console.log(this.studentChildren);
             this.readloadSibling = '';
             this.task.id = data.id;
             this.task.name = data.name;
