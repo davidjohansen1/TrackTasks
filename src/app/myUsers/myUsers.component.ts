@@ -13,6 +13,7 @@ export class MyUsers implements OnInit {
   ];
   // myUsersArray = [];
   hasUsers:boolean = false;
+  showFindUsersModal = false;
 
   constructor() { }
 
@@ -22,8 +23,12 @@ export class MyUsers implements OnInit {
     }
   }
 
+  closeModal() {
+    this.showFindUsersModal = false;
+  }
+
   findUsers() {
-    alert('Later will load the find users modal')
+    this.showFindUsersModal = true;
   }
 
 }

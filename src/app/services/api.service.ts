@@ -79,4 +79,9 @@ export class ApiService {
         const headers = { 'content-type': 'application/json' }
         return this.http.delete(this.springUrl + 'task/deleteTask?id=' + taskId, { 'headers': headers, responseType: 'text' })
     }
+
+    findUsers(searchTerm: String) : Observable<Users[]> {
+        const headers = { 'content-type': 'application/json' }
+        return this.http.get<Users[]>(this.springUrl + 'user/findUsers?searchTerm=' + searchTerm)
+    }
 }

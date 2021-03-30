@@ -28,7 +28,6 @@ export class AllTasks implements OnInit {
             .subscribe(data => {
                 this.studentChildren = data
                 this.studentChildren.unshift({"id": 0, "username": ""})
-                console.log(this.studentChildren)
             })
     }   
 

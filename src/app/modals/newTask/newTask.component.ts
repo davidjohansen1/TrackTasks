@@ -12,13 +12,21 @@ export class NewTask {
 
     errors;
     task = new Tasks();
+    possibleOwners = [];
     @Output("reloadComponent") reloadComponent: EventEmitter<any> = new EventEmitter();
     @Output("closeModal") closeModal: EventEmitter<any> = new EventEmitter();
     @Input() studentChildren;
 
     public selectUserfields: Object = { text: 'username', value: 'id' };
+    public selectOwer: Object = { text: 'username', value: 'id' };
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.studentChildren.forEach(user => {
+            this.possibleOwners.push(user);
+        });
+        this.possibleOwners.push({"id":+localStorage.getItem('userId'), "username":localStorage.getItem('userName')})
+        this.task.owner = +localStorage.getItem('userId');
+     }
 
     closeCurrentModal() {
         this.closeModal.emit();

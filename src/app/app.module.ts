@@ -22,6 +22,7 @@ import { InProgress } from './in-progress/in-progress.component';
 import { Completed } from './completed/completed.component';
 import { DeleteTaskComponent } from './modals/delete-task/delete-task.component';
 import { MyUsers } from './myUsers/myUsers.component';
+import { FindUsers } from './modals/find-users/findUsers.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { MyUsers } from './myUsers/myUsers.component';
     InProgress,
     Completed,
     DeleteTaskComponent,
-    MyUsers
+    MyUsers,
+    FindUsers
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,51 @@
+<div class="modal fade" id="findUsers" tabindex="-1" role="dialog" aria-labelledby="findUsersLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding-right: 10px; padding-top: 10px;" (click)="closeCurrentModal()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        <div class="modal-header">
+            <h4 class="modal-title" id="findUsersLabel"><strong>Find Users</strong></h4>
+        </div>
+        <div class="modal-body">
+            <div class="container">
+                <div class="col-md-10">
+                    <div>
+                        Search for a user by user first name, last name or username
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label for="searchTerm" class="label-text">Search</label>
+                        <input id="searchTerm" name="searchTerm" type="text" class="form-control fields" [(ngModel)]="searchTerm"/>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary bottom" (click)="findUser()" style="margin-right: 5px;">Find</button>
+                        <button class="btn btn-default bottom" data-dismiss="modal" (click)="closeCurrentModal()">Cancel</button>
+                        <button class="btn btn-default bottom pull-right clear-button" (click)="clear()">Clear</button>
+                    </div>
+                    <div *ngIf="foundUsers == 'usersNotFound'">
+                        <strong>*No users were found</strong>
+                    </div>
+                </div>
+                <table class="table table-striped table-spacing" *ngIf="foundUsers == 'usersFound'">
+                    <thead class="table-header">
+                        <tr>
+                            <th scope="col" colspan="1"><h4><strong>Username</strong></h4></th>
+                            <th scope="col" colspan="1"><h4><strong>First Name</strong></h4></th>
+                            <th scope="col" colspan="1"><h4><strong>Last Name</strong></h4></th>
+                            <th scope="col" colspan="1"><h4><strong>Action</strong></h4></th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-body">
+                        <tr *ngFor="let user of users">
+                            <td>{{user.username}}</td>
+                            <td>{{user.first}}</td>
+                            <td>{{user.last}}</td>
+                            <td>Send Invitation</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

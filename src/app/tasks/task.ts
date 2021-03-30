@@ -8,4 +8,5 @@ export class Tasks {
     available: boolean
     status: string
     notes: string
+    owner: number
 }

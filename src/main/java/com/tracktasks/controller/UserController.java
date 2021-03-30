@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 @CrossOrigin(origins = "*")
 @RequestMapping(path="user")
@@ -34,4 +37,11 @@ public class UserController {
   Iterable<StudentChildren> getStudebtChildren() {
     return userRepository.studentsAndChildren();
   }
+
+  @GetMapping(path="/findUsers")
+  public @ResponseBody
+  Iterable<User> findUsers(@RequestParam String searchTerm) {
+    return userRepository.findUsers(searchTerm);
+  }
+
 }

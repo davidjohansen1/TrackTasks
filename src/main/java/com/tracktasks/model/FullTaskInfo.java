@@ -9,4 +9,5 @@ public interface FullTaskInfo {
   Boolean getavailable();
   String getstatus();
   String getNotes();
+  Integer getOwner();
 }

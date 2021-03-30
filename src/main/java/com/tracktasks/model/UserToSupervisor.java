@@ -9,6 +9,7 @@ public class UserToSupervisor {
   private int id;
   private int userId;
   private int supervisorId;
+  private String status;
 
   public int getId() {
     return id;
@@ -27,11 +28,19 @@ public class UserToSupervisor {
   }
 
   public int getSupervisorId() {
-    return userId;
+    return supervisorId;
   }
 
   public void setSupervisorId(int supervisorId) {
     this.supervisorId = supervisorId;
+  }
+
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
   }
 
 }
