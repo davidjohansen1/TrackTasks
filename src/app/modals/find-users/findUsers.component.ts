@@ -11,10 +11,13 @@ export class FindUsers implements OnInit {
     searchTerm;
     users = [];
     foundUsers = '';
+    loggedInUserId;
     
     constructor(private apiService: ApiService){}
 
-    ngOnInit() { }
+    ngOnInit() { 
+        this.loggedInUserId = localStorage.getItem('userId')
+    }
 
     closeCurrentModal() {
         this.closeModal.emit();
@@ -26,7 +29,7 @@ export class FindUsers implements OnInit {
     }
 
     findUser() {
-        this.apiService.findUsers(this.searchTerm)
+        this.apiService.findUsers(this.searchTerm, this.loggedInUserId)
         .subscribe(data => {
             console.log(data)
             this.users = data;

@@ -80,8 +80,8 @@ export class ApiService {
         return this.http.delete(this.springUrl + 'task/deleteTask?id=' + taskId, { 'headers': headers, responseType: 'text' })
     }
 
-    findUsers(searchTerm: String) : Observable<Users[]> {
+    findUsers(searchTerm: String, userId: number) : Observable<Users[]> {
         const headers = { 'content-type': 'application/json' }
-        return this.http.get<Users[]>(this.springUrl + 'user/findUsers?searchTerm=' + searchTerm)
+        return this.http.get<Users[]>(this.springUrl + 'user/findUsers?searchTerm=' + searchTerm + '&userId=' + userId)
     }
 }

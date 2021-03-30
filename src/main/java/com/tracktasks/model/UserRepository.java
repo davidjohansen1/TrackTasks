@@ -14,10 +14,11 @@ public interface UserRepository extends CrudRepository<User, Integer> {
   public List<StudentChildren> studentsAndChildren();
 
   @Query(value = "SELECT * FROM user\n" +
-    "WHERE username like %:searhTerm%\n" +
+    "WHERE id != :userId\n" +
+    "AND (username like %:searhTerm%\n" +
     "OR first like %:searhTerm%\n" +
-    "OR last like %:searhTerm%", nativeQuery = true)
-  public List<User> findUsers(@Param("searhTerm") String searhTerm);
+    "OR last like %:searhTerm%)", nativeQuery = true)
+  public List<User> findUsers(@Param("searhTerm") String searhTerm, @Param("userId") int userId);
 
   public User findByUsername(String username);
 }

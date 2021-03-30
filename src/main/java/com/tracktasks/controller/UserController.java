@@ -40,8 +40,8 @@ public class UserController {
 
   @GetMapping(path="/findUsers")
   public @ResponseBody
-  Iterable<User> findUsers(@RequestParam String searchTerm) {
-    return userRepository.findUsers(searchTerm);
+  Iterable<User> findUsers(@RequestParam String searchTerm, @RequestParam int userId) {
+    return userRepository.findUsers(searchTerm, userId);
   }
 
 }

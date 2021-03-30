@@ -7,13 +7,13 @@
   width: 975px;
 }
 
-.table-header {
+.table-header th {
   background-color: #4894ac;
   color: white;
+  padding-left: 15px;
 }
 
 .table-spacing {
-  position: sticky;
   width: 900px;
 }
 
@@ -24,8 +24,6 @@
 .table-body {
   color: black;
   font-size: medium;
-  height: 100px !important;
-  overflow-y: scroll !important;
 }
 
 .table-body td {

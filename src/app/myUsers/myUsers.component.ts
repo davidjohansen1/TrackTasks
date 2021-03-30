@@ -6,12 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./myUsers.component.css']
 })
 export class MyUsers implements OnInit {
-  myUsersArray = [
-    {"name": "Daveeed", "status": "Pending"},
-    {"name": "Pedrina", "status": "Accepted"},
-    {"name": "Lucas", "status": "Rejected"}
-  ];
-  // myUsersArray = [];
+  // myUsersArray = [
+  //   {"name": "Daveeed", "status": "Pending"},
+  //   {"name": "Pedrina", "status": "Accepted"},
+  //   {"name": "Lucas", "status": "Rejected"}
+  // ];
+  myUsersArray = [];
   hasUsers:boolean = false;
   showFindUsersModal = false;
 
