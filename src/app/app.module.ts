@@ -23,6 +23,7 @@ import { Completed } from './completed/completed.component';
 import { DeleteTaskComponent } from './modals/delete-task/delete-task.component';
 import { MyUsers } from './myUsers/myUsers.component';
 import { FindUsers } from './modals/find-users/findUsers.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { FindUsers } from './modals/find-users/findUsers.component';
     FormsModule,
     HttpClientModule,
     DropDownListModule,
+    NgxPaginationModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],

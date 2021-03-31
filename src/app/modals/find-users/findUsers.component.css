@@ -18,7 +18,7 @@
 }
 
 .bottom {
-  margin-bottom: 25px;
+  margin-bottom: 15px;
 }
 
 .table-body {
@@ -48,3 +48,46 @@
   margin-right: 100px;
   background-color: #5cb85c;
 }
+
+::ng-deep .ngx-pagination .pagination-next a {
+  font-size: 17px !important;
+  color: #152b42;
+  margin-top: 15px;
+}
+
+::ng-deep .ngx-pagination .pagination-next span {
+  font-size: 17px !important;
+  color: #8092a5;
+  margin-top: 15px;
+}
+
+
+::ng-deep .ngx-pagination .pagination-previous a {
+  font-size: 17px !important;
+  color: #152b42;
+  margin-top: 15px;
+}
+
+::ng-deep .ngx-pagination .pagination-previous span {
+  font-size: 17px !important;
+  color: #8092a5;
+  margin-top: 15px;
+}
+
+::ng-deep .ngx-pagination .current span {
+  font-size: 15px !important;
+}
+
+::ng-deep .ngx-pagination li a span {
+  font-size: 15px !important;
+  color: #152b42;
+}
+
+.smaller-text {
+  font-size: 14px;
+}
+
+.green {
+  background-color: #5cb85c;
+}
+

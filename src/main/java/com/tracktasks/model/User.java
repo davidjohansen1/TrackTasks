@@ -8,8 +8,8 @@ public class User {
   @Id
   private int id;
   private String username;
-  private String first;
-  private String last;
+  private String firstName;
+  private String lastName;
   private String password;
   private String invite;
 
@@ -30,19 +30,19 @@ public class User {
   }
 
   public String getFirst() {
-    return first;
+    return firstName;
   }
 
-  public void setFirst(String first) {
-    this.first = first;
+  public void setFirst(String firstName) {
+    this.firstName = firstName;
   }
 
   public String getLast() {
-    return last;
+    return lastName;
   }
 
-  public void setLast(String last) {
-    this.last = last;
+  public void setLast(String lastName) {
+    this.lastName = lastName;
   }
 
   public String getPassword() {

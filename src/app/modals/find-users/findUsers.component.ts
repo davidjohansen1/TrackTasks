@@ -12,6 +12,8 @@ export class FindUsers implements OnInit {
     users = [];
     foundUsers = '';
     loggedInUserId;
+    p: number = 1;
+    invitedButtons = [];
     
     constructor(private apiService: ApiService){}
 
@@ -40,5 +42,15 @@ export class FindUsers implements OnInit {
             }
             this.ngOnInit();
         })
+    }
+    
+    checkEnterPressed(event) {
+        if (event.keyCode == 13) {
+          this.findUser()
+        }   
+    }
+
+    inviteUser(buttonId) {
+        this.invitedButtons[buttonId] = 'Invited'
     }
 }

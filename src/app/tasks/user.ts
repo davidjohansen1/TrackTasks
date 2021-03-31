@@ -1,7 +1,7 @@
 export class Users {
     username: string
-    first: string
-    last: string
+    first_name: string
+    last_name: string
     password: string
     userId: Number
 }

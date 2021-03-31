@@ -2,6 +2,7 @@ package com.tracktasks.controller;
 
 import com.tracktasks.model.StudentChildren;
 import com.tracktasks.model.User;
+import com.tracktasks.model.UserInfo;
 import com.tracktasks.model.UserRepository;
 import com.tracktasks.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,7 @@ public class UserController {
 
   @GetMapping(path="/findUsers")
   public @ResponseBody
-  Iterable<User> findUsers(@RequestParam String searchTerm, @RequestParam int userId) {
+  Iterable<UserInfo> findUsers(@RequestParam String searchTerm, @RequestParam int userId) {
     return userRepository.findUsers(searchTerm, userId);
   }
 

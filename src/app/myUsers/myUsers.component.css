@@ -50,3 +50,8 @@
   background-color: #b91773;
   border-color: #fff;
 }
+
+.message-spacing {
+    margin-top: 50px;
+    font-size: 35px;
+}
