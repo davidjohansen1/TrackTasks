@@ -91,4 +91,9 @@ export class ApiService {
         const body = JSON.stringify(userToSupervisor)
         return this.http.post(this.springUrl + 'user/inviteUser', body, { 'headers': headers, responseType: 'text' })
     }
+
+    getMyUsers(supervisorId: number) {
+        const headers = { 'content-type': 'application/json' }
+        return this.http.get<Users[]>(this.springUrl + 'user/myUsers?supervisorId=' + supervisorId)
+    }
 }

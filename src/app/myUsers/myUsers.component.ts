@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../services/api.service';
+import { Users } from '../tasks/user';
 
 @Component({
   selector: 'my-users',
@@ -6,24 +8,33 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./myUsers.component.css']
 })
 export class MyUsers implements OnInit {
-  myUsersArray = [
-    {"name": "Daveeed", "status": "Pending"},
-    {"name": "Pedrina", "status": "Accepted"},
-    {"name": "Lucas", "status": "Rejected"}
-  ];
-  // myUsersArray = [];
+  myUsersArray: Users[];
   hasUsers:boolean = false;
   showFindUsersModal = false;
+  loggedInUserId;
+  errors;
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
-    if (this.myUsersArray.length > 0) {
-      this.hasUsers = true;
-    }
+    this.loggedInUserId = localStorage.getItem('userId');
+    this.apiService.getMyUsers(this.loggedInUserId)
+    .subscribe(data => {
+      console.log(data)
+      this.myUsersArray = data;
+    },
+    error => {
+        this.errors = error;
+    },
+    () => {
+      if (this.myUsersArray.length > 0) {
+        this.hasUsers = true;
+      }
+    })
   }
 
   closeModal() {
+    this.ngOnInit();
     this.showFindUsersModal = false;
   }
 

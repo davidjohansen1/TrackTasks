@@ -5,5 +5,5 @@ public interface UserInfo {
   String getusername();
   String getfirst_name();
   String getlast_name();
-  String getinvite();
+  String getstatus();
 }

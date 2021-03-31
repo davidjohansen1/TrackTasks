@@ -19,15 +19,19 @@
     <table class="table table-striped table-spacing">
       <thead class="table-header">
         <tr>
-          <th scope="col"><h4><strong>Name</strong></h4></th>
+          <th scope="col"><h4><strong>Username</strong></h4></th>
+          <th scope="col"><h4><strong>First Name</strong></h4></th>
+          <th scope="col"><h4><strong>Last Name</strong></h4></th>
           <th scope="col"><h4><strong>Status</strong></h4></th>
           <th scope="col"><h4><strong>Actions</strong></h4></th>
         </tr>
       </thead>
       <tbody class="table-body">
         <tr *ngFor="let myUser of myUsersArray">
-          <td style="width: 45%;">{{myUser.name}}</td>
-          <td style="width: 40%;">{{myUser.status}}</td>
+          <td style="width: 25%;">{{myUser.username}}</td>
+          <td style="width: 20%;">{{myUser.first_name}}</td>
+          <td style="width: 20%;">{{myUser.last_name}}</td>
+          <td style="width: 20%;">{{myUser.status}}</td>
           <td>
             <div class="dropdown show">
               <button class="btn btn-info dropdown-toggle"

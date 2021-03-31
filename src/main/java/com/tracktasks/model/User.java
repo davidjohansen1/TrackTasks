@@ -11,7 +11,6 @@ public class User {
   private String firstName;
   private String lastName;
   private String password;
-  private String invite;
 
   public int getId() {
     return id;
@@ -51,13 +50,5 @@ public class User {
 
   public void setPassword(String password) {
     this.password = password;
-  }
-
-  public String getInvite() {
-    return invite;
-  }
-
-  public void setInvite(String invite) {
-    this.invite = invite;
   }
 }

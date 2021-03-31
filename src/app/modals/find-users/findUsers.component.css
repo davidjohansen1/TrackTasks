@@ -44,8 +44,11 @@
   height: 60px;
 }
 
-.clear-button {
+.close-button {
   margin-right: 100px;
+}
+
+.clear-button {
   background-color: #5cb85c;
 }
 

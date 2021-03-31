@@ -33,7 +33,11 @@ public class UserController {
     return userService.inviteUser(userToSupervisor);
   }
 
-
+  @GetMapping(path="/myUsers")
+  public @ResponseBody
+  Iterable<UserInfo> getMyUsers(@RequestParam int supervisorId) {
+    return userRepository.findMyUsers(supervisorId);
+  }
 
   @GetMapping(path="/studentchildusers")
   public @ResponseBody
