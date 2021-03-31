@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { ApiService } from "src/app/services/api.service";
+import { UserToSupervisor } from "src/app/tasks/userToSupervisor";
 
 @Component({
     templateUrl: './findUsers.component.html',
@@ -14,6 +15,7 @@ export class FindUsers implements OnInit {
     loggedInUserId;
     p: number = 1;
     invitedButtons = [];
+    userToSupervisor = new UserToSupervisor();
     
     constructor(private apiService: ApiService){}
 
@@ -33,7 +35,6 @@ export class FindUsers implements OnInit {
     findUser() {
         this.apiService.findUsers(this.searchTerm, this.loggedInUserId)
         .subscribe(data => {
-            console.log(data)
             this.users = data;
             if(this.users.length > 0) {
                 this.foundUsers = 'usersFound';
@@ -50,7 +51,15 @@ export class FindUsers implements OnInit {
         }   
     }
 
-    inviteUser(buttonId) {
-        this.invitedButtons[buttonId] = 'Invited'
+    inviteUser(userId) {
+        this.invitedButtons[userId] = 'Invited'
+
+        this.userToSupervisor.userId = userId;
+        this.userToSupervisor.supervisorId = this.loggedInUserId;
+
+        this.apiService.inviteUser(this.userToSupervisor)
+        .subscribe(data => {
+            console.log(data);
+        })
     }
 }

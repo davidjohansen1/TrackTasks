@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { StudentChildren } from "../tasks/studentchildren";
 import { Tasks } from "../tasks/task";
 import { Users } from "../tasks/user";
+import { UserToSupervisor } from "../tasks/userToSupervisor";
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {
@@ -83,5 +84,11 @@ export class ApiService {
     findUsers(searchTerm: String, userId: number) : Observable<Users[]> {
         const headers = { 'content-type': 'application/json' }
         return this.http.get<Users[]>(this.springUrl + 'user/findUsers?searchTerm=' + searchTerm + '&userId=' + userId)
+    }
+
+    inviteUser(userToSupervisor : UserToSupervisor): Observable<any> {
+        const headers = { 'content-type': 'application/json' }
+        const body = JSON.stringify(userToSupervisor)
+        return this.http.post(this.springUrl + 'user/inviteUser', body, { 'headers': headers, responseType: 'text' })
     }
 }

@@ -1,16 +1,10 @@
 package com.tracktasks.controller;
 
-import com.tracktasks.model.StudentChildren;
-import com.tracktasks.model.User;
-import com.tracktasks.model.UserInfo;
-import com.tracktasks.model.UserRepository;
+import com.tracktasks.model.*;
 import com.tracktasks.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @CrossOrigin(origins = "*")
@@ -32,6 +26,14 @@ public class UserController {
   Object authenticateUser(@RequestBody User userInfo) {
     return userService.authenticateUserCredentials(userInfo);
   }
+
+  @PostMapping(path="/inviteUser", produces = "application/json")
+  @ResponseBody
+  Object inviteUser(@RequestBody UserToSupervisor userToSupervisor) {
+    return userService.inviteUser(userToSupervisor);
+  }
+
+
 
   @GetMapping(path="/studentchildusers")
   public @ResponseBody
