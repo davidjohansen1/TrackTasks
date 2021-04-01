@@ -24,6 +24,7 @@ import { DeleteTaskComponent } from './modals/delete-task/delete-task.component'
 import { MyUsers } from './myUsers/myUsers.component';
 import { FindUsers } from './modals/find-users/findUsers.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { InvitationNoticeComponent } from './modals/invitation-notice/invitation-notice.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     Completed,
     DeleteTaskComponent,
     MyUsers,
-    FindUsers
+    FindUsers,
+    InvitationNoticeComponent
   ],
   imports: [
     BrowserModule,

@@ -96,4 +96,9 @@ export class ApiService {
         const headers = { 'content-type': 'application/json' }
         return this.http.get<Users[]>(this.springUrl + 'user/myUsers?supervisorId=' + supervisorId)
     }
+
+    checkInvitations(userId: number) {
+        const headers = { 'content-type': 'application/json' }
+        return this.http.get<Users>(this.springUrl + 'user/checkInvitations?userId=' + userId)
+    }
 }

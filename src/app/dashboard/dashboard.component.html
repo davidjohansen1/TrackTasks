@@ -7,7 +7,7 @@
   <div class="col-md-2">
       <button class="btn btn-info logOut" (click)="logOut()">Log Out</button>
       <br />
-      <h4><b>{{userName}}</b></h4>
+      <h4><b>{{loggedInUserName}}</b></h4>
   </div>
 </div>
 <hr>
@@ -40,8 +40,15 @@
         </li>
       </ul>
     </nav>
+    <button id="openModal" #openModal [hidden]="true" 
+    data-toggle="modal" data-target="#invitation-notice"></button>
   </div>
   <alltasks *ngIf="showAllTasks"></alltasks>
   <mytasks *ngIf="showMyTasks"></mytasks>
   <my-users *ngIf="myUsers"></my-users>
+  <invitation-notice
+    [supervisorFirstName]="supervisorFirstName"
+    [supervisorLastName]="supervisorLastName"
+    [supervisorUsername]="supervisorUsername"
+    [inviteId]="inviteId"></invitation-notice>
 </div>

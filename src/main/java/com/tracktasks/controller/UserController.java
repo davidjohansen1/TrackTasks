@@ -51,4 +51,10 @@ public class UserController {
     return userRepository.findUsers(searchTerm, userId);
   }
 
+  @GetMapping(path="/checkInvitations")
+  public @ResponseBody
+  UserInfo checkInvitations(@RequestParam int userId) {
+    return userRepository.checkInvitations(userId);
+  }
+
 }

@@ -3,5 +3,6 @@ export class Users {
     first_name: string
     last_name: string
     password: string
-    userId: Number
+    userId: number
+    id: number
 }

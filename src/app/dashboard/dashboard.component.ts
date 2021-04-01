@@ -1,4 +1,4 @@
-import { Component, Output } from "@angular/core";
+import { Component, ElementRef, Output, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 import { ApiService } from "../services/api.service";
 import { Tasks } from "../tasks/task";
@@ -13,7 +13,7 @@ export class DashboardComponent {
     allTasks: Tasks[];
     task = new Tasks();
     user = new Users();
-    userName: String = '';
+    loggedInUserName: String = '';
     errors;
     truncatedName = [];
     truncatedDescription = [];
@@ -24,7 +24,12 @@ export class DashboardComponent {
     showAbout = false;
     pageName = 'My Tasks';
     tasks = 'Available Tasks';
-
+    invite;
+    loggedInUserId;
+    @Output() inviteId;
+    @Output() supervisorFirstName;
+    @Output() supervisorLastName;
+    @Output() supervisorUsername;
     @Output() currentTaskId;
     @Output() currentTaskName;
     @Output() currentTaskDesc;
@@ -32,10 +37,29 @@ export class DashboardComponent {
     @Output() currentUsername;
 
     constructor(private apiService: ApiService, private router: Router) { }
+    @ViewChild('openModal') openModal:ElementRef;
 
     ngOnInit() {
-        this.userName = localStorage.getItem('userName')
+        this.loggedInUserName = localStorage.getItem('userName')
+        this.loggedInUserId = localStorage.getItem('userId');
         this.showMyTasks = true;
+        this.apiService.checkInvitations(this.loggedInUserId)
+        .subscribe(data => {
+            this.invite = data;
+            this.inviteId = data.id;
+            this.supervisorFirstName = data.first_name;
+            this.supervisorLastName = data.last_name;
+            this.supervisorUsername = data.username;
+        },
+        error => {
+            this.errors = error;
+        },
+        () => {
+            if(this.invite.status == 'Pending') {
+                this.openModal.nativeElement.click();
+            }
+
+        })
     }
 
     logOut() {
