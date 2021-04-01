@@ -101,4 +101,10 @@ export class ApiService {
         const headers = { 'content-type': 'application/json' }
         return this.http.get<Users>(this.springUrl + 'user/checkInvitations?userId=' + userId)
     }
+
+    inviteResponse(inviteId: number, userId: number, supervisorId: number, status: string): Observable<any> {
+        const headers = { 'content-type': 'application/json' }
+        return this.http.post(this.springUrl + 'user/inviteResponse?inviteId=' + inviteId + '&userId=' + userId + '&supervisorId=' + supervisorId + '&status=' + status,
+                            '', { 'headers': headers, responseType: 'text' })
+    }
 }

@@ -58,8 +58,6 @@ export class FindUsers implements OnInit {
         this.userToSupervisor.supervisorId = this.loggedInUserId;
 
         this.apiService.inviteUser(this.userToSupervisor)
-        .subscribe(data => {
-            console.log(data);
-        })
+        .subscribe(data => { })
     }
 }

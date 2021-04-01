@@ -20,7 +20,6 @@ export class MyUsers implements OnInit {
     this.loggedInUserId = localStorage.getItem('userId');
     this.apiService.getMyUsers(this.loggedInUserId)
     .subscribe(data => {
-      console.log(data)
       this.myUsersArray = data;
     },
     error => {

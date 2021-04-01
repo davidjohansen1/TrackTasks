@@ -5,4 +5,6 @@ export class Users {
     password: string
     userId: number
     id: number
+    status: string
+    supervisor_id: number
 }

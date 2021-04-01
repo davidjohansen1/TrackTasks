@@ -30,14 +30,12 @@ public interface UserRepository extends CrudRepository<User, Integer> {
     "ORDER BY username", nativeQuery = true)
   public List<UserInfo> findMyUsers(@Param("supervisorId") int supervisorId);
 
-  @Query(value = "SELECT uts.id, uts.status, u.username, u.first_name, u.last_name FROM user_to_supervisor uts\n" +
+  @Query(value = "SELECT uts.id, uts.status, uts.supervisor_id, u.username, u.first_name, u.last_name FROM user_to_supervisor uts\n" +
     "JOIN user u ON u.id = uts.supervisor_id\n" +
     "WHERE user_id = :userId\n" +
     "AND status = 'Pending'" +
     "LIMIT 1;", nativeQuery = true)
   public UserInfo checkInvitations(@Param("userId") int userId);
-
-
 
   public User findByUsername(String username);
 

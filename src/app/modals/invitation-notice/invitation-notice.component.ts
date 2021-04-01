@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'invitation-notice',
@@ -10,18 +11,22 @@ export class InvitationNoticeComponent implements OnInit {
   @Input() supervisorLastName;
   @Input() supervisorUsername;
   @Input() inviteId;
+  @Input() supervisorId;
+  @Input() loggedInUserId;
 
-  constructor() { }
+  constructor(private apiService:ApiService) { }
 
   ngOnInit() {
   }
 
   accept() {
-    console.log('User has accepted this invitation. going to update invite #', this.inviteId)
+    this.apiService.inviteResponse(this.inviteId, this.loggedInUserId, this.supervisorId, 'Accepted')
+    .subscribe(data => { })
   }
 
   decline() {
-    console.log('User has declined this invitation. going to update invite #', this.inviteId)
+    this.apiService.inviteResponse(this.inviteId, this.loggedInUserId, this.supervisorId, 'Rejected')
+    .subscribe(data => { })
   }
 
 }

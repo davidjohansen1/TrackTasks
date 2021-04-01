@@ -90,4 +90,12 @@ public class UserService {
     return "userToSupervisor set successfully";
   }
 
+  public void inviteResponse(int inviteId, int userId, int supervisorId, String status) {
+    userToSupervisor.setId(inviteId);
+    userToSupervisor.setUserId(userId);
+    userToSupervisor.setSupervisorId(supervisorId);
+    userToSupervisor.setStatus(status);
+    userToSupervisorRepository.save(userToSupervisor);
+  }
+
 }

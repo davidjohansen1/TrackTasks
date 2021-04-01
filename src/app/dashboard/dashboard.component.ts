@@ -24,17 +24,13 @@ export class DashboardComponent {
     showAbout = false;
     pageName = 'My Tasks';
     tasks = 'Available Tasks';
-    invite;
-    loggedInUserId;
+    inviteStatus;
+    @Output() supervisorId;
     @Output() inviteId;
     @Output() supervisorFirstName;
     @Output() supervisorLastName;
     @Output() supervisorUsername;
-    @Output() currentTaskId;
-    @Output() currentTaskName;
-    @Output() currentTaskDesc;
-    @Output() currentAssignedUserId;
-    @Output() currentUsername;
+    @Output() loggedInUserId;
 
     constructor(private apiService: ApiService, private router: Router) { }
     @ViewChild('openModal') openModal:ElementRef;
@@ -45,17 +41,20 @@ export class DashboardComponent {
         this.showMyTasks = true;
         this.apiService.checkInvitations(this.loggedInUserId)
         .subscribe(data => {
-            this.invite = data;
-            this.inviteId = data.id;
-            this.supervisorFirstName = data.first_name;
-            this.supervisorLastName = data.last_name;
-            this.supervisorUsername = data.username;
+            if(data) {
+                this.inviteStatus = data.status;
+                this.inviteId = data.id;
+                this.supervisorId = data.supervisor_id;
+                this.supervisorFirstName = data.first_name;
+                this.supervisorLastName = data.last_name;
+                this.supervisorUsername = data.username;
+            }
         },
         error => {
             this.errors = error;
         },
         () => {
-            if(this.invite.status == 'Pending') {
+            if(this.inviteStatus == 'Pending') {
                 this.openModal.nativeElement.click();
             }
 

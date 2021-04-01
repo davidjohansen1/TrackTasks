@@ -57,4 +57,11 @@ public class UserController {
     return userRepository.checkInvitations(userId);
   }
 
+  @PostMapping(path="/inviteResponse")
+  public @ResponseBody
+  String inviteResponse(@RequestParam int inviteId, @RequestParam int userId, @RequestParam int supervisorId, @RequestParam String status) {
+    userService.inviteResponse(inviteId, userId, supervisorId, status);
+    return "invited accepted";
+  }
+
 }
