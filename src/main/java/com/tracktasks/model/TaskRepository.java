@@ -48,7 +48,7 @@ public interface TaskRepository extends CrudRepository<Task, Integer> {
     "AND t.status = 'Completed'", nativeQuery = true)
   public List<FullTaskInfo> getUserCompletedTasks(@Param("userId") int userId);
 
-  @Query(value = "SELECT t.id, t.name, t.description, t.assigned_user, t.available, t.status, t.notes, u.username FROM task t\n" +
+  @Query(value = "SELECT t.id, t.name, t.description, t.assigned_user, t.available, t.status, t.notes, t.owner, u.username FROM task t\n" +
     "LEFT JOIN user u ON u.id = t.assigned_user\n" +
     "WHERE t.id = :taskId", nativeQuery = true)
   public FullTaskInfo getTask(@Param("taskId") int taskId);

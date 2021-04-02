@@ -43,7 +43,9 @@
     <button id="openModal" #openModal [hidden]="true" 
     data-toggle="modal" data-target="#invitation-notice"></button>
   </div>
-  <alltasks *ngIf="showAllTasks"></alltasks>
+  <alltasks 
+    *ngIf="showAllTasks"
+    [loggedInUserId]="loggedInUserId"></alltasks>
   <mytasks *ngIf="showMyTasks"></mytasks>
   <my-users *ngIf="myUsers"></my-users>
   <invitation-notice

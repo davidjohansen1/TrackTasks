@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { ApiService } from "../../services/api.service";
-import { StudentChildren } from "../../tasks/studentchildren";
 import { Tasks } from "../../tasks/task";
 
 @Component({
@@ -16,16 +15,24 @@ export class EditTask {
     readloadSibling;
     originalAvailable;
     originalUser;
+    possibleOwners = [];
     @Input() currentTaskId
-    @Input() studentChildren
+    @Input() supervised
     @Output("reloadComponent") reloadComponent: EventEmitter<any> = new EventEmitter();
     @Output("closeModal") closeModal: EventEmitter<any> = new EventEmitter();
 
     public selectUserfields: Object = { text: 'username', value: 'id' };
+    public selectOwer: Object = { text: 'username', value: 'id' };
 
     ngOnInit() {
+        this.supervised.forEach(user => {
+            this.possibleOwners.push(user);
+        });
+        this.task.owner = +localStorage.getItem('userId');
+
         this.apiService.getTask(+this.currentTaskId)
         .subscribe(data => {
+            console.log(data)
             this.readloadSibling = '';
             this.task.id = data.id;
             this.task.name = data.name;
@@ -38,6 +45,7 @@ export class EditTask {
             this.task.available = data.available;
             this.originalAvailable = this.task.available;
             this.task.status = data.status;
+            this.task.owner = data.owner;
         })
     }
 

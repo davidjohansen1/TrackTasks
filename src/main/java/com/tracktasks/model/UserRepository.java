@@ -10,8 +10,11 @@ public interface UserRepository extends CrudRepository<User, Integer> {
   @Query(value = "SELECT max(id) FROM User")
   public int userIdMax();
 
-  @Query(value = "SELECT * FROM user", nativeQuery = true)
-  public List<StudentChildren> studentsAndChildren();
+  @Query(value = "SELECT u.id, u.username, u.first_name, u.last_name FROM user u\n" +
+    "JOIN user_to_supervisor uts ON u.id = uts.user_id\n" +
+    "WHERE supervisor_id = :supervisorId\n" +
+    "AND status = 'Accepted'\n", nativeQuery = true)
+  public List<Supervised> supervised(@Param("supervisorId") int supervisorId);
 
   @Query(value = "SELECT u.id, username, first_name, status, last_name FROM user u\n" +
     "LEFT JOIN user_to_supervisor uts ON uts.user_id = u.id\n" +

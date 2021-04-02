@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { StudentChildren } from "../tasks/studentchildren";
+import { Supervised } from "../tasks/supervised";
 import { Tasks } from "../tasks/task";
 import { Users } from "../tasks/user";
 import { UserToSupervisor } from "../tasks/userToSupervisor";
@@ -46,8 +46,8 @@ export class ApiService {
         return this.http.post(this.springUrl + 'user/authenticate', body, { 'headers': headers })
     }
 
-    getStudentChildUsers(): Observable<StudentChildren[]> {
-        return this.http.get<StudentChildren[]>(this.springUrl + 'user/studentchildusers')
+    getSupervised(supervisorId: number): Observable<Supervised[]> {
+        return this.http.get<Supervised[]>(this.springUrl + 'user/supervised?supervisorId=' + supervisorId)
     }
 
     editTask(task: Tasks): Observable<any> {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from "@angular/core";
+import { Component, Input, OnInit, Output } from "@angular/core";
 import { ApiService } from "../services/api.service";
 import { Tasks } from "../tasks/task";
 import { Users } from "../tasks/user";
@@ -15,19 +15,20 @@ export class AllTasks implements OnInit {
     errors;
     showNewModal = false;
     showDeletedMessage = false;
-    @Output() studentChildren = [];
+    @Output() supervised = [];
     @Output() unavailableRefresh;
     @Output() availableRefresh;
     @Output() assignedRefresh;
+    @Input() loggedInUserId;
 
     constructor(private apiService: ApiService) { }
 
     ngOnInit() {
-        
-        this.apiService.getStudentChildUsers()
+        this.apiService.getSupervised(this.loggedInUserId)
             .subscribe(data => {
-                this.studentChildren = data
-                this.studentChildren.unshift({"id": 0, "username": ""})
+                this.supervised = data
+                this.supervised.unshift({"id": 0, "username": ""})
+                this.supervised.push({"id":+localStorage.getItem('userId'), "username":localStorage.getItem('userName')})
             })
     }   
 

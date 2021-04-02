@@ -18,7 +18,7 @@ export class AssignedTasksComponent implements OnInit {
   @Output() deleteTaskId;
   @Output() deleteTaskName;
   @Output() deleteTaskDesc;
-  @Input() studentChildren;
+  @Input() supervised;
   @Input() assignedRefresh;
 
   constructor(private apiService: ApiService) { }

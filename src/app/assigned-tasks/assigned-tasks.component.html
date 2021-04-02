@@ -29,7 +29,7 @@
 </div>
 <edit-task *ngIf="showEditModal"
   [currentTaskId]="currentTaskId"
-  [studentChildren]="studentChildren"
+  [supervised]="supervised"
   (reloadComponent)="reloadComponent($event)"
   (closeModal)="closeModal()">
 </edit-task>

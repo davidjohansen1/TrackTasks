@@ -18,7 +18,7 @@ export class AvailableTasksComponent implements OnInit {
   @Output("reloadUnavailable") reloadUnavailable: EventEmitter<any> = new EventEmitter();
   @Output("reloadAssigned") reloadAssigned: EventEmitter<any> = new EventEmitter();
   @Output("deleteMessage") deleteMessage: EventEmitter<any> = new EventEmitter();
-  @Input() studentChildren;
+  @Input() supervised;
   @Input() availableRefresh;
 
   constructor(private apiService: ApiService) { }

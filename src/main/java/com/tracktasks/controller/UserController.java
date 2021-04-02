@@ -39,10 +39,10 @@ public class UserController {
     return userRepository.findMyUsers(supervisorId);
   }
 
-  @GetMapping(path="/studentchildusers")
+  @GetMapping(path="/supervised")
   public @ResponseBody
-  Iterable<StudentChildren> getStudebtChildren() {
-    return userRepository.studentsAndChildren();
+  Iterable<Supervised> getSupervised(@RequestParam int supervisorId) {
+    return userRepository.supervised(supervisorId);
   }
 
   @GetMapping(path="/findUsers")

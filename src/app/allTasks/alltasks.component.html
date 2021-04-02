@@ -18,21 +18,21 @@
     </div>
   </div>
   <unavailable-tasks
-    [studentChildren]="studentChildren"
+    [supervised]="supervised"
     [unavailableRefresh]="unavailableRefresh"
     (reloadAvailable)="reloadAvailable()"
     (reloadAssigned)="reloadAssigned()"
     (deleteMessage)="deleteMessage()">
   </unavailable-tasks>
   <available-tasks
-    [studentChildren]="studentChildren"
+    [supervised]="supervised"
     [availableRefresh]="availableRefresh"
     (reloadUnavailable)="reloadUnavailable()"
     (reloadAssigned)="reloadAssigned()"
     (deleteMessage)="deleteMessage()">
   </available-tasks>
   <assigned-tasks
-    [studentChildren]="studentChildren"
+    [supervised]="supervised"
     [assignedRefresh]="assignedRefresh"
     (reloadUnavailable)="reloadUnavailable()"
     (reloadAvailable)="reloadAvailable()"
@@ -40,7 +40,7 @@
   </assigned-tasks>
 </div>
 <newTask *ngIf="showNewModal"
-  [studentChildren]="studentChildren"
+  [supervised]="supervised"
   (reloadComponent)="reloadComponent()"
   (closeModal)="closeModal()">
 </newTask>
