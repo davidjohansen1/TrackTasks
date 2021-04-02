@@ -20,6 +20,7 @@ export class MyUsers implements OnInit {
     this.loggedInUserId = localStorage.getItem('userId');
     this.apiService.getMyUsers(this.loggedInUserId)
     .subscribe(data => {
+      console.log(data)
       this.myUsersArray = data;
     },
     error => {
@@ -39,6 +40,18 @@ export class MyUsers implements OnInit {
 
   findUsers() {
     this.showFindUsersModal = true;
+  }
+
+  viewUserDetails() {
+    console.log('this eventually will navigate to a new user details page')
+  }
+
+  remove() {
+    console.log('this will delete the entry from the userToSupervisor table')
+  }
+
+  resend() {
+    console.log('this will update the status in the userToSupervisor table back to pending')
   }
 
 }

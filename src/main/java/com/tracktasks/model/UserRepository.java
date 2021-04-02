@@ -24,7 +24,7 @@ public interface UserRepository extends CrudRepository<User, Integer> {
     "ORDER BY username;", nativeQuery = true)
   public List<UserInfo> findUsers(@Param("searhTerm") String searhTerm, @Param("userId") int userId);
 
-  @Query(value = "SELECT u.id, username, first_name, last_name, status FROM user u\n" +
+  @Query(value = "SELECT u.id, username, first_name, last_name, uts.id as utsId, user_id, supervisor_id, status FROM user u\n" +
     "JOIN user_to_supervisor uts ON uts.user_id = u.id\n" +
     "WHERE supervisor_id = :supervisorId\n" +
     "ORDER BY username", nativeQuery = true)

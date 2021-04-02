@@ -7,4 +7,5 @@ public interface UserInfo {
   String getfirst_name();
   String getlast_name();
   String getstatus();
+  Integer getutsid();
 }
