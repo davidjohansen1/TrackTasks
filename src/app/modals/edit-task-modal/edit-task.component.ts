@@ -15,9 +15,9 @@ export class EditTask {
     readloadSibling;
     originalAvailable;
     originalUser;
-    possibleOwners = [];
     @Input() currentTaskId
     @Input() supervised
+    @Input() possibleOwners
     @Output("reloadComponent") reloadComponent: EventEmitter<any> = new EventEmitter();
     @Output("closeModal") closeModal: EventEmitter<any> = new EventEmitter();
 
@@ -25,14 +25,8 @@ export class EditTask {
     public selectOwer: Object = { text: 'username', value: 'id' };
 
     ngOnInit() {
-        this.supervised.forEach(user => {
-            this.possibleOwners.push(user);
-        });
-        this.task.owner = +localStorage.getItem('userId');
-
         this.apiService.getTask(+this.currentTaskId)
         .subscribe(data => {
-            console.log(data)
             this.readloadSibling = '';
             this.task.id = data.id;
             this.task.name = data.name;

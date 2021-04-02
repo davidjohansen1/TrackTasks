@@ -25,16 +25,12 @@
                             placeholder='Select a User' [(ngModel)]="task.assignedUser">
                         </ejs-dropdownlist>
                     </div>
-
-
                     <div class="form-group">
                         <label for="currentOwner" class="label-text">Select an owner for this task:</label>
                         <ejs-dropdownlist id='currentOwner' [dataSource]='possibleOwners' [fields]='selectUserfields' width="90%"
                             placeholder='Select an owner' [(ngModel)]="task.owner">
                         </ejs-dropdownlist>
                     </div>
-
-
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="available" [checked]="task.available" [(ngModel)]="task.available">
                         <label class="form-check-label available-text" for="available">

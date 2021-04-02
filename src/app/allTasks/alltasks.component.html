@@ -20,6 +20,7 @@
   <unavailable-tasks
     [supervised]="supervised"
     [unavailableRefresh]="unavailableRefresh"
+    [possibleOwners]="possibleOwners"
     (reloadAvailable)="reloadAvailable()"
     (reloadAssigned)="reloadAssigned()"
     (deleteMessage)="deleteMessage()">
@@ -27,6 +28,7 @@
   <available-tasks
     [supervised]="supervised"
     [availableRefresh]="availableRefresh"
+    [possibleOwners]="possibleOwners"
     (reloadUnavailable)="reloadUnavailable()"
     (reloadAssigned)="reloadAssigned()"
     (deleteMessage)="deleteMessage()">
@@ -34,6 +36,7 @@
   <assigned-tasks
     [supervised]="supervised"
     [assignedRefresh]="assignedRefresh"
+    [possibleOwners]="possibleOwners"
     (reloadUnavailable)="reloadUnavailable()"
     (reloadAvailable)="reloadAvailable()"
     (deleteMessage)="deleteMessage()">
@@ -41,6 +44,7 @@
 </div>
 <newTask *ngIf="showNewModal"
   [supervised]="supervised"
+  [possibleOwners]="possibleOwners"
   (reloadComponent)="reloadComponent()"
   (closeModal)="closeModal()">
 </newTask>

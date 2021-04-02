@@ -19,6 +19,7 @@ export class UnavailableTasksComponent implements OnInit {
   @Output() deleteTaskName;
   @Output() deleteTaskDesc;
   @Input() supervised;
+  @Input() possibleOwners;
   @Input() unavailableRefresh;
   
   constructor(private apiService: ApiService) { }

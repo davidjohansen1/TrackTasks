@@ -19,6 +19,7 @@ export class AvailableTasksComponent implements OnInit {
   @Output("reloadAssigned") reloadAssigned: EventEmitter<any> = new EventEmitter();
   @Output("deleteMessage") deleteMessage: EventEmitter<any> = new EventEmitter();
   @Input() supervised;
+  @Input() possibleOwners;
   @Input() availableRefresh;
 
   constructor(private apiService: ApiService) { }
