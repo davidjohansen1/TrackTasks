@@ -8,8 +8,9 @@ public class User {
   @Id
   private int id;
   private String username;
+  private String firstName;
+  private String lastName;
   private String password;
-  private String userType;
 
   public int getId() {
     return id;
@@ -27,19 +28,27 @@ public class User {
     this.username = username;
   }
 
+  public String getFirst() {
+    return firstName;
+  }
+
+  public void setFirst(String firstName) {
+    this.firstName = firstName;
+  }
+
+  public String getLast() {
+    return lastName;
+  }
+
+  public void setLast(String lastName) {
+    this.lastName = lastName;
+  }
+
   public String getPassword() {
     return password;
   }
 
   public void setPassword(String password) {
     this.password = password;
-  }
-
-  public String getUserType() {
-    return userType;
-  }
-
-  public void setUserType(String userType) {
-    this.userType = userType;
   }
 }

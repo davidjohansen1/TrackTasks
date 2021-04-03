@@ -25,7 +25,6 @@ export class InProgress implements OnInit {
     this.currentUserId = localStorage.getItem('userId')
     this.apiService.getUserInProgressTasks(+this.currentUserId)
         .subscribe(data => {
-          console.log(data)
             this.allTasks = data;
         })
   }

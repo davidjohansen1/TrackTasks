@@ -21,6 +21,10 @@ import { EditMyTask } from './modals/edit-my-task-modal/edit-my-task';
 import { InProgress } from './in-progress/in-progress.component';
 import { Completed } from './completed/completed.component';
 import { DeleteTaskComponent } from './modals/delete-task/delete-task.component';
+import { MyUsers } from './myUsers/myUsers.component';
+import { FindUsers } from './modals/find-users/findUsers.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { InvitationNoticeComponent } from './modals/invitation-notice/invitation-notice.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +43,10 @@ import { DeleteTaskComponent } from './modals/delete-task/delete-task.component'
     EditMyTask,
     InProgress,
     Completed,
-    DeleteTaskComponent
+    DeleteTaskComponent,
+    MyUsers,
+    FindUsers,
+    InvitationNoticeComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +54,7 @@ import { DeleteTaskComponent } from './modals/delete-task/delete-task.component'
     FormsModule,
     HttpClientModule,
     DropDownListModule,
+    NgxPaginationModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],

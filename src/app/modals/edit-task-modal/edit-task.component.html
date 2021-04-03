@@ -21,7 +21,7 @@
                     </div>
                     <div class="form-group">
                         <label for="currentAssignedUserId" class="label-text">Assign a user to this task:</label>
-                        <ejs-dropdownlist id='currentAssignedUserId' [value]="task.assigned_user" [dataSource]='studentChildren' [fields]='selectUserfields' width="90%"
+                        <ejs-dropdownlist id='currentAssignedUserId' [value]="task.assigned_user" [dataSource]='supervised' [fields]='selectUserfields' width="90%"
                             placeholder='Select a User' [(ngModel)]="task.assignedUser">
                         </ejs-dropdownlist>
                     </div>
@@ -32,7 +32,7 @@
                         </label>
                       </div>
                     <div class="form-group">
-                        <button class="btn btn-primary" (click)="saveTaskChanges()" style="margin-right: 5px;" data-dismiss="modal" [disabled]="task.name === ''">Save</button>
+                        <button class="btn btn-primary" data-dismiss="modal" (click)="saveTaskChanges()" style="margin-right: 5px;" [disabled]="task.name === ''">Save</button>
                         <button class="btn btn-default" data-dismiss="modal" (click)="closeCurrentModal()">Cancel</button>
                     </div>
                 </div>

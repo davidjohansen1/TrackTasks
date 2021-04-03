@@ -13,6 +13,7 @@ public class Task {
   private boolean available;
   private String status;
   private String notes;
+  private int owner;
 
   public int getId() {
     return id;
@@ -68,5 +69,13 @@ public class Task {
 
   public void setNotes(String notes) {
     this.notes = notes;
+  }
+
+  public int getOwner() {
+    return owner;
+  }
+
+  public void setOwner(int owner) {
+    this.owner = owner;
   }
 }

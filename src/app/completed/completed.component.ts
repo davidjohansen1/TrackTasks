@@ -25,7 +25,6 @@ export class Completed implements OnInit {
     this.currentUserId = localStorage.getItem('userId')
     this.apiService.getUserCompletedTasks(+this.currentUserId)
         .subscribe(data => {
-          console.log(data)
             this.allTasks = data;
         })
   }

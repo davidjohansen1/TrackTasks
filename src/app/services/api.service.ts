@@ -1,9 +1,10 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { StudentChildren } from "../tasks/studentchildren";
+import { Supervised } from "../tasks/supervised";
 import { Tasks } from "../tasks/task";
 import { Users } from "../tasks/user";
+import { UserToSupervisor } from "../tasks/userToSupervisor";
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {
@@ -15,16 +16,16 @@ export class ApiService {
         return this.http.get<Tasks[]>(this.springUrl + 'task/getTasks')
     }
 
-    getUnavailableTasks(): Observable<Tasks[]> {
-        return this.http.get<Tasks[]>(this.springUrl + 'task/getUnavailableTasks')
+    getUnavailableTasks(loggedInUserId: number): Observable<Tasks[]> {
+        return this.http.get<Tasks[]>(this.springUrl + 'task/getUnavailableTasks?loggedInUserId=' + loggedInUserId)
     }
 
-    getAvailableTasks(): Observable<Tasks[]> {
-        return this.http.get<Tasks[]>(this.springUrl + 'task/getAvailableTasks')
+    getAvailableTasks(loggedInUserId: number): Observable<Tasks[]> {
+        return this.http.get<Tasks[]>(this.springUrl + 'task/getAvailableTasks?loggedInUserId=' + loggedInUserId)
     }
 
-    getAssignedTasks(): Observable<Tasks[]> {
-        return this.http.get<Tasks[]>(this.springUrl + 'task/getAssignedTasks')
+    getAssignedTasks(loggedInUserId: number): Observable<Tasks[]> {
+        return this.http.get<Tasks[]>(this.springUrl + 'task/getAssignedTasks?loggedInUserId=' + loggedInUserId)
     }
 
     addTask(task: Tasks): Observable<any> {
@@ -45,8 +46,8 @@ export class ApiService {
         return this.http.post(this.springUrl + 'user/authenticate', body, { 'headers': headers })
     }
 
-    getStudentChildUsers(): Observable<StudentChildren[]> {
-        return this.http.get<StudentChildren[]>(this.springUrl + 'user/studentchildusers')
+    getSupervised(supervisorId: number): Observable<Supervised[]> {
+        return this.http.get<Supervised[]>(this.springUrl + 'user/supervised?supervisorId=' + supervisorId)
     }
 
     editTask(task: Tasks): Observable<any> {
@@ -78,5 +79,32 @@ export class ApiService {
     deleteTask(taskId: Number): Observable<any> {
         const headers = { 'content-type': 'application/json' }
         return this.http.delete(this.springUrl + 'task/deleteTask?id=' + taskId, { 'headers': headers, responseType: 'text' })
+    }
+
+    findUsers(searchTerm: String, userId: number) : Observable<Users[]> {
+        const headers = { 'content-type': 'application/json' }
+        return this.http.get<Users[]>(this.springUrl + 'user/findUsers?searchTerm=' + searchTerm + '&userId=' + userId)
+    }
+
+    inviteUser(userToSupervisor : UserToSupervisor): Observable<any> {
+        const headers = { 'content-type': 'application/json' }
+        const body = JSON.stringify(userToSupervisor)
+        return this.http.post(this.springUrl + 'user/inviteUser', body, { 'headers': headers, responseType: 'text' })
+    }
+
+    getMyUsers(supervisorId: number) {
+        const headers = { 'content-type': 'application/json' }
+        return this.http.get<Users[]>(this.springUrl + 'user/myUsers?supervisorId=' + supervisorId)
+    }
+
+    checkInvitations(userId: number) {
+        const headers = { 'content-type': 'application/json' }
+        return this.http.get<Users>(this.springUrl + 'user/checkInvitations?userId=' + userId)
+    }
+
+    inviteResponse(inviteId: number, userId: number, supervisorId: number, status: string): Observable<any> {
+        const headers = { 'content-type': 'application/json' }
+        return this.http.post(this.springUrl + 'user/inviteResponse?inviteId=' + inviteId + '&userId=' + userId + '&supervisorId=' + supervisorId + '&status=' + status,
+                            '', { 'headers': headers, responseType: 'text' })
     }
 }

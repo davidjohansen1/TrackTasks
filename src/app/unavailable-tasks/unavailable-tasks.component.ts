@@ -18,13 +18,14 @@ export class UnavailableTasksComponent implements OnInit {
   @Output() deleteTaskId;
   @Output() deleteTaskName;
   @Output() deleteTaskDesc;
-  @Input() studentChildren;
+  @Input() supervised;
   @Input() unavailableRefresh;
+  @Input() loggedInUserId;
   
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
-    this.apiService.getUnavailableTasks()
+    this.apiService.getUnavailableTasks(this.loggedInUserId)
       .subscribe(data => {
         this.unavailableTasks = data
       })

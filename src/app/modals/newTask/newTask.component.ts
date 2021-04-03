@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { ApiService } from "../../services/api.service";
 import { Tasks } from "../../tasks/task";
+declare var $: any;
 
 @Component({
     templateUrl: './newTask.component.html',
@@ -12,13 +13,17 @@ export class NewTask {
 
     errors;
     task = new Tasks();
+    loggedInUser;
     @Output("reloadComponent") reloadComponent: EventEmitter<any> = new EventEmitter();
     @Output("closeModal") closeModal: EventEmitter<any> = new EventEmitter();
-    @Input() studentChildren;
+    @Input() supervised;
 
     public selectUserfields: Object = { text: 'username', value: 'id' };
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.task.owner = +localStorage.getItem('userId');
+        this.loggedInUser = localStorage.getItem('userId');
+     }
 
     closeCurrentModal() {
         this.closeModal.emit();

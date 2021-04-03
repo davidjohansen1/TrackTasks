@@ -11,7 +11,12 @@
           <h5 class="card-title"><strong>Description:</strong>&nbsp;{{task.description}}</h5>
           <div *ngIf="task.username"><strong>Assigned User:</strong>&nbsp;{{task.username}}</div>
           <div *ngIf="!task.username"><strong>Assigned User:</strong>&nbsp;<em>Unassigned</em></div>
-          <button class="btn btn-info button-text" data-toggle="modal" data-target="#editTask"
+          <button
+            class="btn btn-info button-text"
+            data-toggle="modal"
+            data-target="#editTask"
+            data-backdrop="static"
+            data-keyboard="false"
             (click)="editTask(task.id)">
             <i class="fa fa-edit fa-lg"></i>&nbsp;Edit
           </button>
@@ -29,7 +34,7 @@
 </div>
 <edit-task *ngIf="showEditModal"
   [currentTaskId]="currentTaskId"
-  [studentChildren]="studentChildren"
+  [supervised]="supervised"
   (reloadComponent)="reloadComponent($event)"
   (closeModal)="closeModal()">
 </edit-task>

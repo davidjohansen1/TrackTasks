@@ -26,17 +26,19 @@ public class TaskService {
     task.setAvailable(newTask.getAvailable());
     task.setStatus("Not Started");
     task.setNotes(newTask.getNotes());
+    task.setOwner(newTask.getOwner());
     taskRepository.save(task);
   }
 
-  public void updateExistingTask(Task currentTaskUser) {
-      task.setId(currentTaskUser.getId());
-      task.setName(currentTaskUser.getName());
-      task.setDescription(currentTaskUser.getDescription());
-      task.setAssignedUser(currentTaskUser.getAssignedUser());
-      task.setAvailable(currentTaskUser.getAvailable());
-      task.setStatus(currentTaskUser.getStatus());
-      task.setNotes(currentTaskUser.getNotes());
+  public void updateExistingTask(Task currentTask) {
+      task.setId(currentTask.getId());
+      task.setName(currentTask.getName());
+      task.setDescription(currentTask.getDescription());
+      task.setAssignedUser(currentTask.getAssignedUser());
+      task.setAvailable(currentTask.getAvailable());
+      task.setStatus(currentTask.getStatus());
+      task.setNotes(currentTask.getNotes());
+      task.setOwner(currentTask.getOwner());
       taskRepository.save(task);
   }
 

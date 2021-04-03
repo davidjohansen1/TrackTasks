@@ -11,28 +11,34 @@
         <i class="fa fa-check fa-lg"></i>&nbsp;&nbsp;&nbsp;Create New Task
       </button>
     </div>
-    <div class="col-md-4">
-      <div id="delete message" *ngIf="showDeletedMessage" class="delete-message">
+    <div class="col-md-4" *ngIf="showDeletedMessage">
+      <div id="delete message" class="delete-message">
         <i class="fa fa-check fa-lg"></i><strong>The task has been successfully deleted</strong>
-      </div>
+      </div>    
+    </div>
+    <div class="col-md-10" *ngIf="!showDeletedMessage">
+      <h4>Only tasks which you have created or which your supervisor has made available will display here.</h4>
     </div>
   </div>
-  <unavailable-tasks *ngIf="userType === 'supervisor' || userType === 'parent'"
-    [studentChildren]="studentChildren"
+  <unavailable-tasks
+    [supervised]="supervised"
+    [loggedInUserId]="loggedInUserId"
     [unavailableRefresh]="unavailableRefresh"
     (reloadAvailable)="reloadAvailable()"
     (reloadAssigned)="reloadAssigned()"
     (deleteMessage)="deleteMessage()">
   </unavailable-tasks>
   <available-tasks
-    [studentChildren]="studentChildren"
+    [supervised]="supervised"
+    [loggedInUserId]="loggedInUserId"
     [availableRefresh]="availableRefresh"
     (reloadUnavailable)="reloadUnavailable()"
     (reloadAssigned)="reloadAssigned()"
     (deleteMessage)="deleteMessage()">
   </available-tasks>
-  <assigned-tasks *ngIf="userType === 'supervisor' || userType === 'parent'"
-    [studentChildren]="studentChildren"
+  <assigned-tasks
+    [supervised]="supervised"
+    [loggedInUserId]="loggedInUserId"
     [assignedRefresh]="assignedRefresh"
     (reloadUnavailable)="reloadUnavailable()"
     (reloadAvailable)="reloadAvailable()"
@@ -40,7 +46,7 @@
   </assigned-tasks>
 </div>
 <newTask *ngIf="showNewModal"
-  [studentChildren]="studentChildren"
+  [supervised]="supervised"
   (reloadComponent)="reloadComponent()"
   (closeModal)="closeModal()">
 </newTask>
