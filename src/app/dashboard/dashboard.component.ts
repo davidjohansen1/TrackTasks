@@ -33,7 +33,7 @@ export class DashboardComponent {
     @Output() loggedInUserId;
 
     constructor(private apiService: ApiService, private router: Router) { }
-    @ViewChild('openModal') openModal:ElementRef;
+    @ViewChild('openInviteNoticeModal') openInviteNoticeModal:ElementRef;
 
     ngOnInit() {
         this.loggedInUserName = localStorage.getItem('userName')
@@ -55,7 +55,7 @@ export class DashboardComponent {
         },
         () => {
             if(this.inviteStatus == 'Pending') {
-                this.openModal.nativeElement.click();
+                this.openInviteNoticeModal.nativeElement.click();
             }
 
         })

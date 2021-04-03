@@ -27,7 +27,6 @@ export class AllTasks implements OnInit {
     ngOnInit() {
         this.apiService.getSupervised(this.loggedInUserId)
             .subscribe(data => {
-                console.log(data);
                 this.supervised = data
                 this.supervised.push({"id":+localStorage.getItem('userId'), "username":localStorage.getItem('userName')})
 

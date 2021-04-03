@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { ApiService } from "../../services/api.service";
 import { Tasks } from "../../tasks/task";
+declare var $: any;
 
 @Component({
     templateUrl: './edit-task.component.html',
@@ -15,6 +16,8 @@ export class EditTask {
     readloadSibling;
     originalAvailable;
     originalUser;
+    loggedInUser;
+    loggedInTaskOwner = true;
     @Input() currentTaskId
     @Input() supervised
     @Input() possibleOwners
@@ -22,11 +25,12 @@ export class EditTask {
     @Output("closeModal") closeModal: EventEmitter<any> = new EventEmitter();
 
     public selectUserfields: Object = { text: 'username', value: 'id' };
-    public selectOwer: Object = { text: 'username', value: 'id' };
 
     ngOnInit() {
+        this.loggedInUser = localStorage.getItem('userId');
         this.apiService.getTask(+this.currentTaskId)
         .subscribe(data => {
+            console.log(this.possibleOwners)
             this.readloadSibling = '';
             this.task.id = data.id;
             this.task.name = data.name;
@@ -40,6 +44,10 @@ export class EditTask {
             this.originalAvailable = this.task.available;
             this.task.status = data.status;
             this.task.owner = data.owner;
+            console.log('the task owner is ', this.task.owner, ' and the logged in user is ', +this.loggedInUser)
+            if(this.task.owner != +this.loggedInUser) {
+                this.loggedInTaskOwner = false;
+            }
         })
     }
 
@@ -48,6 +56,15 @@ export class EditTask {
     }
 
     saveTaskChanges() {
+        if(this.task.owner != +this.loggedInUser) {
+            var response = confirm("Are you sure you want this task to be owned by someone other than yourself?")
+            if(response == true) {
+                $('#editTask').modal('toggle');
+            } else {
+                return
+            }
+        }
+
         // Available is checked so it moves to available. Need to reload the available column
         if(!this.originalAvailable && this.task.available) {
             this.readloadSibling = 'reloadAvailable'
@@ -74,6 +91,7 @@ export class EditTask {
                 this.errors = error;
             },
             () => {
+                $('#editTask').modal('toggle');
                 this.closeModal.emit();
                 this.reloadComponent.emit(this.readloadSibling);
             });

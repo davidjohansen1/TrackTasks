@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { ApiService } from "../../services/api.service";
 import { Tasks } from "../../tasks/task";
+declare var $: any;
 
 @Component({
     templateUrl: './newTask.component.html',
@@ -12,6 +13,7 @@ export class NewTask {
 
     errors;
     task = new Tasks();
+    loggedInUser;
     @Output("reloadComponent") reloadComponent: EventEmitter<any> = new EventEmitter();
     @Output("closeModal") closeModal: EventEmitter<any> = new EventEmitter();
     @Input() supervised;
@@ -22,6 +24,7 @@ export class NewTask {
 
     ngOnInit() {
         this.task.owner = +localStorage.getItem('userId');
+        this.loggedInUser = localStorage.getItem('userId');
      }
 
     closeCurrentModal() {
@@ -29,6 +32,15 @@ export class NewTask {
     }
 
     saveTask() {
+        if(this.task.owner != +this.loggedInUser) {
+            var response = confirm("Are you sure you want this task to be owned by someone other than yourself?")
+            if(response == true) {
+                $('#newTask').modal('toggle');
+            } else {
+                return
+            }
+        }
+
         this.task.notes = null;
         if(this.task.assignedUser) {
             this.task.available = true;
@@ -40,6 +52,7 @@ export class NewTask {
                 this.errors = error;
             },
             () => {
+                $('#newTask').modal('toggle');
                 this.closeModal.emit();
                 this.reloadComponent.emit();
             });

@@ -25,7 +25,7 @@
                             placeholder='Select a User' [(ngModel)]="task.assignedUser">
                         </ejs-dropdownlist>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" *ngIf="loggedInTaskOwner == true">
                         <label for="currentOwner" class="label-text">Select an owner for this task:</label>
                         <ejs-dropdownlist id='currentOwner' [dataSource]='possibleOwners' [fields]='selectUserfields' width="90%"
                             placeholder='Select an owner' [(ngModel)]="task.owner">
@@ -38,7 +38,7 @@
                         </label>
                       </div>
                     <div class="form-group">
-                        <button class="btn btn-primary" (click)="saveTaskChanges()" style="margin-right: 5px;" data-dismiss="modal" [disabled]="task.name === ''">Save</button>
+                        <button class="btn btn-primary" (click)="saveTaskChanges()" style="margin-right: 5px;" [disabled]="task.name === ''">Save</button>
                         <button class="btn btn-default" data-dismiss="modal" (click)="closeCurrentModal()">Cancel</button>
                     </div>
                 </div>
