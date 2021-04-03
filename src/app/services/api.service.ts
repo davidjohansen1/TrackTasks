@@ -16,16 +16,16 @@ export class ApiService {
         return this.http.get<Tasks[]>(this.springUrl + 'task/getTasks')
     }
 
-    getUnavailableTasks(): Observable<Tasks[]> {
-        return this.http.get<Tasks[]>(this.springUrl + 'task/getUnavailableTasks')
+    getUnavailableTasks(loggedInUserId: number): Observable<Tasks[]> {
+        return this.http.get<Tasks[]>(this.springUrl + 'task/getUnavailableTasks?loggedInUserId=' + loggedInUserId)
     }
 
-    getAvailableTasks(): Observable<Tasks[]> {
-        return this.http.get<Tasks[]>(this.springUrl + 'task/getAvailableTasks')
+    getAvailableTasks(loggedInUserId: number): Observable<Tasks[]> {
+        return this.http.get<Tasks[]>(this.springUrl + 'task/getAvailableTasks?loggedInUserId=' + loggedInUserId)
     }
 
-    getAssignedTasks(): Observable<Tasks[]> {
-        return this.http.get<Tasks[]>(this.springUrl + 'task/getAssignedTasks')
+    getAssignedTasks(loggedInUserId: number): Observable<Tasks[]> {
+        return this.http.get<Tasks[]>(this.springUrl + 'task/getAssignedTasks?loggedInUserId=' + loggedInUserId)
     }
 
     addTask(task: Tasks): Observable<any> {

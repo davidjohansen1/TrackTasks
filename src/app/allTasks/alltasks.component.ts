@@ -16,7 +16,6 @@ export class AllTasks implements OnInit {
     showNewModal = false;
     showDeletedMessage = false;
     @Output() supervised = [];
-    @Output() possibleOwners = [];
     @Output() unavailableRefresh;
     @Output() availableRefresh;
     @Output() assignedRefresh;
@@ -33,12 +32,6 @@ export class AllTasks implements OnInit {
                 if(!this.supervised.includes(0)) {
                     this.supervised.unshift({"id":0, "username":''})
                 }
-            })
-
-        this.apiService.getSupervised(this.loggedInUserId)
-            .subscribe(data => {
-                this.possibleOwners = data
-                this.possibleOwners.push({"id":+localStorage.getItem('userId'), "username":localStorage.getItem('userName')})
             })
     }   
 

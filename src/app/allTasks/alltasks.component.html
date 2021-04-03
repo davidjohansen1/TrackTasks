@@ -11,32 +11,35 @@
         <i class="fa fa-check fa-lg"></i>&nbsp;&nbsp;&nbsp;Create New Task
       </button>
     </div>
-    <div class="col-md-4">
-      <div id="delete message" *ngIf="showDeletedMessage" class="delete-message">
+    <div class="col-md-4" *ngIf="showDeletedMessage">
+      <div id="delete message" class="delete-message">
         <i class="fa fa-check fa-lg"></i><strong>The task has been successfully deleted</strong>
-      </div>
+      </div>    
+    </div>
+    <div class="col-md-10" *ngIf="!showDeletedMessage">
+      <h4>Only tasks which you have created or which your supervisor has made available will display here.</h4>
     </div>
   </div>
   <unavailable-tasks
     [supervised]="supervised"
+    [loggedInUserId]="loggedInUserId"
     [unavailableRefresh]="unavailableRefresh"
-    [possibleOwners]="possibleOwners"
     (reloadAvailable)="reloadAvailable()"
     (reloadAssigned)="reloadAssigned()"
     (deleteMessage)="deleteMessage()">
   </unavailable-tasks>
   <available-tasks
     [supervised]="supervised"
+    [loggedInUserId]="loggedInUserId"
     [availableRefresh]="availableRefresh"
-    [possibleOwners]="possibleOwners"
     (reloadUnavailable)="reloadUnavailable()"
     (reloadAssigned)="reloadAssigned()"
     (deleteMessage)="deleteMessage()">
   </available-tasks>
   <assigned-tasks
     [supervised]="supervised"
+    [loggedInUserId]="loggedInUserId"
     [assignedRefresh]="assignedRefresh"
-    [possibleOwners]="possibleOwners"
     (reloadUnavailable)="reloadUnavailable()"
     (reloadAvailable)="reloadAvailable()"
     (deleteMessage)="deleteMessage()">
@@ -44,7 +47,6 @@
 </div>
 <newTask *ngIf="showNewModal"
   [supervised]="supervised"
-  [possibleOwners]="possibleOwners"
   (reloadComponent)="reloadComponent()"
   (closeModal)="closeModal()">
 </newTask>

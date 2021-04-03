@@ -23,18 +23,18 @@ public class TaskController {
   }
 
   @GetMapping(path="/getUnavailableTasks")
-  public @ResponseBody Iterable<FullTaskInfo> getUnavailableTasks() {
-    return taskRepository.getUnavailableTasks();
+  public @ResponseBody Iterable<FullTaskInfo> getUnavailableTasks(@RequestParam int loggedInUserId) {
+    return taskRepository.getUnavailableTasks(loggedInUserId);
   }
 
   @GetMapping(path="/getAvailableTasks")
-  public @ResponseBody Iterable<FullTaskInfo> getAvailableTasks() {
-    return taskRepository.getAvailableTasks();
+  public @ResponseBody Iterable<FullTaskInfo> getAvailableTasks(@RequestParam int loggedInUserId) {
+    return taskRepository.getAvailableTasks(loggedInUserId);
   }
 
   @GetMapping(path="/getAssignedTasks")
-  public @ResponseBody Iterable<FullTaskInfo> getAssignedTasks() {
-    return taskRepository.getAssignedTasks();
+  public @ResponseBody Iterable<FullTaskInfo> getAssignedTasks(@RequestParam int loggedInUserId) {
+    return taskRepository.getAssignedTasks(loggedInUserId);
   }
 
   @PostMapping(path="/getUserNotStartTasks")

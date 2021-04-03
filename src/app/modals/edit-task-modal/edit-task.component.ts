@@ -20,7 +20,6 @@ export class EditTask {
     loggedInTaskOwner = true;
     @Input() currentTaskId
     @Input() supervised
-    @Input() possibleOwners
     @Output("reloadComponent") reloadComponent: EventEmitter<any> = new EventEmitter();
     @Output("closeModal") closeModal: EventEmitter<any> = new EventEmitter();
 
@@ -30,7 +29,6 @@ export class EditTask {
         this.loggedInUser = localStorage.getItem('userId');
         this.apiService.getTask(+this.currentTaskId)
         .subscribe(data => {
-            console.log(this.possibleOwners)
             this.readloadSibling = '';
             this.task.id = data.id;
             this.task.name = data.name;
@@ -56,15 +54,6 @@ export class EditTask {
     }
 
     saveTaskChanges() {
-        if(this.task.owner != +this.loggedInUser) {
-            var response = confirm("Are you sure you want this task to be owned by someone other than yourself?")
-            if(response == true) {
-                $('#editTask').modal('toggle');
-            } else {
-                return
-            }
-        }
-
         // Available is checked so it moves to available. Need to reload the available column
         if(!this.originalAvailable && this.task.available) {
             this.readloadSibling = 'reloadAvailable'
@@ -91,7 +80,6 @@ export class EditTask {
                 this.errors = error;
             },
             () => {
-                $('#editTask').modal('toggle');
                 this.closeModal.emit();
                 this.reloadComponent.emit(this.readloadSibling);
             });

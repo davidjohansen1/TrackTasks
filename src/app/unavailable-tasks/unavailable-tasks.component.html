@@ -34,7 +34,6 @@
 <edit-task *ngIf="showEditModal"
   [currentTaskId]="currentTaskId"
   [supervised]="supervised"
-  [possibleOwners]="possibleOwners"
   (reloadComponent)="reloadComponent($event)"
   (closeModal)="closeModal()">
 </edit-task>

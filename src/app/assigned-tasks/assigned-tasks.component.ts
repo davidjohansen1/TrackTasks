@@ -19,13 +19,13 @@ export class AssignedTasksComponent implements OnInit {
   @Output() deleteTaskName;
   @Output() deleteTaskDesc;
   @Input() supervised;
-  @Input() possibleOwners;
   @Input() assignedRefresh;
+  @Input() loggedInUserId;
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
-    this.apiService.getAssignedTasks()
+    this.apiService.getAssignedTasks(this.loggedInUserId)
       .subscribe(data => {
         this.assignedTasks = data
       })

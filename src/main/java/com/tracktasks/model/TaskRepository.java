@@ -17,18 +17,23 @@ public interface TaskRepository extends CrudRepository<Task, Integer> {
   @Query(value = "SELECT t.id, t.name, t.description, t.assigned_user, t.available, u.username " +
     "FROM task t LEFT JOIN user u ON u.id = t.assigned_user " +
     "WHERE t.available = 0 " +
-    "AND t.assigned_user = 0", nativeQuery = true)
-  public List<FullTaskInfo> getUnavailableTasks();
+    "AND t.assigned_user = 0 " +
+    "AND t.owner = :loggedInUser", nativeQuery = true)
+  public List<FullTaskInfo> getUnavailableTasks(@Param("loggedInUser") int loggedInUser);
+
+  @Query(value = "SELECT t.id, t.name, t.description, t.assigned_user, t.available, u.username " +
+    "FROM task t LEFT JOIN user u ON u.id = t.assigned_user\n" +
+    "WHERE t.assigned_user = 0 AND t.available = 1\n" +
+    "AND (t.owner IN (SELECT supervisor_id FROM user_to_supervisor\n" +
+    "WHERE user_id = :loggedInUser AND status = 'Accepted')\n" +
+    "OR t.owner = :loggedInUser)", nativeQuery = true)
+  public List<FullTaskInfo> getAvailableTasks(@Param("loggedInUser") int loggedInUser);
 
   @Query(value = "SELECT t.id, t.name, t.description, t.assigned_user, t.available, u.username " +
     "FROM task t LEFT JOIN user u ON u.id = t.assigned_user " +
-    "WHERE t.assigned_user = 0 AND t.available = 1", nativeQuery = true)
-  public List<FullTaskInfo> getAvailableTasks();
-
-  @Query(value = "SELECT t.id, t.name, t.description, t.assigned_user, t.available, u.username " +
-    "FROM task t LEFT JOIN user u ON u.id = t.assigned_user " +
-    "WHERE t.assigned_user != 0", nativeQuery = true)
-  public List<FullTaskInfo> getAssignedTasks();
+    "WHERE t.assigned_user != 0 " +
+    "AND t.owner = :loggedInUser", nativeQuery = true)
+  public List<FullTaskInfo> getAssignedTasks(@Param("loggedInUser") int loggedInUser);
 
   @Query(value = "SELECT t.id, t.name, t.description, t.assigned_user, t.status, t.notes, u.username FROM task t\n" +
     "LEFT JOIN user u ON u.id = t.assigned_user\n"+

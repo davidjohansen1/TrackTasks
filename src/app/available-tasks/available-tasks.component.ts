@@ -19,13 +19,13 @@ export class AvailableTasksComponent implements OnInit {
   @Output("reloadAssigned") reloadAssigned: EventEmitter<any> = new EventEmitter();
   @Output("deleteMessage") deleteMessage: EventEmitter<any> = new EventEmitter();
   @Input() supervised;
-  @Input() possibleOwners;
   @Input() availableRefresh;
+  @Input() loggedInUserId;
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
-    this.apiService.getAvailableTasks()
+    this.apiService.getAvailableTasks(this.loggedInUserId)
       .subscribe(data => {
         this.availableTasks = data
       })

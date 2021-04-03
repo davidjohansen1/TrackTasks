@@ -17,10 +17,8 @@ export class NewTask {
     @Output("reloadComponent") reloadComponent: EventEmitter<any> = new EventEmitter();
     @Output("closeModal") closeModal: EventEmitter<any> = new EventEmitter();
     @Input() supervised;
-    @Input() possibleOwners;
 
     public selectUserfields: Object = { text: 'username', value: 'id' };
-    public selectOwer: Object = { text: 'username', value: 'id' };
 
     ngOnInit() {
         this.task.owner = +localStorage.getItem('userId');
@@ -32,15 +30,6 @@ export class NewTask {
     }
 
     saveTask() {
-        if(this.task.owner != +this.loggedInUser) {
-            var response = confirm("Are you sure you want this task to be owned by someone other than yourself?")
-            if(response == true) {
-                $('#newTask').modal('toggle');
-            } else {
-                return
-            }
-        }
-
         this.task.notes = null;
         if(this.task.assignedUser) {
             this.task.available = true;
@@ -52,7 +41,6 @@ export class NewTask {
                 this.errors = error;
             },
             () => {
-                $('#newTask').modal('toggle');
                 this.closeModal.emit();
                 this.reloadComponent.emit();
             });
