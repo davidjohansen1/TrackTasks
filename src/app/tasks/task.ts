@@ -9,4 +9,5 @@ export class Tasks {
     status: string
     notes: string
     owner: number
+    ownername: string
 }

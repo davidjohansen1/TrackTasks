@@ -10,4 +10,5 @@ public interface FullTaskInfo {
   String getstatus();
   String getNotes();
   Integer getOwner();
+  String getownername();
 }

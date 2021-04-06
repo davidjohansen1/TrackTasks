@@ -11,6 +11,7 @@ export class UnavailableTasksComponent implements OnInit {
   unavailableTasks: Tasks[];
   showEditModal = false;
   showDeleteModal = false;
+  loggedInUserName;
   @Output("reloadAvailable") reloadAvailable: EventEmitter<any> = new EventEmitter();
   @Output("reloadAssigned") reloadAssigned: EventEmitter<any> = new EventEmitter();
   @Output("deleteMessage") deleteMessage: EventEmitter<any> = new EventEmitter();
@@ -25,6 +26,7 @@ export class UnavailableTasksComponent implements OnInit {
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
+    this.loggedInUserName = localStorage.getItem('userName');
     this.apiService.getUnavailableTasks(this.loggedInUserId)
       .subscribe(data => {
         this.unavailableTasks = data

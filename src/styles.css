@@ -50,6 +50,11 @@ body {
     font-size: 24px;
 }
 
+.column-desc {
+    color: rgba(0, 0, 0, 0.493);
+    font-size: 14px;
+}
+
 .status-first-card:first-of-type {
     padding-top: 20px;
 }
@@ -76,4 +81,8 @@ body {
   
 .cursor-disabled:hover {
     cursor: not-allowed;
+}
+
+.star {
+    color: #fbd82f;
 }
