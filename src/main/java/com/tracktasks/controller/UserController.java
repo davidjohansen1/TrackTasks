@@ -64,4 +64,10 @@ public class UserController {
     return "invited accepted";
   }
 
+  @DeleteMapping(path="/deleteUserToSupervisor")
+  public @ResponseBody
+  String deleteUserToSupervisor(@RequestParam int userToSupId) {
+    return userService.deleteUserToSupervisor(userToSupId);
+  }
+
 }

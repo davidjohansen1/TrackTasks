@@ -98,4 +98,10 @@ public class UserService {
     userToSupervisorRepository.save(userToSupervisor);
   }
 
+  public String deleteUserToSupervisor(int userToSupId) {
+    userToSupervisor.setId(userToSupId);
+    userToSupervisorRepository.delete(userToSupervisor);
+    return "User to supervisor successfully deleted";
+  }
+
 }

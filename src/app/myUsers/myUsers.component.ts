@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { Users } from '../tasks/user';
 
@@ -13,6 +13,11 @@ export class MyUsers implements OnInit {
   showFindUsersModal = false;
   loggedInUserId;
   errors;
+  showRemoveModal;
+  @Output() userToSupervisorId;
+  @Output() userName;
+  @Output() first_name;
+  @Output() last_name;
 
   constructor(private apiService: ApiService) { }
 
@@ -20,6 +25,7 @@ export class MyUsers implements OnInit {
     this.loggedInUserId = localStorage.getItem('userId');
     this.apiService.getMyUsers(this.loggedInUserId)
     .subscribe(data => {
+      console.log(data)
       this.myUsersArray = data;
     },
     error => {
@@ -45,12 +51,21 @@ export class MyUsers implements OnInit {
     console.log('this eventually will navigate to a new user details page')
   }
 
-  remove() {
-    console.log('this will delete the entry from the userToSupervisor table')
-  }
-
   resend() {
     console.log('this will update the status in the userToSupervisor table back to pending')
+  }
+
+  removeConfirmation(userToSupervisorId, userName, first_name, last_name) {
+    this.userName = userName;
+    this.userToSupervisorId = userToSupervisorId;
+    this.first_name = first_name
+    this.last_name = last_name
+    this.showRemoveModal = true;
+  }
+
+  closeRemoveModal() {
+    this.ngOnInit();
+    this.showRemoveModal = false;
   }
 
 }

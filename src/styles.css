@@ -86,3 +86,7 @@ body {
 .star {
     color: #fbd82f;
 }
+
+.button-separation {
+    margin-top: 25px;
+}

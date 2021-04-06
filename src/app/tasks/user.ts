@@ -7,4 +7,5 @@ export class Users {
     id: number
     status: string
     supervisor_id: number
+    utsid: number
 }
