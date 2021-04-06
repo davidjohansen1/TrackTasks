@@ -21,7 +21,8 @@
             data-backdrop="static"
             data-keyboard="false"
             (click)="editTask(task.id)">
-            <i class="fa fa-edit fa-lg"></i>&nbsp;Edit
+            <i class="fa fa-edit fa-lg" *ngIf="task.owner == loggedInUserId"></i>
+            <i class="fa fa-eye fa-lg" *ngIf="task.owner != loggedInUserId"></i>&nbsp;{{task.owner == loggedInUserId ? 'Edit' : 'View'}}
           </button>
           <button class="btn btn-danger button-text" 
             data-toggle="modal"

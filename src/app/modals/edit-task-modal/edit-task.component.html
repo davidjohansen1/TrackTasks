@@ -11,14 +11,21 @@
             <div class="container">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <p class="column-desc" *ngIf="task.owner != loggedInUser && fromAssigned == true">*Assigned user cannot be changed on tasks you did not create</p>
+                        <p class="column-desc" *ngIf="task.owner != loggedInUser && fromAssigned != true">*Task name and description can be changed by the task creator.</p>
+                        <p class="column-desc" *ngIf="task.owner != loggedInUser && fromAssigned == true">*Task name, description and assigned user can be changed by the task creator.</p>
                         <label for="taskname" class="label-text">Task Name:</label>
-                        <input id="taskname" name="taskname" type="text" class="form-control fields" value="{{task.name}}" [(ngModel)]="task.name"/>
+                        <input id="taskname"
+                            name="taskname"
+                            type="text"
+                            class="form-control fields"
+                            value="{{task.name}}"
+                            [(ngModel)]="task.name"
+                            [disabled]="task.owner != loggedInUser"/>
                     </div>
                     <div class="form-group">
                         <label for="description" class="label-text">Task Description:</label>
                         <textarea id="description" name="description" type="description" class="form-control fields" 
-                            value="{{task.description}}" [(ngModel)]="task.description"></textarea>
+                            value="{{task.description}}" [(ngModel)]="task.description" [disabled]="task.owner != loggedInUser"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="currentAssignedUserId" class="label-text" *ngIf="fromAssigned != true || task.owner == loggedInUser">Assign a user to this task:</label>

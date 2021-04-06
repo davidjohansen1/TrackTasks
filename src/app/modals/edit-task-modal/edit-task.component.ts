@@ -42,6 +42,7 @@ export class EditTask {
             this.originalAvailable = this.task.available;
             this.task.status = data.status;
             this.task.owner = data.owner;
+            this.task.notes = data.notes;
         })
     }
 

@@ -29,7 +29,7 @@ public interface TaskRepository extends CrudRepository<Task, Integer> {
     "OR t.owner = :loggedInUser)", nativeQuery = true)
   public List<FullTaskInfo> getAvailableTasks(@Param("loggedInUser") int loggedInUser);
 
-  @Query(value = "SELECT t.id, t.name, t.description, t.assigned_user, t.available, t.owner, u.username,\n" +
+  @Query(value = "SELECT t.id, t.name, t.description, t.assigned_user, t.available, t.owner, t.notes, u.username,\n" +
     "(SELECT u2.username FROM task t2\n" +
     "LEFT JOIN user u2 ON u2.id = t2.owner\n" +
     "WHERE t2.id = t.id) as ownername\n" +
