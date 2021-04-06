@@ -1,16 +1,19 @@
 <div class="col-md-3 tasks-column all-tasks-column">
   <h4 class="status-header"><strong>Unavailable Tasks</strong></h4>
+  <p class="column-desc">*Tasks which you have created which are not assigned or available to other users</p>
   <!-- image provided by pixabay.com -->
   <img class="img-responsive status-column-shadow" src="assets/unavailable.jpg">
+  <hr>
   <div *ngFor="let task of unavailableTasks;" class="col-md-12 status-first-card">
     <div class="card card-background shadow">
       <div class="card-header">
-          <strong>Name:</strong>&nbsp;{{task.name}}
+          <strong>Name:</strong>&nbsp;{{task.name}}<i class="fa fa-star fa-pull-right fa-lg star" aria-hidden="true" *ngIf="task.owner == loggedInUserId"></i>
       </div>
       <div class="card-body">
-          <h5 class="card-title"><strong>Description:</strong>&nbsp;{{task.description}}</h5>
-          <div *ngIf="task.username"><strong>Assigned User:</strong>&nbsp;{{task.username}}</div>
-          <div *ngIf="!task.username"><strong>Assigned User:</strong>&nbsp;<em>Unassigned</em></div>
+          <h5><strong>Description:</strong>&nbsp;{{task.description}}</h5>
+          <h5 *ngIf="task.username"><strong>Assigned User:</strong>&nbsp;{{task.username}}</h5>
+          <h5 *ngIf="!task.username"><strong>Assigned User:</strong>&nbsp;<em>Unassigned</em></h5>
+          <h5><strong>Task creator:</strong> {{loggedInUserName}}</h5>
           <button class="btn btn-info button-text"
             data-toggle="modal"
             data-target="#editTask"

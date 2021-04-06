@@ -17,9 +17,9 @@ export class EditTask {
     originalAvailable;
     originalUser;
     loggedInUser;
-    loggedInTaskOwner = true;
     @Input() currentTaskId
     @Input() supervised
+    @Input() fromAssigned;
     @Output("reloadComponent") reloadComponent: EventEmitter<any> = new EventEmitter();
     @Output("closeModal") closeModal: EventEmitter<any> = new EventEmitter();
 
@@ -42,10 +42,7 @@ export class EditTask {
             this.originalAvailable = this.task.available;
             this.task.status = data.status;
             this.task.owner = data.owner;
-            console.log('the task owner is ', this.task.owner, ' and the logged in user is ', +this.loggedInUser)
-            if(this.task.owner != +this.loggedInUser) {
-                this.loggedInTaskOwner = false;
-            }
+            this.task.notes = data.notes;
         })
     }
 

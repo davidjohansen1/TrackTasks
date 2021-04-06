@@ -14,25 +14,30 @@ public interface TaskRepository extends CrudRepository<Task, Integer> {
     "FROM task t LEFT JOIN user u ON u.id = t.assigned_user;", nativeQuery = true)
   public List<FullTaskInfo> getTasks();
 
-  @Query(value = "SELECT t.id, t.name, t.description, t.assigned_user, t.available, u.username " +
+  @Query(value = "SELECT t.id, t.name, t.description, t.assigned_user, t.available, t.owner, u.username " +
     "FROM task t LEFT JOIN user u ON u.id = t.assigned_user " +
     "WHERE t.available = 0 " +
     "AND t.assigned_user = 0 " +
     "AND t.owner = :loggedInUser", nativeQuery = true)
   public List<FullTaskInfo> getUnavailableTasks(@Param("loggedInUser") int loggedInUser);
 
-  @Query(value = "SELECT t.id, t.name, t.description, t.assigned_user, t.available, u.username " +
-    "FROM task t LEFT JOIN user u ON u.id = t.assigned_user\n" +
+  @Query(value = "SELECT t.id, t.name, t.description, t.assigned_user, t.available, t.owner, u.username " +
+    "FROM task t LEFT JOIN user u ON u.id = t.owner\n" +
     "WHERE t.assigned_user = 0 AND t.available = 1\n" +
     "AND (t.owner IN (SELECT supervisor_id FROM user_to_supervisor\n" +
     "WHERE user_id = :loggedInUser AND status = 'Accepted')\n" +
     "OR t.owner = :loggedInUser)", nativeQuery = true)
   public List<FullTaskInfo> getAvailableTasks(@Param("loggedInUser") int loggedInUser);
 
-  @Query(value = "SELECT t.id, t.name, t.description, t.assigned_user, t.available, u.username " +
-    "FROM task t LEFT JOIN user u ON u.id = t.assigned_user " +
-    "WHERE t.assigned_user != 0 " +
-    "AND t.owner = :loggedInUser", nativeQuery = true)
+  @Query(value = "SELECT t.id, t.name, t.description, t.assigned_user, t.available, t.owner, t.notes, u.username,\n" +
+    "(SELECT u2.username FROM task t2\n" +
+    "LEFT JOIN user u2 ON u2.id = t2.owner\n" +
+    "WHERE t2.id = t.id) as ownername\n" +
+    "FROM task t LEFT JOIN user u ON u.id = t.assigned_user\n" +
+    "WHERE (t.assigned_user != 0\n" +
+    "AND t.owner = :loggedInUser) OR\n" +
+    "(t.assigned_user = :loggedInUser AND t.owner IN (SELECT supervisor_id FROM user_to_supervisor\n" +
+    "WHERE user_id = :loggedInUser AND status = 'Accepted'));", nativeQuery = true)
   public List<FullTaskInfo> getAssignedTasks(@Param("loggedInUser") int loggedInUser);
 
   @Query(value = "SELECT t.id, t.name, t.description, t.assigned_user, t.status, t.notes, u.username FROM task t\n" +

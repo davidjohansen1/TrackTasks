@@ -5,14 +5,15 @@
                 <span aria-hidden="true">&times;</span>
             </button>
         <div class="modal-header">
-            <h4 class="modal-title" id="findUsersLabel"><strong>Find Users</strong></h4>
+            <h4 class="modal-title" id="findUsersLabel"><strong>Find Users</strong>
+                <span>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;Search for a user by first name, last name or username</span>
+            </h4>
         </div>
         <div class="modal-body">
             <div class="container">
                 <div class="col-md-10">
                     <div class="form-group">
-                        <span class="smaller-text">*You may search for a user by first name, last name or username.</span><br />
-                        <span class="smaller-text">**The results will not contain users for which an invite is pending or you are already administrating<br /><br /></span>
+                        <span class="smaller-text">*The results will not contain users for which an invite is pending or you are already administrating<br /><br /></span>
                         <label for="searchTerm" class="label-text">Search<br /></label>
                         <input id="searchTerm" name="searchTerm" type="text" class="form-control fields" [(ngModel)]="searchTerm" (keydown)="checkEnterPressed($event)"/>
                     </div>
