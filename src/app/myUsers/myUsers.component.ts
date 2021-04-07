@@ -14,6 +14,7 @@ export class MyUsers implements OnInit {
   loggedInUserId;
   errors;
   showRemoveModal;
+  showResendMessage = false;
   @Output() userToSupervisorId;
   @Output() userName;
   @Output() first_name;
@@ -51,8 +52,23 @@ export class MyUsers implements OnInit {
     console.log('this eventually will navigate to a new user details page')
   }
 
-  resend() {
-    console.log('this will update the status in the userToSupervisor table back to pending')
+  resend(userToSupervisorId, userId) {
+    this.apiService.inviteResponse(userToSupervisorId, userId, this.loggedInUserId, 'Pending')
+    .subscribe(data => {
+        if(data != 'invited accepted') {
+          alert('There was a problem updating the user');
+        }
+      },
+      error => {
+          this.errors = error;
+      },
+      () => {
+        this.ngOnInit();
+        this.showResendMessage = true;
+        setTimeout(function() { 
+          this.showResendMessage = false;
+        }.bind(this), 5000)
+      })
   }
 
   removeConfirmation(userToSupervisorId, userName, first_name, last_name) {
