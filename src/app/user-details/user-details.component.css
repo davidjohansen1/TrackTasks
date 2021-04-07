@@ -1,0 +1,9 @@
+.table-header {
+    background-color: #4894ac;
+}
+
+.table {
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 3px 3px 10px rgba(255, 255, 255, 0.664);
+}

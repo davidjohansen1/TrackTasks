@@ -29,6 +29,7 @@
 
                     <div class="form-group">
                         <label for="ddlelement" class="label-text">Status:</label>
+                        <!-- syncfusion (https://ej2.syncfusion.com/) made this ejs dropdown available-->
                         <ejs-dropdownlist id='ddlelement' [value]="task.status" [dataSource]='dropdownitems' [fields]='selectStatusfields' width="90%"
                             [(ngModel)]="task.status">
                         </ejs-dropdownlist>

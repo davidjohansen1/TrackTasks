@@ -24,7 +24,6 @@ export class RemoveSupervised implements OnInit {
   }
 
   removeUserToSup() {
-    console.log('user sup that will be removed ', this.userToSupervisorId)
     this.apiService.deleteUserToSupervisor(this.userToSupervisorId)
     .subscribe(data => {
       if(data != 'User to supervisor successfully deleted') {

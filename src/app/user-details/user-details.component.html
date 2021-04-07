@@ -1,40 +1,22 @@
 <div class="col-md-9">
   <div class="row user-area-content">
     <div class="col-md-2">
-      <button class="btn btn-primary"
-      data-toggle="modal"
-      data-target="#findUsers"
-      data-backdrop="static"
-      data-keyboard="false"
-      (click)="findUsers()">Search User(s)</button>
-    </div>
-    <div class="col-md-4" *ngIf=showResendMessage>
-      <div id="resend message" class="resend-message">
-        <i class="fa fa-check fa-lg"></i><strong>The request has been successfully resent</strong>
-      </div>    
+      <button class="btn btn-primary" (click)="back()">Back</button>
     </div>
   </div>
-  <div class="row user-area-content" *ngIf="hasUsers == false">
-    <h4><p class="message-spacing">You are not adminstrating any users yet.</p></h4>
-  </div>
-  <div class="user-area-content">
-    <h5>
-      <p>*Use the 'Search User(s)' button to search for users and then invite them to accept you as an administrator of their tasks.</p>
-    </h5>
-  </div>
-  <div class="row user-area-content" *ngIf="hasUsers == true">
+  <!-- <div class="row user-area-content" *ngIf="hasUsers == true"> -->
+  <div class="row user-area-content">
     <table class="table table-striped">
       <thead class="table-header">
         <tr>
-          <th scope="col"><h4><strong>Username</strong></h4></th>
-          <th scope="col"><h4><strong>First Name</strong></h4></th>
-          <th scope="col"><h4><strong>Last Name</strong></h4></th>
-          <th scope="col"><h4><strong>Invite Status</strong></h4></th>
+          <th scope="col"><h4><strong>Task</strong></h4></th>
+          <th scope="col"><h4><strong>Status</strong></h4></th>
+          <th scope="col"><h4><strong>Notes</strong></h4></th>
           <th scope="col"><h4><strong>Actions</strong></h4></th>
         </tr>
       </thead>
       <tbody class="table-body">
-        <tr *ngFor="let myUser of myUsersArray">
+        <!-- <tr *ngFor="let myUser of myUsersArray">
           <td style="width: 25%;">{{myUser.username}}</td>
           <td style="width: 20%;">{{myUser.first_name}}</td>
           <td style="width: 20%;">{{myUser.last_name}}</td>
@@ -66,17 +48,8 @@
               </ul>
             </div>
           </td>
-        </tr>
+        </tr> -->
+      </tbody>
     </table>
   </div>
 </div>
-<findUsers *ngIf="showFindUsersModal"
-  (closeModal)="closeModal()">
-</findUsers>
-<remove-supervised *ngIf="showRemoveModal"
-  [userToSupervisorId]="userToSupervisorId"
-  [userName]="userName"
-  [first_name]="first_name"
-  [last_name]="last_name"
-  (closeRemoveModal)="closeRemoveModal()">
-</remove-supervised>

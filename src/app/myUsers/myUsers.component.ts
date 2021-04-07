@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { Users } from '../tasks/user';
 
@@ -19,6 +19,7 @@ export class MyUsers implements OnInit {
   @Output() userName;
   @Output() first_name;
   @Output() last_name;
+  @Output("loadUserDetails") loadUserDetails: EventEmitter<any> = new EventEmitter();
 
   constructor(private apiService: ApiService) { }
 
@@ -26,7 +27,6 @@ export class MyUsers implements OnInit {
     this.loggedInUserId = localStorage.getItem('userId');
     this.apiService.getMyUsers(this.loggedInUserId)
     .subscribe(data => {
-      console.log(data)
       this.myUsersArray = data;
     },
     error => {
@@ -49,7 +49,7 @@ export class MyUsers implements OnInit {
   }
 
   viewUserDetails() {
-    console.log('this eventually will navigate to a new user details page')
+    this.loadUserDetails.emit();
   }
 
   resend(userToSupervisorId, userId) {

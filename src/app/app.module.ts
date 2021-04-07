@@ -26,6 +26,7 @@ import { FindUsers } from './modals/find-users/findUsers.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { InvitationNoticeComponent } from './modals/invitation-notice/invitation-notice.component';
 import { RemoveSupervised } from './modals/remove-supervised/remove-supervised.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { RemoveSupervised } from './modals/remove-supervised/remove-supervised.c
     MyUsers,
     FindUsers,
     InvitationNoticeComponent,
-    RemoveSupervised
+    RemoveSupervised,
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,
