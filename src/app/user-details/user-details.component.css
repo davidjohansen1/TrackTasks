@@ -6,9 +6,12 @@
     padding-left: 15px;
 }
 
+.table-spacer {
+    margin-top: 60px;
+}
+
 .table {
     border-collapse: collapse;
-    margin-top: 60px;
     box-shadow: 3px 3px 10px rgba(255, 255, 255, 0.664);
 }
 
@@ -38,4 +41,19 @@
 
 .note {
     font-size: 14px;
+}
+
+.statusColumns {
+    border: beige solid 5px;
+    width: 15px;
+}
+
+.status-table {
+    background-color: rgb(255, 255, 255);
+    width: 300px;
+}
+
+.total {
+    font-size: 20px;
+    font-weight: bold;
 }
