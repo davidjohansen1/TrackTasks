@@ -3,39 +3,46 @@
     <div class="col-md-2">
       <button class="btn btn-primary" (click)="back()">Return to My Users list</button>
     </div>
-    <div class="col-md-10">
+    <div class="col-md-9 col-md-offset-1">
       <span></span>Viewing tasks for user:<span class="username">{{taskInfo.firstName}} {{taskInfo.lastName}} ({{taskInfo.userName}})</span>
     </div>
   </div>
-
-  <div class="row user-area-content">
-    <div class="col-md-5">
-      This is where the graph will go
+  <div class="row user-area-content chart-padding" *ngIf="total > 0">
+    <div class="col-md-3 chart">
+      <google-chart #chart
+        [title]=title
+        [type]=type
+        [data]=data
+        [columnNames]=columnNames
+        [options]=options
+        [width]=400
+        [height]=0>
+      </google-chart>
     </div>
-    <div class="col-md-7 col-md-offset-8">
+    <div class="col-md-3 div-table">
       <table class="table status-table">
         <thead class="table-header">
           <tr class="statusColumns">
-            <th scope="col" class="statusColumns"><h4><strong>Status</strong></h4></th>
-            <th scope="col" class="statusColumns"><h4><strong>Number</strong></h4></th>
+            <th scope="col" class="statusColumns"><div class="status-heights header-text"><strong>Status</strong></div></th>
+            <th scope="col" class="statusColumns"><div class="status-heights header-text"><strong>Number</strong></div></th>
           </tr>
         </thead>
         <tbody class="table-body">
           <tr>
-            <td class="statusColumns">Completed</td>
-            <td class="statusColumns">{{completed}}</td>
+            <td class="statusColumns"><div class="status-heights body-text">Completed</div></td>
+            <td class="statusColumns"><div class="status-heights body-text">{{completed}}</div></td>
           </tr>
           <tr>
-            <td class="statusColumns">In Progress</td>
-            <td class="statusColumns">{{inProgress}}</td>
+            <td class="statusColumns"><div class="status-heights body-text">In Progress</div></td>
+            <td class="statusColumns"><div class="status-heights body-text">{{inProgress}}</div></td>
           </tr>
           <tr>
-            <td class="statusColumns">Not Started</td>
-            <td class="statusColumns">{{notStarted}}</td>
+            <td class="statusColumns"><div class="status-heights body-text">Not Started</div></td>
+            <td class="statusColumns"><div class="status-heights body-text">{{notStarted}}</div></td>
           </tr>
           <tr>
-            <td class="statusColumns total">Total</td>
-            <td class="statusColumns total">{{total}}</td>
+            <td class="statusColumns total"><div class="status-heights body-text">Total</div></td>
+            <td class="statusColumns total"><div class="status-heights body-text">{{total}}</div></td>
           </tr>
         </tbody>
       </table>

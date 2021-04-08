@@ -16,6 +16,19 @@ export class UserDetailsComponent implements OnInit {
   inProgress
   notStarted
   total
+  data = [];
+
+  completedPercentage
+  inProgressPercentage
+  notStartedPercentage
+
+  title = 'User\'s Tasks';
+  type='PieChart';
+
+ columnNames = ['Status', 'Percentage'];
+ options = {    
+    pieHole:0.3
+ };
 
   constructor(private apiService: ApiService) { }
 
@@ -26,13 +39,21 @@ export class UserDetailsComponent implements OnInit {
     this.notStarted = 0
     this.total = 0
     this.apiService.getUserTasksBySupervisor(this.loggedInUserId, this.taskInfo.taskUserId)
-    .subscribe(data => {
-      this.tasks = data;
+    .subscribe(taskData => {
+      this.tasks = taskData;
       this.tasks.forEach(task => {
         console.log(task.status)
         this.calculateTasks(task.status)
       })
-      this.total = this.completed + this.inProgress + this.notStarted
+      this.total = this.completed + this.inProgress + this.notStarted;
+      this.completedPercentage = this.completed / this.total;
+      this.inProgressPercentage = this.inProgress / this.total;
+      this.notStartedPercentage = this.notStarted / this.total;
+      this.data = [
+        ['Completed', this.completedPercentage * 100],
+        ['In Progress', this.inProgressPercentage * 100],
+        ['Not Started', this.notStartedPercentage * 100]
+     ];
     })    
   }
 

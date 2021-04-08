@@ -7,7 +7,7 @@
 }
 
 .table-spacer {
-    margin-top: 60px;
+    margin-top: 30px;
 }
 
 .table {
@@ -53,7 +53,42 @@
     width: 300px;
 }
 
+.div-table {
+    margin-left: 250px;
+}
+
 .total {
     font-size: 20px;
     font-weight: bold;
+}
+
+.status-heights {
+    height: 10px;
+}
+
+.header-text {
+    padding-bottom: 20px;
+    font-size: 16px;
+}
+
+.body-text {
+    padding-bottom: 12px;
+    font-size: 16px;
+}
+
+::ng-deep .chart {
+    margin-left: 100px;
+}
+
+::ng-deep .chart google-chart div div {
+    height: 0px !important;
+}
+
+::ng-deep .chart google-chart div div div svg g text {
+    font-size: 16px !important;
+}
+
+.chart-padding {
+    margin-top: 20px;
+    margin-left: 140px;
 }

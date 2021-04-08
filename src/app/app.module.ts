@@ -27,6 +27,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { InvitationNoticeComponent } from './modals/invitation-notice/invitation-notice.component';
 import { RemoveSupervised } from './modals/remove-supervised/remove-supervised.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
+import { GoogleChartsModule } from 'angular-google-charts';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     HttpClientModule,
     DropDownListModule,
     NgxPaginationModule,
+    GoogleChartsModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],
