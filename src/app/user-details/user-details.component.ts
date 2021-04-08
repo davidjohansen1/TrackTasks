@@ -1,4 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ApiService } from '../services/api.service';
+import { Tasks } from '../tasks/task';
 
 @Component({
   selector: 'user-details',
@@ -7,10 +9,18 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class UserDetailsComponent implements OnInit {
   @Output("goBacktoMyUsers") goBacktoMyUsers: EventEmitter<any> = new EventEmitter();
+  loggedInUserId;
+  tasks: Tasks[];
+  @Input() taskInfo
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
+    this.loggedInUserId = localStorage.getItem('userId');
+    this.apiService.getUserTasksBySupervisor(this.loggedInUserId, this.taskInfo.taskUserId)
+    .subscribe(data => {
+      this.tasks = data;
+    })    
   }
 
   back() {

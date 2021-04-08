@@ -1,54 +1,33 @@
 <div class="col-md-9">
   <div class="row user-area-content">
     <div class="col-md-2">
-      <button class="btn btn-primary" (click)="back()">Back</button>
+      <button class="btn btn-primary" (click)="back()">Return to My Users list</button>
+    </div>
+    <div class="col-md-10">
+      <span></span>Viewing tasks for user:<span class="username">{{taskInfo.firstName}} {{taskInfo.lastName}} ({{taskInfo.userName}})</span>
     </div>
   </div>
-  <!-- <div class="row user-area-content" *ngIf="hasUsers == true"> -->
   <div class="row user-area-content">
     <table class="table table-striped">
       <thead class="table-header">
         <tr>
           <th scope="col"><h4><strong>Task</strong></h4></th>
-          <th scope="col"><h4><strong>Status</strong></h4></th>
           <th scope="col"><h4><strong>Notes</strong></h4></th>
+          <th scope="col"><h4><strong>Status</strong></h4></th>
           <th scope="col"><h4><strong>Actions</strong></h4></th>
         </tr>
       </thead>
       <tbody class="table-body">
-        <!-- <tr *ngFor="let myUser of myUsersArray">
-          <td style="width: 25%;">{{myUser.username}}</td>
-          <td style="width: 20%;">{{myUser.first_name}}</td>
-          <td style="width: 20%;">{{myUser.last_name}}</td>
-          <td style="width: 20%;">{{myUser.status}}</td>
+        <tr *ngFor="let task of tasks">
+          <td style="width: 30%;">{{task.name}}</td>
+          <td style="width: 35%;">{{task.notes}}</td>
+          <td style="width: 15%;">{{task.status}}</td>
           <td>
             <div class="dropdown show">
-              <button class="btn btn-info dropdown-toggle"
-                      type="button" id="dropdownMenuButton"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false">
-                      Options&nbsp;&nbsp;<i class="fa fa-caret-down" aria-hidden="true"></i>
-              </button>
-              <ul class="dropdown-menu">
-                <li *ngIf="myUser.status == 'Accepted'">
-                  <a class="dropdown-item" href="javascript:void(0)" (click)="viewUserDetails()">View User Details</a>
-                </li>
-                <li *ngIf="myUser.status == 'Rejected' || myUser.status == 'Accepted' || myUser.status == 'Pending'">
-                  <a class="dropdown-item" 
-                    data-toggle="modal"
-                    data-target="#deleteUserToSup"
-                    data-backdrop="static"
-                    data-keyboard="false"
-                    (click)="removeConfirmation(myUser.utsid, myUser.username, myUser.first_name, myUser.last_name)">Remove</a>
-                </li>
-                <li *ngIf="myUser.status == 'Rejected'">
-                  <a class="dropdown-item" href="javascript:void(0)" (click)="resend(myUser.utsid, myUser.id)">Resend</a>
-                </li>
-              </ul>
+              <button class="btn btn-info">End Task</button>
             </div>
           </td>
-        </tr> -->
+        </tr>
       </tbody>
     </table>
   </div>

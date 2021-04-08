@@ -27,6 +27,7 @@ export class DashboardComponent {
     pageName = 'My Tasks';
     tasks = 'Available Tasks';
     inviteStatus;
+    @Output() taskInfo;
     @Output() supervisorId;
     @Output() inviteId;
     @Output() supervisorFirstName;
@@ -96,12 +97,13 @@ export class DashboardComponent {
         this.pageName = 'My Users';
     }
 
-    loadUserDetails() {
+    loadUserDetails(taskInfo) {
         this.showAllTasks = false;
         this.showMyTasks = false;
         this.myUsers = false;
         this.activeMyUsers = true;
         this.userDetails = true;
+        this.taskInfo = taskInfo;
         this.pageName = 'User Details';
     }
 

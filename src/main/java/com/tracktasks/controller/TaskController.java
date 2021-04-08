@@ -82,4 +82,9 @@ public class TaskController {
     return "task successfully deleted";
   }
 
+  @GetMapping(path="/getUserTasksBySupervisor")
+  public @ResponseBody Iterable<FullTaskInfo> getUserTasksBySupervisor(@RequestParam int loggedInUserId, @RequestParam int taskUserId) {
+    return taskRepository.getUserTasksBySupervisor(loggedInUserId, taskUserId);
+  }
+
 }

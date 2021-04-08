@@ -2,8 +2,40 @@
     background-color: #4894ac;
 }
 
+.table-header th {
+    padding-left: 15px;
+}
+
 .table {
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-top: 60px;
     box-shadow: 3px 3px 10px rgba(255, 255, 255, 0.664);
+}
+
+.table-body{
+    color: black;
+    font-size: medium;
+}
+
+.table-body td {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 15px;
+}
+
+.table-striped > tbody > tr:nth-of-type(even) {
+    background-color: rgb(231, 230, 230);
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: rgb(255, 255, 255);
+}
+
+.username {
+    font-size: 24px;
+    padding-left: 10px;
+}
+
+.note {
+    font-size: 14px;
 }

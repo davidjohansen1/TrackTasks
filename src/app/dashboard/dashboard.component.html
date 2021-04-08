@@ -48,8 +48,9 @@
     [loggedInUserId]="loggedInUserId"></alltasks>
   <mytasks *ngIf="showMyTasks"></mytasks>
   <my-users *ngIf="myUsers"
-    (loadUserDetails)="loadUserDetails()"></my-users>
+    (loadUserDetails)="loadUserDetails($event)"></my-users>
   <user-details *ngIf="userDetails"
+    [taskInfo]="taskInfo"
     (goBacktoMyUsers)="goBacktoMyUsers()"></user-details>
   <invitation-notice
     [supervisorFirstName]="supervisorFirstName"

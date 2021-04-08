@@ -50,7 +50,9 @@
               </button>
               <ul class="dropdown-menu">
                 <li *ngIf="myUser.status == 'Accepted'">
-                  <a class="dropdown-item" href="javascript:void(0)" (click)="viewUserDetails()">View User Details</a>
+                  <a class="dropdown-item"
+                    href="javascript:void(0)"
+                    (click)="viewUserDetails(myUser.id, myUser.username, myUser.first_name, myUser.last_name)">View User Details</a>
                 </li>
                 <li *ngIf="myUser.status == 'Rejected' || myUser.status == 'Accepted' || myUser.status == 'Pending'">
                   <a class="dropdown-item" 

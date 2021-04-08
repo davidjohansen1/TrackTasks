@@ -15,6 +15,7 @@ export class MyUsers implements OnInit {
   errors;
   showRemoveModal;
   showResendMessage = false;
+  fullUserDetails;
   @Output() userToSupervisorId;
   @Output() userName;
   @Output() first_name;
@@ -48,8 +49,9 @@ export class MyUsers implements OnInit {
     this.showFindUsersModal = true;
   }
 
-  viewUserDetails() {
-    this.loadUserDetails.emit();
+  viewUserDetails(taskUserId, userName, firstName, lastName) {
+    this.fullUserDetails = {'taskUserId': taskUserId, 'userName': userName, 'firstName': firstName, 'lastName': lastName}
+    this.loadUserDetails.emit(this.fullUserDetails);
   }
 
   resend(userToSupervisorId, userId) {

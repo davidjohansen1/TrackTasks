@@ -1,10 +1,10 @@
 package com.tracktasks.model;
 
 public interface FullTaskInfo {
-  int getid();
+  Integer getid();
   String getname();
   String getdescription();
-  int getassigned_user();
+  Integer getassigned_user();
   String getusername();
   Boolean getavailable();
   String getstatus();

@@ -112,4 +112,9 @@ export class ApiService {
         const headers = { 'content-type': 'application/json' }
         return this.http.delete(this.springUrl + 'user/deleteUserToSupervisor?userToSupId=' + userToSupervisorId, { 'headers': headers, responseType: 'text' })
     }
+
+    getUserTasksBySupervisor(loggedInUserId: Number, taskUserId: Number): Observable<Tasks[]>{
+        const headers = { 'content-type': 'application/json' }
+        return this.http.get<Tasks[]>(this.springUrl + 'task/getUserTasksBySupervisor?loggedInUserId=' + loggedInUserId + '&taskUserId=' + taskUserId, { 'headers': headers })
+    }
 }

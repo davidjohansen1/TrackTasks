@@ -63,4 +63,10 @@ public interface TaskRepository extends CrudRepository<Task, Integer> {
     "WHERE t.id = :taskId", nativeQuery = true)
   public FullTaskInfo getTask(@Param("taskId") int taskId);
 
+  @Query(value = "SELECT id, name, notes, status\n" +
+    "FROM task\n" +
+    "WHERE assigned_user = :taskUserId\n" +
+    "AND (owner = :taskUserId OR owner = :loggedInUser)", nativeQuery = true)
+  public List<FullTaskInfo> getUserTasksBySupervisor(@Param("loggedInUser") int loggedInUser, @Param("taskUserId") int taskUserId);
+
 }

@@ -11,8 +11,7 @@
       </div>
       <div class="card-body">
           <h5><strong>Description:</strong>&nbsp;{{task.description}}</h5>
-          <h5 *ngIf="task.username"><strong>Assigned User:</strong>&nbsp;{{task.username}}</h5>
-          <h5 *ngIf="!task.username"><strong>Assigned User:</strong>&nbsp;<em>Unassigned</em></h5>
+          <h5><strong>Assigned User:</strong>&nbsp;<em>Unassigned</em></h5>
           <h5><strong>Task creator:</strong> {{loggedInUserName}}</h5>
           <button class="btn btn-info button-text"
             data-toggle="modal"
