@@ -27,7 +27,6 @@ export class AvailableTasksComponent implements OnInit {
   ngOnInit() {
     this.apiService.getAvailableTasks(this.loggedInUserId)
       .subscribe(data => {
-        console.log(data);
         this.availableTasks = data
       })
   }

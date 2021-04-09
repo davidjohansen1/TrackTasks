@@ -9,9 +9,7 @@ import { ApiService } from 'src/app/services/api.service';
 export class CloseTask implements OnInit {
   errors;
   @Input() userToSupervisorId;
-  @Input() userName;
-  @Input() first_name;
-  @Input() last_name;
+  @Input() taskId;
   @Output("closeRemoveModal") closeRemoveModal: EventEmitter<any> = new EventEmitter();
 
   constructor(private apiService: ApiService) { }
@@ -24,18 +22,18 @@ export class CloseTask implements OnInit {
   }
 
   closeTask() {
-    // this.apiService.deleteUserToSupervisor(this.userToSupervisorId)
-    // .subscribe(data => {
-    //   if(data != 'User to supervisor successfully deleted') {
-    //       alert('There was a problem removing the user');
-    //   }
-    // },
-    // error => {
-    //     this.errors = error;
-    // },
-    // () => {
-    //     this.closeRemoveModal.emit();
-    // })
+    this.apiService.updateTaskStatus(this.taskId, 'Closed')
+    .subscribe(data => {
+      if(data != 'task updated successfully') {
+        alert('There was a problem removing the user');
+      }
+    },
+    error => {
+      this.errors = error
+    },
+    () => {
+      this.closeRemoveModal.emit();
+    })
   }
 
 }

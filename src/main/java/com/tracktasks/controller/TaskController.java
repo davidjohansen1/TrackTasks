@@ -87,4 +87,11 @@ public class TaskController {
     return taskRepository.getUserTasksBySupervisor(loggedInUserId, taskUserId);
   }
 
+  @PostMapping(path="/updateTaskStatus")
+  public @ResponseBody
+  String updateTaskStatus(@RequestParam int taskId, @RequestParam String status) {
+    taskRepository.updateTaskStatus(taskId, status);
+    return "task updated successfully";
+  }
+
 }

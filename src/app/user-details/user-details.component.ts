@@ -9,9 +9,10 @@ import { Tasks } from '../tasks/task';
 })
 export class UserDetailsComponent implements OnInit {
   @Output("goBacktoMyUsers") goBacktoMyUsers: EventEmitter<any> = new EventEmitter();
+  @Output() taskId;
+  @Input() taskInfo;
   loggedInUserId;
   tasks: Tasks[];
-  @Input() taskInfo
   completed
   inProgress
   notStarted
@@ -42,7 +43,6 @@ export class UserDetailsComponent implements OnInit {
     .subscribe(taskData => {
       this.tasks = taskData;
       this.tasks.forEach(task => {
-        console.log(task.status)
         this.calculateTasks(task.status)
       })
       this.total = this.completed + this.inProgress + this.notStarted;
@@ -75,19 +75,13 @@ export class UserDetailsComponent implements OnInit {
     }
   }
 
-  moveToNotStarted() {
-
+  closeRemoveModal() {
+    this.showCloseTaskModal = false;
+    this.ngOnInit();
   }
 
-  moveToInProgress() {
-    
-  }
-
-  moveToCompleted() {
-    
-  }
-
-  closeTask() {
-    this.showCloseTaskModal = true
+  closeTask(taskId) {
+    this.taskId = taskId;
+    this.showCloseTaskModal = true;
   }
 }

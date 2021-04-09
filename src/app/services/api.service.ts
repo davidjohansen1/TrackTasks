@@ -117,4 +117,9 @@ export class ApiService {
         const headers = { 'content-type': 'application/json' }
         return this.http.get<Tasks[]>(this.springUrl + 'task/getUserTasksBySupervisor?loggedInUserId=' + loggedInUserId + '&taskUserId=' + taskUserId, { 'headers': headers })
     }
+
+    updateTaskStatus(id: number, status: string): Observable<any> {
+        const headers = { 'content-type': 'application/json' }
+        return this.http.post(this.springUrl + 'task/updateTaskStatus?taskId=' + id + '&status=' + status, '', { 'headers': headers, responseType: 'text' })
+    }
 }

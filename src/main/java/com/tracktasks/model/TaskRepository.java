@@ -1,9 +1,11 @@
 package com.tracktasks.model;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 public interface TaskRepository extends CrudRepository<Task, Integer> {
@@ -69,4 +71,10 @@ public interface TaskRepository extends CrudRepository<Task, Integer> {
     "AND (owner = :taskUserId OR owner = :loggedInUser)", nativeQuery = true)
   public List<FullTaskInfo> getUserTasksBySupervisor(@Param("loggedInUser") int loggedInUser, @Param("taskUserId") int taskUserId);
 
+  @Modifying
+  @Transactional
+  @Query(value = "UPDATE Task\n" +
+    "SET status = :status\n" +
+    "WHERE id = :taskId")
+  public void updateTaskStatus(@Param("taskId") int taskId, @Param("status") String status);
 }
