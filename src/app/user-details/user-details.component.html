@@ -15,7 +15,7 @@
         [data]=data
         [columnNames]=columnNames
         [options]=options
-        [width]=400
+        [width]=500
         [height]=0>
       </google-chart>
     </div>
@@ -66,7 +66,37 @@
           <td style="width: 15%;">{{task.status}}</td>
           <td>
             <div class="dropdown show">
-              <button class="btn btn-info">Close Task</button>
+              <button class="btn btn-info dropdown-toggle"
+                type="button" id="dropdownMenuButton"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+                Options&nbsp;&nbsp;<i class="fa fa-caret-down" aria-hidden="true"></i>
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item"
+                    data-toggle="modal"
+                    data-target="#closeTask"
+                    data-backdrop="static"
+                    data-keyboard="false"
+                    (click)="closeTask()">Close Task</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" 
+                    data-toggle="modal"
+                    data-target="#deleteUserToSup"
+                    data-backdrop="static"
+                    data-keyboard="false"
+                    (click)="moveToNotStarted()">Move to Not Started</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="javascript:void(0)" (click)="moveToInProgress()">Move to In Progress</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="javascript:void(0)" (click)="closeTask()">Move to Completed</a>
+                </li>
+              </ul>
             </div>
           </td>
         </tr>
@@ -74,3 +104,4 @@
     </table>
   </div>
 </div>
+<close-task></close-task>

@@ -28,6 +28,7 @@ import { InvitationNoticeComponent } from './modals/invitation-notice/invitation
 import { RemoveSupervised } from './modals/remove-supervised/remove-supervised.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { GoogleChartsModule } from 'angular-google-charts';
+import { CloseTask } from './modals/close-task/close-task.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { GoogleChartsModule } from 'angular-google-charts';
     FindUsers,
     InvitationNoticeComponent,
     RemoveSupervised,
-    UserDetailsComponent
+    UserDetailsComponent,
+    CloseTask
   ],
   imports: [
     BrowserModule,

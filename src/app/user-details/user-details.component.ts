@@ -17,18 +17,18 @@ export class UserDetailsComponent implements OnInit {
   notStarted
   total
   data = [];
-
   completedPercentage
   inProgressPercentage
   notStartedPercentage
-
   title = 'User\'s Tasks';
   type='PieChart';
-
- columnNames = ['Status', 'Percentage'];
- options = {    
-    pieHole:0.3
- };
+  columnNames = ['Status', 'Percentage'];
+  options = {    
+      pieHole:0.3,
+      enableInteractivity : false,
+      colors: ['#5cb85c', '#269abc', '#d9534f']
+  };
+  showCloseTaskModal;
 
   constructor(private apiService: ApiService) { }
 
@@ -50,9 +50,9 @@ export class UserDetailsComponent implements OnInit {
       this.inProgressPercentage = this.inProgress / this.total;
       this.notStartedPercentage = this.notStarted / this.total;
       this.data = [
-        ['Completed', this.completedPercentage * 100],
-        ['In Progress', this.inProgressPercentage * 100],
-        ['Not Started', this.notStartedPercentage * 100]
+        ['Completed(' + (this.completedPercentage * 100).toFixed(1) + '%)', this.completedPercentage * 100],
+        ['In Progress(' + (this.inProgressPercentage * 100).toFixed(1) + '%)' , this.inProgressPercentage * 100],
+        ['Not Started(' + (this.notStartedPercentage * 100).toFixed(1) + '%)', this.notStartedPercentage * 100]
      ];
     })    
   }
@@ -73,5 +73,21 @@ export class UserDetailsComponent implements OnInit {
         this.notStarted++
         break;
     }
+  }
+
+  moveToNotStarted() {
+
+  }
+
+  moveToInProgress() {
+    
+  }
+
+  moveToCompleted() {
+    
+  }
+
+  closeTask() {
+    this.showCloseTaskModal = true
   }
 }
