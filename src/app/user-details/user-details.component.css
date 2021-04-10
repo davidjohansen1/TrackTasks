@@ -18,20 +18,14 @@
 .table-body{
     color: black;
     font-size: medium;
+    background-color: white;
 }
 
 .table-body td {
     padding-top: 12px;
     padding-bottom: 12px;
     padding-left: 15px;
-}
-
-.table-striped > tbody > tr:nth-of-type(even) {
-    background-color: rgb(231, 230, 230);
-}
-
-.table-striped > tbody > tr:nth-of-type(odd) {
-    background-color: rgb(255, 255, 255);
+    border: 1px solid #00000036;
 }
 
 .username {
@@ -44,7 +38,6 @@
 }
 
 .statusColumns {
-    border: beige solid 5px;
     width: 15px;
 }
 
@@ -58,12 +51,14 @@
 }
 
 .total {
-    font-size: 20px;
+    font-size: 21px;
     font-weight: bold;
+    padding-bottom: 14px;
+    width: 18px;
 }
 
 .status-heights {
-    height: 10px;
+    height: 15px;
 }
 
 .header-text {
@@ -105,4 +100,20 @@
   color: #fff;
   background-color: #b91773;
   border-color: #fff;
+}
+
+.showClosed {
+    background-color: white;
+    color: black;
+    font-size: 17px;
+}
+
+.showClosed:hover {
+    background-color: #b91773;
+    color: white;
+    font-size: 17px;
+}
+
+.noTasks{
+    margin-top: 25px;
 }

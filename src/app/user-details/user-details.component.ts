@@ -10,6 +10,7 @@ import { Tasks } from '../tasks/task';
 export class UserDetailsComponent implements OnInit {
   @Output("goBacktoMyUsers") goBacktoMyUsers: EventEmitter<any> = new EventEmitter();
   @Output() taskId;
+  @Output() taskName;
   @Input() taskInfo;
   loggedInUserId;
   tasks: Tasks[];
@@ -30,6 +31,9 @@ export class UserDetailsComponent implements OnInit {
       colors: ['#5cb85c', '#269abc', '#d9534f']
   };
   showCloseTaskModal;
+  showClosedTasks = false;
+  showReopenTaskModal;
+  taskShowButtonName = 'Show Closed Tasks';
 
   constructor(private apiService: ApiService) { }
 
@@ -80,8 +84,27 @@ export class UserDetailsComponent implements OnInit {
     this.ngOnInit();
   }
 
-  closeTask(taskId) {
+  closeTask(taskId, taskName) {
     this.taskId = taskId;
+    this.taskName = taskName;
     this.showCloseTaskModal = true;
+  }
+
+  closeReopenModal() {
+    this.showReopenTaskModal = false;
+    this.ngOnInit();
+  }
+
+  reopenTask() {
+    this.showReopenTaskModal = true;
+  }
+
+  closedTasksShow() {
+    this.showClosedTasks = !this.showClosedTasks
+    if(this.showClosedTasks) {
+      this.taskShowButtonName = 'Show Open Tasks'
+    } else {
+      this.taskShowButtonName = 'Show Closed Tasks'
+    }
   }
 }

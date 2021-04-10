@@ -10,6 +10,7 @@ export class CloseTask implements OnInit {
   errors;
   @Input() userToSupervisorId;
   @Input() taskId;
+  @Input() taskName;
   @Output("closeRemoveModal") closeRemoveModal: EventEmitter<any> = new EventEmitter();
 
   constructor(private apiService: ApiService) { }

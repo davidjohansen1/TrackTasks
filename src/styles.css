@@ -94,3 +94,7 @@ body {
 .user-area-content {
     margin-left: 11px;
 }
+
+.btn {
+    transition-duration: 0.4s;
+}
