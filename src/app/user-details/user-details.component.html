@@ -85,10 +85,10 @@
                 <button class="btn btn-info"
                   type="button"
                   data-toggle="modal"
-                  data-target="#closeTask"
+                  data-target="#reopenTask"
                   data-backdrop="static"
                   data-keyboard="false"
-                  (click)="reopenTask(task.id)">Reopen Task
+                  (click)="reopenTask(task.id, task.name)">Reopen Task
                 </button>
             </td>
           </tr>
@@ -96,14 +96,17 @@
       </tbody>
     </table>
   </div>
-
   <div class="row user-area-content" *ngIf="total === 0">
     <div class="col-md-4 col-md-offset-3 noTasks"><h3>This user does not have any tasks</h3></div>
   </div>
-
 </div>
 <close-task *ngIf="showCloseTaskModal"
   [taskId]="taskId"
   [taskName]="taskName"
   (closeRemoveModal)="closeRemoveModal()">
 </close-task>
+<reopen-task *ngIf="showReopenTaskModal"
+  [taskId]="taskId"
+  [taskName]="taskName"
+  (closeReopenModal)="closeReopenModal()">
+</reopen-task>

@@ -29,6 +29,7 @@ import { RemoveSupervised } from './modals/remove-supervised/remove-supervised.c
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { GoogleChartsModule } from 'angular-google-charts';
 import { CloseTask } from './modals/close-task/close-task.component';
+import { ReopenTaskComponent } from './modals/reopen-task/reopen-task.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { CloseTask } from './modals/close-task/close-task.component';
     InvitationNoticeComponent,
     RemoveSupervised,
     UserDetailsComponent,
-    CloseTask
+    CloseTask,
+    ReopenTaskComponent
   ],
   imports: [
     BrowserModule,

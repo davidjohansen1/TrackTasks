@@ -95,7 +95,9 @@ export class UserDetailsComponent implements OnInit {
     this.ngOnInit();
   }
 
-  reopenTask() {
+  reopenTask(taskId, taskName) {
+    this.taskId = taskId;
+    this.taskName = taskName;
     this.showReopenTaskModal = true;
   }
 

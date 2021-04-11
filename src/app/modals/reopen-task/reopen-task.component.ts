@@ -2,16 +2,16 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
-  selector: 'close-task',
-  templateUrl: './close-task.component.html',
-  styleUrls: ['./close-task.component.css']
+  selector: 'reopen-task',
+  templateUrl: './reopen-task.component.html',
+  styleUrls: ['./reopen-task.component.css']
 })
-export class CloseTask implements OnInit {
-  errors;
-  @Input() userToSupervisorId;
+export class ReopenTaskComponent implements OnInit {
+  @Output("closeReopenModal") closeReopenModal: EventEmitter<any> = new EventEmitter();
   @Input() taskId;
   @Input() taskName;
-  @Output("closeRemoveModal") closeRemoveModal: EventEmitter<any> = new EventEmitter();
+  errors;
+  selectedValue  = 'Not Started';
 
   constructor(private apiService: ApiService) { }
 
@@ -19,11 +19,12 @@ export class CloseTask implements OnInit {
   }
 
   closeCurrentModal() {
-    this.closeRemoveModal.emit();
+    this.closeReopenModal.emit();
   }
 
-  closeTask() {
-    this.apiService.updateTaskStatus(this.taskId, 'Closed')
+  reopenTask() {
+    console.log(this.selectedValue)
+    this.apiService.updateTaskStatus(this.taskId, this.selectedValue)
     .subscribe(data => {
       if(data != 'task updated successfully') {
         alert('There was a problem updating the task status');
@@ -33,7 +34,7 @@ export class CloseTask implements OnInit {
       this.errors = error
     },
     () => {
-      this.closeRemoveModal.emit();
+      this.closeReopenModal.emit();
     })
   }
 
