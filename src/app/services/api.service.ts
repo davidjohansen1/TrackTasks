@@ -107,4 +107,19 @@ export class ApiService {
         return this.http.post(this.springUrl + 'user/inviteResponse?inviteId=' + inviteId + '&userId=' + userId + '&supervisorId=' + supervisorId + '&status=' + status,
                             '', { 'headers': headers, responseType: 'text' })
     }
+
+    deleteUserToSupervisor(userToSupervisorId: Number): Observable<any> {
+        const headers = { 'content-type': 'application/json' }
+        return this.http.delete(this.springUrl + 'user/deleteUserToSupervisor?userToSupId=' + userToSupervisorId, { 'headers': headers, responseType: 'text' })
+    }
+
+    getUserTasksBySupervisor(loggedInUserId: Number, taskUserId: Number): Observable<Tasks[]>{
+        const headers = { 'content-type': 'application/json' }
+        return this.http.get<Tasks[]>(this.springUrl + 'task/getUserTasksBySupervisor?loggedInUserId=' + loggedInUserId + '&taskUserId=' + taskUserId, { 'headers': headers })
+    }
+
+    updateTaskStatus(id: number, status: string): Observable<any> {
+        const headers = { 'content-type': 'application/json' }
+        return this.http.post(this.springUrl + 'task/updateTaskStatus?taskId=' + id + '&status=' + status, '', { 'headers': headers, responseType: 'text' })
+    }
 }

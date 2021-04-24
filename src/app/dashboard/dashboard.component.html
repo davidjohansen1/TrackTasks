@@ -31,7 +31,7 @@
         </li>
         <li class ="nav-item item-text">
           <a class ="nav-link text-color" href="javascript:void(0)" (click)="loadMyUsers();"
-            [ngClass]="{'active' : myUsers, 'inactive': !myUsers}">
+            [ngClass]="{'active' : activeMyUsers, 'inactive': !activeMyUsers}">
             <i class="fa fa-users"></i>&nbsp;&nbsp;&nbsp;My Users</a>
         </li>
         <li class ="nav-item item-text">
@@ -47,7 +47,11 @@
     *ngIf="showAllTasks"
     [loggedInUserId]="loggedInUserId"></alltasks>
   <mytasks *ngIf="showMyTasks"></mytasks>
-  <my-users *ngIf="myUsers"></my-users>
+  <my-users *ngIf="myUsers"
+    (loadUserDetails)="loadUserDetails($event)"></my-users>
+  <user-details *ngIf="userDetails"
+    [taskInfo]="taskInfo"
+    (goBacktoMyUsers)="goBacktoMyUsers()"></user-details>
   <invitation-notice
     [supervisorFirstName]="supervisorFirstName"
     [supervisorLastName]="supervisorLastName"

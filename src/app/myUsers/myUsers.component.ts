@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { Users } from '../tasks/user';
 
@@ -13,6 +13,14 @@ export class MyUsers implements OnInit {
   showFindUsersModal = false;
   loggedInUserId;
   errors;
+  showRemoveModal;
+  showResendMessage = false;
+  fullUserDetails;
+  @Output() userToSupervisorId;
+  @Output() userName;
+  @Output() first_name;
+  @Output() last_name;
+  @Output("loadUserDetails") loadUserDetails: EventEmitter<any> = new EventEmitter();
 
   constructor(private apiService: ApiService) { }
 
@@ -41,16 +49,41 @@ export class MyUsers implements OnInit {
     this.showFindUsersModal = true;
   }
 
-  viewUserDetails() {
-    console.log('this eventually will navigate to a new user details page')
+  viewUserDetails(taskUserId, userName, firstName, lastName) {
+    this.fullUserDetails = {'taskUserId': taskUserId, 'userName': userName, 'firstName': firstName, 'lastName': lastName}
+    this.loadUserDetails.emit(this.fullUserDetails);
   }
 
-  remove() {
-    console.log('this will delete the entry from the userToSupervisor table')
+  resend(userToSupervisorId, userId) {
+    this.apiService.inviteResponse(userToSupervisorId, userId, this.loggedInUserId, 'Pending')
+    .subscribe(data => {
+        if(data != 'invited accepted') {
+          alert('There was a problem updating the user');
+        }
+      },
+      error => {
+          this.errors = error;
+      },
+      () => {
+        this.ngOnInit();
+        this.showResendMessage = true;
+        setTimeout(function() { 
+          this.showResendMessage = false;
+        }.bind(this), 5000)
+      })
   }
 
-  resend() {
-    console.log('this will update the status in the userToSupervisor table back to pending')
+  removeConfirmation(userToSupervisorId, userName, first_name, last_name) {
+    this.userName = userName;
+    this.userToSupervisorId = userToSupervisorId;
+    this.first_name = first_name
+    this.last_name = last_name
+    this.showRemoveModal = true;
+  }
+
+  closeRemoveModal() {
+    this.ngOnInit();
+    this.showRemoveModal = false;
   }
 
 }

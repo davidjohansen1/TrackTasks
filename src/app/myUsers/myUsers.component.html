@@ -1,11 +1,18 @@
 <div class="col-md-9">
   <div class="row user-area-content">
-    <button class="btn btn-primary"
+    <div class="col-md-2">
+      <button class="btn btn-primary"
       data-toggle="modal"
       data-target="#findUsers"
       data-backdrop="static"
       data-keyboard="false"
       (click)="findUsers()">Search User(s)</button>
+    </div>
+    <div class="col-md-4" *ngIf=showResendMessage>
+      <div id="resend message" class="resend-message">
+        <i class="fa fa-check fa-lg"></i><strong>The request has been successfully resent</strong>
+      </div>    
+    </div>
   </div>
   <div class="row user-area-content" *ngIf="hasUsers == false">
     <h4><p class="message-spacing">You are not adminstrating any users yet.</p></h4>
@@ -16,7 +23,7 @@
     </h5>
   </div>
   <div class="row user-area-content" *ngIf="hasUsers == true">
-    <table class="table table-striped table-spacing">
+    <table class="table table-bordered">
       <thead class="table-header">
         <tr>
           <th scope="col"><h4><strong>Username</strong></h4></th>
@@ -43,16 +50,20 @@
               </button>
               <ul class="dropdown-menu">
                 <li *ngIf="myUser.status == 'Accepted'">
-                  <a class="dropdown-item" href="javascript:void(0)" (click)="viewUserDetails()">View User Details</a>
+                  <a class="dropdown-item"
+                    href="javascript:void(0)"
+                    (click)="viewUserDetails(myUser.id, myUser.username, myUser.first_name, myUser.last_name)">View User Details</a>
                 </li>
-                <li *ngIf="myUser.status == 'Pending'">
-                  <a class="dropdown-item" href="javascript:void(0)" (click)="remove()">Recall</a>
-                </li>
-                <li *ngIf="myUser.status == 'Rejected' || myUser.status == 'Accepted'">
-                  <a class="dropdown-item" href="javascript:void(0)" (click)="remove()">Remove</a>
+                <li *ngIf="myUser.status == 'Rejected' || myUser.status == 'Accepted' || myUser.status == 'Pending'">
+                  <a class="dropdown-item" 
+                    data-toggle="modal"
+                    data-target="#deleteUserToSup"
+                    data-backdrop="static"
+                    data-keyboard="false"
+                    (click)="removeConfirmation(myUser.utsid, myUser.username, myUser.first_name, myUser.last_name)">Remove</a>
                 </li>
                 <li *ngIf="myUser.status == 'Rejected'">
-                  <a class="dropdown-item" href="javascript:void(0)" (click)="resend()">Resend</a>
+                  <a class="dropdown-item" href="javascript:void(0)" (click)="resend(myUser.utsid, myUser.id)">Resend</a>
                 </li>
               </ul>
             </div>
@@ -64,3 +75,10 @@
 <findUsers *ngIf="showFindUsersModal"
   (closeModal)="closeModal()">
 </findUsers>
+<remove-supervised *ngIf="showRemoveModal"
+  [userToSupervisorId]="userToSupervisorId"
+  [userName]="userName"
+  [first_name]="first_name"
+  [last_name]="last_name"
+  (closeRemoveModal)="closeRemoveModal()">
+</remove-supervised>

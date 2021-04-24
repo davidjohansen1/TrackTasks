@@ -1,0 +1,119 @@
+.table-header {
+    background-color: #4894ac;
+}
+
+.table-header th {
+    padding-left: 15px;
+}
+
+.table-spacer {
+    margin-top: 30px;
+}
+
+.table {
+    border-collapse: collapse;
+    box-shadow: 3px 3px 10px rgba(255, 255, 255, 0.664);
+}
+
+.table-body{
+    color: black;
+    font-size: medium;
+    background-color: white;
+}
+
+.table-body td {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 15px;
+    border: 1px solid #00000036;
+}
+
+.username {
+    font-size: 24px;
+    padding-left: 10px;
+}
+
+.note {
+    font-size: 14px;
+}
+
+.statusColumns {
+    width: 15px;
+}
+
+.status-table {
+    background-color: rgb(255, 255, 255);
+    width: 300px;
+}
+
+.div-table {
+    margin-left: 250px;
+}
+
+.total {
+    font-size: 21px;
+    font-weight: bold;
+    padding-bottom: 14px;
+    width: 18px;
+}
+
+.status-heights {
+    height: 15px;
+}
+
+.header-text {
+    padding-bottom: 20px;
+    font-size: 16px;
+}
+
+.body-text {
+    padding-bottom: 12px;
+    font-size: 16px;
+}
+
+::ng-deep .chart {
+    margin-left: 100px;
+}
+
+::ng-deep .chart google-chart div div {
+    height: 0px !important;
+}
+
+::ng-deep .chart > google-chart > div > div > div > svg > g > text:first-child {
+    font-size: 16px !important;
+}
+
+::ng-deep .chart > google-chart > div > div > div > svg > g > g > g > text {
+    font-size: 16px !important;
+}
+
+.chart-padding {
+    margin-top: 20px;
+    margin-left: 140px;
+}
+
+.dropdown-menu > li > a {
+    font-size: 14px;
+}
+
+.dropdown-menu a:hover {
+  color: #fff;
+  background-color: #b91773;
+  border-color: #fff;
+}
+
+.showClosed {
+    background-color: white;
+    color: black;
+    font-size: 17px;
+}
+
+.showClosed:hover {
+    background-color: #b91773;
+    color: white;
+    font-size: 17px;
+}
+
+.noTasks{
+    margin-top: 25px;
+}

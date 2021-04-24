@@ -86,3 +86,24 @@ body {
 .star {
     color: #fbd82f;
 }
+
+.button-separation {
+    margin-top: 25px;
+}
+
+.user-area-content {
+    margin-left: 11px;
+}
+
+.btn {
+    transition-duration: 0.4s;
+}
+
+.task-info-minus-name {
+    font-size: 16px;
+}
+
+.task-name {
+    font-size: 19px;
+    font-weight: bold;
+}

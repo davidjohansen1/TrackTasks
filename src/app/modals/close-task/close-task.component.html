@@ -1,0 +1,27 @@
+<div class="modal fade" id="closeTask" tabindex="-1" role="dialog" aria-labelledby="closeTaskLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding-right: 10px; padding-top: 10px;" (click)="closeCurrentModal()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    <div class="modal-header">
+        <h4 class="modal-title" id="closeTaskLabel"><strong>Close this task?</strong></h4>
+    </div>
+    <div class="modal-body">
+      <div class="container">
+        <div class="col-md-6">
+            <div>
+              <p class="task-info-minus-name">Confirm that you want to close task:</p>
+              <p class="task-name">"{{taskName}}"</p>
+              <p class="task-name-space">*Closing this task will remove it from the user's task list.</p>
+            </div>
+            <div class="form-group button-separation">
+                <button class="btn btn-danger"
+                  style="margin-right: 5px;" data-dismiss="modal" (click)="closeTask()">Close</button>
+                <button class="btn btn-success" data-dismiss="modal" (click)="closeCurrentModal()">Keep Open</button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

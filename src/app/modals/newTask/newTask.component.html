@@ -22,6 +22,7 @@
 
                     <div class="form-group">
                         <label for="currentAssignedUserId" class="label-text">Assign a user to this task:</label>
+                        <!-- syncfusion (https://ej2.syncfusion.com/) made this ejs dropdown available-->
                         <ejs-dropdownlist id='currentAssignedUserId' [dataSource]='supervised' [fields]='selectUserfields' width="90%"
                             placeholder='Select a User' [(ngModel)]="task.assignedUser">
                         </ejs-dropdownlist>

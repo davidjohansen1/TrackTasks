@@ -21,10 +21,13 @@ export class DashboardComponent {
     showProfile = false;
     showAllTasks = false;
     myUsers = false;
+    activeMyUsers = false;
+    userDetails = false;
     showAbout = false;
     pageName = 'My Tasks';
     tasks = 'Available Tasks';
     inviteStatus;
+    @Output() taskInfo;
     @Output() supervisorId;
     @Output() inviteId;
     @Output() supervisorFirstName;
@@ -68,24 +71,44 @@ export class DashboardComponent {
     }
 
     loadAllTasksComponent() {
-        this.showMyTasks = false
+        this.userDetails = false;
+        this.showMyTasks = false;
         this.myUsers = false;
-        this.showAllTasks = true
-        this.pageName = 'Manage Tasks'
+        this.activeMyUsers = false;
+        this.showAllTasks = true;
+        this.pageName = 'Manage Tasks';
     }
 
     loadMyTasks() {
-        this.showAllTasks = false
+        this.userDetails = false;
+        this.showAllTasks = false;
         this.myUsers = false;
-        this.showMyTasks = true
-        this.pageName = 'My Tasks'
+        this.activeMyUsers = false;
+        this.showMyTasks = true;
+        this.pageName = 'My Tasks';
     }
 
     loadMyUsers() {
+        this.userDetails = false;
         this.showAllTasks = false;
         this.showMyTasks = false;
         this.myUsers = true;
-        this.pageName = 'My Users'
+        this.activeMyUsers = true;
+        this.pageName = 'My Users';
+    }
+
+    loadUserDetails(taskInfo) {
+        this.showAllTasks = false;
+        this.showMyTasks = false;
+        this.myUsers = false;
+        this.activeMyUsers = true;
+        this.userDetails = true;
+        this.taskInfo = taskInfo;
+        this.pageName = 'User Details';
+    }
+
+    goBacktoMyUsers() {
+        this.loadMyUsers();
     }
 
 }

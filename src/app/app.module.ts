@@ -25,6 +25,11 @@ import { MyUsers } from './myUsers/myUsers.component';
 import { FindUsers } from './modals/find-users/findUsers.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { InvitationNoticeComponent } from './modals/invitation-notice/invitation-notice.component';
+import { RemoveSupervised } from './modals/remove-supervised/remove-supervised.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
+import { GoogleChartsModule } from 'angular-google-charts';
+import { CloseTask } from './modals/close-task/close-task.component';
+import { ReopenTaskComponent } from './modals/reopen-task/reopen-task.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +51,11 @@ import { InvitationNoticeComponent } from './modals/invitation-notice/invitation
     DeleteTaskComponent,
     MyUsers,
     FindUsers,
-    InvitationNoticeComponent
+    InvitationNoticeComponent,
+    RemoveSupervised,
+    UserDetailsComponent,
+    CloseTask,
+    ReopenTaskComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +64,7 @@ import { InvitationNoticeComponent } from './modals/invitation-notice/invitation
     HttpClientModule,
     DropDownListModule,
     NgxPaginationModule,
+    GoogleChartsModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],

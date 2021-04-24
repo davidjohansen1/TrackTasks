@@ -61,6 +61,7 @@
                                 </td>
                             </tr>
                         </tbody>
+                        <!-- Made possible by ngx-pagination: https://www.npmjs.com/package/ngx-pagination -->
                         <pagination-controls (pageChange)="p = $event" *ngIf="users.length > 5"></pagination-controls>
                     </table>
                 </div>
