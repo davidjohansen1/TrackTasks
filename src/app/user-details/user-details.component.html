@@ -9,6 +9,7 @@
   </div>
   <div class="row user-area-content chart-padding" *ngIf="total > 0">
     <div class="col-md-3 chart">
+      <!-- using google charts: https://www.npmjs.com/package/angular-google-charts -->
       <google-chart #chart
         [title]=title
         [type]=type
